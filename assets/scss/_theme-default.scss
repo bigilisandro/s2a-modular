@@ -1,0 +1,160 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+// Set your brand colors
+$green: #027881;
+$blue: #5C94FE;
+$black-light: #526C79;
+$brown: #757763;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+$black-semi: #2A363D;
+$white: #FFFFFF;
+$light-blue: #F6FAFF;
+$light-grey: #C0CDD3;
+$red: #EF3F61;
+$grey: #F5F5F5;
+
+// Update Bulma's global variables
+$grey-dark: $black-light;
+$grey-darker: $black-semi;
+$grey-light: $beige-light;
+$primary: $green;
+$light: $black-light;
+$text: $black-semi;
+$text-strong: $black-semi;
+$link: $black-semi;
+$link-hover: $black-light;
+$background: $green;
+$body-family: $family-sans-serif;
+
+/* Buttons */
+$button-background-color: $green;
+$button-color: $white;
+$button-active-color: $white;
+$button-border-width: 0;
+$button-border-color: none;
+$button-active-border-color: $black-semi;
+$button-hover-color: $white;
+$button-text-hover-color: $white;
+$button-focus-color: $white;
+$radius: 6px;
+$border-radius: 6px;
+$button-padding-horizontal: 1.25rem;
+$button-padding-vertical: 0.5rem;
+
+/* Base: Size  */
+$size-base: 1rem;
+$size-medium: 1rem;
+$size-large: 1rem;
+$size-small: 1rem;
+$default-padding: $size-base * 1;
+$body-font-size: 1rem;
+
+// Text
+$subtitle-color: $black-semi;
+$size-7: 0.875rem;
+$size-5: 1.125rem;
+$size-4: 1.625rem;
+$size-2: 2.375rem;
+$size-1: 2.875rem;
+$subtitle-family: 'Poppins', sans-serif;
+$help-size: 0.75rem;
+
+/* Default font */
+$family-sans-serif: 'Poppins', sans-serif;
+$family-primary: 'Poppins', sans-serif;
+$family-code: 'Poppins', sans-serif;
+$body-family: 'Poppins', sans-serif;
+$family-monospace: 'Poppins', sans-serif;
+$title-family: 'Poppins', sans-serif;
+
+/* Base color */
+$base-color: #2A363D;
+$base-color-light: rgba(24,28,33,0.06);
+$title-color: $black-semi;
+$notification-background-color: transparent;
+
+/* General overrides */
+$body-background-color: #fff;
+$link-visited: $purple;
+$light-border: 1px solid $base-color-light;
+$hr-height: 1px;
+$dropdown-item-hover-background-color:rgba(78, 214, 135, 0.15); 
+$dropdown-item-active-background-color: rgba(78, 214, 135, 0.15);
+$dropdown-item-active-color: $black-semi;
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(
+    (
+        "white": (
+            $white,
+            $black,
+        ),
+        "black": (
+            $black,
+            $white,
+        ),
+        "light": (
+            $light,
+            $light-invert,
+        ),
+        "dark": (
+            $dark,
+            $dark-invert,
+        ),
+        "primary": (
+            $primary,
+            $primary-invert,
+            $primary-light,
+            $primary-dark,
+        ),
+        "link": (
+            $link,
+            $link-invert,
+            $link-light,
+            $link-dark,
+        ),
+        "info": (
+            $info,
+            $info-invert,
+            $info-light,
+            $info-dark,
+        ),
+        "success": (
+            $success,
+            $success-invert,
+            $success-light,
+            $success-dark,
+        ),
+        "warning": (
+            $warning,
+            $warning-invert,
+            $warning-light,
+            $warning-dark,
+        ),
+        "danger": (
+            $danger,
+            $danger-invert,
+            $danger-light,
+            $danger-dark,
+        ),
+    ),
+    $custom-colors
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
