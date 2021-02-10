@@ -49,15 +49,16 @@
         <div class="columns is-multiline">
           <div
             v-for="model in models"
-            :key="model.length"
+            :key="model.id"
             class="column is-4"
             @mouseover="showByIndex = model"
             @mouseout="showByIndex = null"
           >
-            <Card :model="model" />
-            <div v-show="showByIndex === model" class="child-two">
-              Show me only on hover on "div.parent" element
-            </div>
+            <Card
+              :hover="showByIndex === model"
+              :model="model"
+              @view-model="viewModel(model.id)"
+            />
           </div>
         </div>
       </div>
@@ -79,38 +80,45 @@ export default {
   data() {
     return {
       showByIndex: null,
+      signUpModal: false,
       models: [
         {
+          id: 1,
           image: model1,
           title: 'MODEL 1',
           description:
             '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
         },
         {
+          id: 2,
           image: model2,
           title: 'MODEL 6',
           description:
             '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
         },
         {
+          id: 3,
           image: model3,
           title: 'MODEL 11',
           description:
             '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
         },
         {
+          id: 4,
           image: model1,
           title: 'MODEL 4',
           description:
             '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
         },
         {
+          id: 5,
           image: model2,
           title: 'MODEL 2',
           description:
             '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."',
         },
         {
+          id: 6,
           image: model3,
           title: 'MODEL 22',
           description:
@@ -118,6 +126,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    viewModel(idModel) {
+      this.$router.push({ name: 'model-id', params: { id: idModel } })
+    },
   },
 }
 </script>
