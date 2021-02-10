@@ -47,8 +47,17 @@
       <!-- HOMES -->
       <div class="container is-fluid">
         <div class="columns is-multiline">
-          <div v-for="model in models" :key="model.length" class="column is-4">
+          <div
+            v-for="model in models"
+            :key="model.length"
+            class="column is-4"
+            @mouseover="showByIndex = model"
+            @mouseout="showByIndex = null"
+          >
             <Card :model="model" />
+            <div v-show="showByIndex === model" class="child-two">
+              Show me only on hover on "div.parent" element
+            </div>
           </div>
         </div>
       </div>
@@ -69,6 +78,7 @@ export default {
   },
   data() {
     return {
+      showByIndex: null,
       models: [
         {
           image: model1,
