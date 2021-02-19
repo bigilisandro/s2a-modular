@@ -2,14 +2,7 @@
   <b-modal :active.sync="isModalActive">
     <div class="is-flex">
       <div class="mr-2">
-        <iframe
-          width="854"
-          height="480"
-          src="https://www.youtube.com/embed/WHRU8UTGt14"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        <img src="@/assets/images/floorplants.jpg" />
       </div>
       <a @click.prevent="cancel">
         <img
