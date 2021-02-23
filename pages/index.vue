@@ -10,38 +10,39 @@
         type="is-toggle"
         class="block"
         size="is-small"
+        multiline
       >
         <b-tab-item
           label="ALL HOMES"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="0-2,500 SQ. FT."
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="2,500-5,000 SQ. FT."
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="4 BEDROOM"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="MODERN"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="TRADITIONAL"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="CRAFTSMAN"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
         <b-tab-item
           label="COLONIAL"
-          header-class="mx-5 has-background-white"
+          header-class="mx-5 has-background-white my-2"
         ></b-tab-item>
       </b-tabs>
       <!-- HOMES -->

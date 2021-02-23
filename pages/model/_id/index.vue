@@ -6,6 +6,10 @@
       :is-active="isFloorplanModalActive"
       @cancel="trashCancel"
     />
+    <customize-home-modal
+      :is-active="isCustomizeHomeModalActive"
+      @cancel="trashCancel"
+    />
     <hooper
       :vertical="true"
       style="height: 100vh"
@@ -43,7 +47,12 @@
                   </h4>
                 </div>
                 <div class="is-flex is-align-items-center">
-                  <b-button rounded>CUSTOMIZE HOME</b-button>
+                  <b-button
+                    type="is-primary"
+                    rounded
+                    @click.prevent="customizeModal"
+                    >CUSTOMIZE HOME</b-button
+                  >
                 </div>
               </div>
               <!-- <div>
@@ -138,6 +147,7 @@ import model3 from '@/assets/images/model-3.png'
 import VideoModal from '@/components/VideoModal.vue'
 import DetailsModal from '@/components/DetailsModal.vue'
 import FloorplanModal from '@/components/FloorplanModal.vue'
+import CustomizeHomeModal from '@/components/CustomizeHomeModal.vue'
 
 export default {
   components: {
@@ -147,12 +157,14 @@ export default {
     VideoModal,
     DetailsModal,
     FloorplanModal,
+    CustomizeHomeModal,
   },
   data() {
     return {
       isVideoModalActive: false,
       isDetailsModalActive: false,
       isFloorplanModalActive: false,
+      isCustomizeHomeModalActive: false,
       images: [
         {
           bgImage: 'url(' + model1 + ')',
@@ -176,10 +188,14 @@ export default {
     floorplanModal() {
       this.isFloorplanModalActive = true
     },
+    customizeModal() {
+      this.isCustomizeHomeModalActive = true
+    },
     trashCancel() {
       this.isVideoModalActive = false
       this.isDetailsModalActive = false
       this.isFloorplanModalActive = false
+      this.isCustomizeHomeModalActive = false
     },
   },
 }

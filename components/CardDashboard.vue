@@ -49,7 +49,9 @@
         </div>
         <div class="is-flex mt-4 is-align-items-center">
           <div>
-            <b-button rounded size="is-small">SEND TO S2A</b-button>
+            <b-button type="is-primary" rounded size="is-small"
+              >SEND TO S2A</b-button
+            >
           </div>
           <div>
             <p class="subtitle is-7 ml-3">
