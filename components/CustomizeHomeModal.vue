@@ -1,12 +1,104 @@
 <template>
   <b-modal :active.sync="isModalActive" full-screen>
-    <div class="container my-6 py-6">
-      <b-tabs vertical expanded animated type="is-toggle">
-        <b-tab-item label="GREENLUX EFFICIENT"> </b-tab-item>
+    <div class="mx-6 my-6 py-6">
+      <!-- <b-tabs vertical expanded animated type="is-toggle">
+        <b-tab-item label="GREENLUX EFFICIENT"></b-tab-item>
 
         <b-tab-item label="NORMAL POWER GRID"> </b-tab-item>
-      </b-tabs>
+      </b-tabs> -->
       <b-tabs vertical expanded animated>
+        <b-tab-item>
+          <template #header>
+            <b-button type="is-primary" expanded>GREENLUX EFFICIENT</b-button>
+          </template>
+          <div class="container" style="height: 50vh; overflow: scroll">
+            <h1 class="title is-4 has-text-white">GREENLUX</h1>
+            <div class="columns">
+              <div class="is-6 column">
+                <p class="subtitle has-text-white is-7">
+                  Nunc nec velit nec libero vestibulum eleifend. Curabitur
+                  pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
+                  ornare. Maecenas vehicula pulvinar tellus, id sodales felis
+                  lobortis eget.
+                </p>
+              </div>
+              <div class="column is-offset-4">
+                <b-field>
+                  <b-switch></b-switch>
+                </b-field>
+              </div>
+            </div>
+            <div v-for="greenlux in greenluxProducts" :key="greenlux.length">
+              <div class="p-5 border columns m-5">
+                <div class="column">
+                  <b-carousel
+                    :indicator-inside="false"
+                    :autoplay="false"
+                    :arrow="false"
+                  >
+                    <b-carousel-item v-for="(item, i) in 3" :key="i">
+                      <span class="image">
+                        <img :src="getImgUrl(i)" style="height: 20vh" />
+                      </span>
+                    </b-carousel-item>
+                    <template #indicators="props">
+                      <span class="al image">
+                        <img :src="getImgUrl(props.i)" :title="props.i" />
+                      </span>
+                    </template>
+                  </b-carousel>
+                </div>
+                <div class="column is-6">
+                  <h1 class="title is-5 has-text-white">
+                    {{ greenlux.title }}
+                  </h1>
+                  <p class="subtitle mb-0 has-text-white">LG/543434JNKDW</p>
+                  <p class="subtitle has-text-white has-text-weight-bold">
+                    ${{ greenlux.price }}
+                  </p>
+                  <p class="subtitle has-text-white is-7">
+                    Nunc nec velit nec libero vestibulum eleifend. Curabitur
+                    pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
+                    ornare. Maecenas vehicula pulvinar tellus, id sodales felis
+                    lobortis eget.
+                  </p>
+                  <ul
+                    class="subtitle is-7 has-text-white ml-5"
+                    style="list-style: disc"
+                  >
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                  </ul>
+                </div>
+                <div class="column">
+                  <p class="subtitle is-7 has-text-white">Choose a color</p>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small"
+                      >Black Stainless Steel</b-checkbox
+                    >
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">Stainless Steel</b-checkbox>
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">White</b-checkbox>
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">Black</b-checkbox>
+                  </b-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b-tab-item>
+
+        <b-tab-item>
+          <template #header>
+            <b-button type="is-light" expanded>NORMAL POWER GRID</b-button>
+          </template>
+        </b-tab-item>
         <b-tab-item disabled>
           <template #header>
             <div>
@@ -94,66 +186,74 @@
           <template #header>
             <span class="has-text-white">APPLIANCES</span>
           </template>
-          <div
-            class="container"
-            style="width: 90vh; height: 50vh; overflow: scroll"
-          >
+          <div class="container" style="height: 50vh; overflow: scroll">
             <h1 class="title is-4 has-text-white">APPLIANCES</h1>
-            <div
-              v-for="appliance in appliances"
-              :key="appliance.length"
-              class="p-5 border columns m-5"
-            >
-              <div class="column">
-                <b-carousel :indicator-inside="false" :autoplay="false">
-                  <b-carousel-item v-for="(item, i) in 3" :key="i">
-                    <span class="image">
-                      <img :src="getImgUrl(i)" style="height: 20vh" />
-                    </span>
-                  </b-carousel-item>
-                  <template #indicators="props">
-                    <span class="al image">
-                      <img :src="getImgUrl(props.i)" :title="props.i" />
-                    </span>
-                  </template>
-                </b-carousel>
+            <div v-for="appliance in appliances" :key="appliance.length">
+              <div class="p-5 border columns m-5">
+                <div class="column">
+                  <b-carousel
+                    :indicator-inside="false"
+                    :autoplay="false"
+                    :arrow="false"
+                  >
+                    <b-carousel-item v-for="(item, i) in 3" :key="i">
+                      <span class="image">
+                        <img :src="getImgUrl(i)" style="height: 20vh" />
+                      </span>
+                    </b-carousel-item>
+                    <template #indicators="props">
+                      <span class="al image">
+                        <img :src="getImgUrl(props.i)" :title="props.i" />
+                      </span>
+                    </template>
+                  </b-carousel>
+                </div>
+                <div class="column is-6">
+                  <h1 class="title is-5 has-text-white">
+                    {{ appliance.title }}
+                  </h1>
+                  <p class="subtitle mb-0 has-text-white">LG/543434JNKDW</p>
+                  <p class="subtitle has-text-white has-text-weight-bold">
+                    ${{ appliance.price }}
+                  </p>
+                  <p class="subtitle has-text-white is-7">
+                    Nunc nec velit nec libero vestibulum eleifend. Curabitur
+                    pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
+                    ornare. Maecenas vehicula pulvinar tellus, id sodales felis
+                    lobortis eget.
+                  </p>
+                  <ul
+                    class="subtitle is-7 has-text-white ml-5"
+                    style="list-style: disc"
+                  >
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                    <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                  </ul>
+                </div>
+                <div class="column">
+                  <p class="subtitle is-7 has-text-white">Choose a color</p>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small"
+                      >Black Stainless Steel</b-checkbox
+                    >
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">Stainless Steel</b-checkbox>
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">White</b-checkbox>
+                  </b-field>
+                  <b-field class="has-text-white">
+                    <b-checkbox size="is-small">Black</b-checkbox>
+                  </b-field>
+                </div>
               </div>
-              <div class="column is-6">
-                <h1 class="title is-5 has-text-white">{{ appliance.title }}</h1>
-                <p class="subtitle mb-0 has-text-white">LG/543434JNKDW</p>
-                <p class="subtitle has-text-white has-text-weight-bold">
-                  ${{ appliance.price }}
-                </p>
-                <p class="subtitle has-text-white is-7">
-                  Nunc nec velit nec libero vestibulum eleifend. Curabitur
-                  pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
-                  ornare. Maecenas vehicula pulvinar tellus, id sodales felis
-                  lobortis eget.
-                </p>
-                <ul
-                  class="subtitle is-7 has-text-white ml-5"
-                  style="list-style: disc"
+              <div class="is-flex is-justify-content-flex-end">
+                <b-button size="is-small" type="is-primary" rounded
+                  >+ ADD TO HOME</b-button
                 >
-                  <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                  <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                  <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                  <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                </ul>
-              </div>
-              <div class="column">
-                <p class="subtitle is-7 has-text-white">Choose a color</p>
-                <b-field class="has-text-white">
-                  <b-checkbox size="is-small">Black Stainless Steel</b-checkbox>
-                </b-field>
-                <b-field class="has-text-white">
-                  <b-checkbox size="is-small">Stainless Steel</b-checkbox>
-                </b-field>
-                <b-field class="has-text-white">
-                  <b-checkbox size="is-small">White</b-checkbox>
-                </b-field>
-                <b-field class="has-text-white">
-                  <b-checkbox size="is-small">Black</b-checkbox>
-                </b-field>
               </div>
             </div>
           </div>
@@ -208,6 +308,20 @@ export default {
           price: '1000',
         },
       ],
+      greenluxProducts: [
+        {
+          title: 'GREENLUX PRODUCT',
+          price: '2,000',
+        },
+        {
+          title: 'GREENLUX TECH',
+          price: '500',
+        },
+        {
+          title: 'GREENLUX FEATURE',
+          price: '1000',
+        },
+      ],
     }
   },
   watch: {
@@ -240,5 +354,8 @@ export default {
 }
 .border {
   border: 2px solid white;
+}
+.border:hover {
+  border: 2px solid #027881;
 }
 </style>
