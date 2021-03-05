@@ -3,7 +3,7 @@
     <div class="bg-home py-6">
       <h1 class="title is-2 has-text-centered my-6">ELIZABETH'S HOMES</h1>
       <!-- HOMES -->
-      <div class="container is-fluid">
+      <div class="mx-5 mx-0-mobile">
         <div class="columns is-multiline">
           <div
             v-for="model in models"

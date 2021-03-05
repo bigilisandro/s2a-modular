@@ -36,11 +36,36 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
-
+  axios: {
+    baseURL: process.env.API_BASE_URL,
+  },
+  // router: {
+  //   middleware: ['auth'],
+  // },
+  // NUXT JS AUTH
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'jwt',
+          },
+          // user: { url: '/auth/me', method: 'get', propertyName: false },
+          logout: false,
+          // refresh: { url: '/api/auth/refresh', method: 'post' },
+        },
+      },
+    },
+  },
+  env: {
+    API_BASE_URL: process.env.API_BASE_URL,
+  },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {

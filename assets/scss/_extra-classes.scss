@@ -3,6 +3,11 @@
     text-decoration: underline;
 }
 
+// Width
+.w-15vh {
+    width: 15vh;
+}
+
 // Height
 .is-fullheight {
     height: 100% !important;
@@ -12,3 +17,74 @@
 .modal.is-full-screen > .animation-content {
     background-color: rgba(10, 10, 10, 0.46);
 }
+
+// Tabs
+.tabs.is-toggle a {
+    border-color: transparent;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.tabs.is-toggle li.is-active a {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+    border-radius: 30px !important;
+}
+.tabs.is-toggle a:hover {
+    border: none !important;
+    border-radius: 30px !important;
+    color: #fff;
+}
+
+// Border
+.border-radius-30px {
+    border-radius: 30px;
+}
+
+// Dropdwon
+.dropdown-content {
+    margin-top: 30px;
+}
+a.dropdown-item {
+    font-weight: bold;
+}
+
+// Forms - Inputs
+.input::placeholder {
+    text-align: center;
+}
+.input {
+    text-align: center;
+}
+
+// Buttons
+.button {
+    font-weight: bold;
+}
+
+// Extras
+.model-bottom {
+    background-color: $green;
+    font-size: 0.75rem;
+    color: #fff;
+    height: 2em;
+    line-height: 1.5;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 6px 0px 0px 0px;
+    font-weight: bold;
+}
+
+// Mobile 
+
+@media screen and (max-width: 768px) {
+    .mx-0-mobile {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .is-justify-content-center-mobile {
+        justify-content: center;
+    }
+} 

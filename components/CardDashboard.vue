@@ -5,7 +5,7 @@
         <div
           class="is-flex is-align-items-flex-end is-justify-content-flex-end is-fullheight"
         >
-          <b-tag type="is-primary">{{ model.title }}</b-tag>
+          <div class="model-bottom">{{ model.title }}</div>
         </div>
         <!-- <figure class="image">
           <img :src="model.image" :alt="model.title" class="border-green" />
@@ -21,7 +21,7 @@
           {{ model.title }} <span class="mx-2">|</span> $ {{ model.price }}
         </h4>
         <p class="subtitle is-7">{{ model.description }}</p>
-        <div class="is-flex is-justify-content-space-around">
+        <div class="is-flex is-justify-content-space-between">
           <a class="is-flex is-align-items-center">
             <img
               src="@/assets/images/icon_pdf.svg"
@@ -47,9 +47,15 @@
             <p class="subtitle is-7">Edit Home</p>
           </a>
         </div>
-        <div class="is-flex mt-4 is-align-items-center">
+        <div
+          class="is-flex mt-4 is-align-items-center is-flex-wrap-wrap is-justify-content-center-mobile"
+        >
           <div>
-            <b-button type="is-primary" rounded size="is-small"
+            <b-button
+              type="is-primary"
+              rounded
+              size="is-small"
+              class="px-6 my-2"
               >SEND TO S2A</b-button
             >
           </div>

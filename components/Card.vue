@@ -6,7 +6,9 @@
           <img :src="model.image" :alt="model.title" class="border-green" />
         </figure> -->
         <div v-show="hover" class="hoverImage">
-          <b-button type="is-primary" rounded @click="viewModel">View</b-button>
+          <b-button type="is-primary" rounded class="px-6" @click="viewModel"
+            >VIEW</b-button
+          >
         </div>
       </div>
     </div>
