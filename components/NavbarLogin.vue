@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Notification from '@/components/Notification.vue'
 import SignUp from './SignUp.vue'
 export default {
@@ -119,6 +120,14 @@ export default {
       password: '',
       loadingButton: true,
       error: null,
+    }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
+  mounted() {
+    if (this.isAuthenticated) {
+      this.$router.push('./')
     }
   },
   methods: {

@@ -83,6 +83,7 @@ export default {
     Card,
     NavbarLogin,
   },
+  auth: 'guest',
   layout: 'login',
   data() {
     return {

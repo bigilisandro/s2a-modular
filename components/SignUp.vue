@@ -137,6 +137,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Notification from '@/components/Notification.vue'
 export default {
   components: {
@@ -162,6 +163,9 @@ export default {
       error: null,
     }
   },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
   watch: {
     isActive(newValue) {
       this.isModalActive = newValue
@@ -171,6 +175,11 @@ export default {
         this.cancel()
       }
     },
+  },
+  mounted() {
+    if (this.isAuthenticated) {
+      this.$router.push('./')
+    }
   },
   methods: {
     cancel() {
@@ -191,8 +200,13 @@ export default {
         })
         this.error = null
         this.loadingButton = true
+        this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
       } catch (e) {
-        console.log(e.response)
         this.loadingButton = true
         if (e.response.data.message != null) {
           this.error = e.response.data.message

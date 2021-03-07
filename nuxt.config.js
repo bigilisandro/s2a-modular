@@ -43,9 +43,9 @@ export default {
   axios: {
     baseURL: process.env.API_BASE_URL,
   },
-  // router: {
-  //   middleware: ['auth'],
-  // },
+  router: {
+    middleware: ['auth'],
+  },
   // NUXT JS AUTH
   auth: {
     strategies: {
@@ -56,7 +56,7 @@ export default {
             method: 'post',
             propertyName: 'jwt',
           },
-          // user: { url: '/auth/me', method: 'get', propertyName: false },
+          user: { url: '/auth/user', method: 'get', propertyName: false },
           logout: false,
           // refresh: { url: '/api/auth/refresh', method: 'post' },
         },
