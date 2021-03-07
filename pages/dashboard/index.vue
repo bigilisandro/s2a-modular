@@ -1,7 +1,9 @@
 <template>
   <section>
     <div class="bg-home py-6">
-      <h1 class="title is-2 has-text-centered my-6">ELIZABETH'S HOMES</h1>
+      <h1 class="title is-2 has-text-centered my-6">
+        {{ user.firstName.toUpperCase() }}'S HOMES
+      </h1>
       <!-- HOMES -->
       <div class="mx-5 mx-0-mobile">
         <div class="columns is-multiline">
@@ -25,6 +27,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import CardDashboard from '@/components/CardDashboard.vue'
 import model1 from '@/assets/images/model-1.png'
 import model2 from '@/assets/images/model-2.png'
@@ -39,6 +42,7 @@ export default {
     return {
       showByIndex: null,
       signUpModal: false,
+      user: {},
       models: [
         {
           id: 1,
@@ -74,6 +78,12 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
+  mounted() {
+    this.user = this.loggedInUser.user
   },
   methods: {
     viewModel(idModel) {

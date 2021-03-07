@@ -1,5 +1,6 @@
 <template>
   <div>
+    <profile-modal :is-active="isProfileModalActive" @cancel="trashCancel" />
     <b-navbar spaced>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
@@ -34,7 +35,9 @@
                 @click="$router.push('/dashboard')"
                 >MY HOMES</b-dropdown-item
               >
-              <b-dropdown-item aria-role="listitem">PROFILE</b-dropdown-item>
+              <b-dropdown-item aria-role="listitem" @click="profileModal()"
+                >PROFILE</b-dropdown-item
+              >
               <b-dropdown-item aria-role="listitem" @click="logout"
                 >SIGN OUT</b-dropdown-item
               >
@@ -47,8 +50,21 @@
 </template>
 
 <script>
+import ProfileModal from '@/components/ProfileModal.vue'
 export default {
+  components: { ProfileModal },
+  data() {
+    return {
+      isProfileModalActive: false,
+    }
+  },
   methods: {
+    profileModal() {
+      this.isProfileModalActive = true
+    },
+    trashCancel() {
+      this.isProfileModalActive = false
+    },
     async logout() {
       await this.$auth.logout()
       this.$router.push('./login')

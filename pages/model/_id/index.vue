@@ -159,6 +159,7 @@ export default {
     FloorplanModal,
     CustomizeHomeModal,
   },
+  auth: 'guest',
   data() {
     return {
       isVideoModalActive: false,
