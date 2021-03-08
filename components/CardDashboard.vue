@@ -5,7 +5,7 @@
         <div
           class="is-flex is-align-items-flex-end is-justify-content-flex-end is-fullheight"
         >
-          <div class="model-bottom">{{ model.title }}</div>
+          <div class="model-bottom">{{ model.model_name }}</div>
         </div>
         <!-- <figure class="image">
           <img :src="model.image" :alt="model.title" class="border-green" />
@@ -18,7 +18,7 @@
     <div class="card-content">
       <div class="content">
         <h4 class="title has-text-primary">
-          {{ model.title }} <span class="mx-2">|</span> $ {{ model.price }}
+          {{ model.name }} <span class="mx-2">|</span> $ {{ model.price }}
         </h4>
         <p class="subtitle is-7">{{ model.description }}</p>
         <div class="is-flex is-justify-content-space-between">
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import model1 from '@/assets/images/model-1.png'
 export default {
   props: {
     model: {
@@ -80,7 +81,8 @@ export default {
   },
   data() {
     return {
-      bgImage: 'url(' + this.model.image + ')',
+      // bgImage: 'url(' + this.model.image + ')',
+      bgImage: 'url(' + model1 + ')',
     }
   },
 }

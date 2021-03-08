@@ -77,6 +77,18 @@ a.dropdown-item {
     font-weight: bold;
 }
 
+.modal-card-name-home {
+    height: 40rem;
+    display: grid;
+}
+
+.name-input {
+  border: none;
+  border-bottom: 2px solid #027881;
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+
 // Mobile 
 
 @media screen and (max-width: 768px) {
