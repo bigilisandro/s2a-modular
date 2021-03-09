@@ -1,9 +1,9 @@
 <template>
-  <div v-if="!loggedInUser.hasOwnProperty('user')"></div>
+  <div v-if="!loggedInUser"></div>
   <section v-else>
     <div class="bg-home py-6">
       <h1 class="title is-2 has-text-centered my-6">
-        {{ loggedInUser.user.firstName.toUpperCase() }}'S HOMES
+        {{ loggedInUser.firstName.toUpperCase() }}'S HOMES
       </h1>
       <!-- HOMES -->
       <div class="mx-5 mx-0-mobile">
@@ -48,6 +48,9 @@ export default {
   },
   mounted() {
     this.getData()
+    if (!this.isAuthenticated) {
+      this.$router.push('./')
+    }
   },
   methods: {
     async getData() {
@@ -58,10 +61,12 @@ export default {
       // }
       try {
         await this.$axios.get('/auth/user').then((r) => {
+          // eslint-disable-next-line no-console
           console.log(r)
           this.models = r.data.data
         })
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e)
       }
     },

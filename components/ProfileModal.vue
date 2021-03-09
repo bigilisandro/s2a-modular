@@ -181,7 +181,7 @@ export default {
     if (this.isAuthenticated) {
       this.$router.push('./')
     }
-    this.user = this.loggedInUser.user
+    this.user = this.loggedInUser
   },
 
   methods: {

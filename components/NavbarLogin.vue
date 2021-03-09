@@ -148,7 +148,7 @@ export default {
           },
         })
         this.loadingButton = true
-        // this.$router.push('/')
+        this.$router.push('/')
       } catch (e) {
         this.loadingButton = true
         if (e.response.data.message != null) {

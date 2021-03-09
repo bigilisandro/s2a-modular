@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarLogin />
     <section>
       <div class="bg-home py-6">
         <h1 class="title is-2 has-text-centered my-6">
@@ -71,7 +70,6 @@
 </template>
 
 <script>
-import NavbarLogin from '@/components/NavbarLogin.vue'
 import Card from '@/components/Card.vue'
 import model1 from '@/assets/images/model-1.png'
 import model2 from '@/assets/images/model-2.png'
@@ -81,10 +79,9 @@ export default {
   name: 'HomePage',
   components: {
     Card,
-    NavbarLogin,
   },
   auth: 'guest',
-  layout: 'login',
+  // layout: 'login',
   data() {
     return {
       showByIndex: null,

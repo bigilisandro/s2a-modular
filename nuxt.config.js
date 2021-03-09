@@ -36,29 +36,48 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/auth',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.API_BASE_URL,
   },
-  router: {
-    middleware: ['auth'],
-  },
+  // router: {
+  //   middleware: ['auth'],
+  // },
   // NUXT JS AUTH
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: {
+  //           url: '/auth/login',
+  //           method: 'post',
+  //           propertyName: 'jwt',
+  //         },
+  //         user: { url: '/auth/user', method: 'get', propertyName: false },
+  //         logout: false,
+  //       },
+  //     },
+  //   },
+  // },
   auth: {
     strategies: {
       local: {
+        token: {
+          property: 'jwt',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
         endpoints: {
-          login: {
-            url: '/auth/login',
-            method: 'post',
-            propertyName: 'jwt',
-          },
-          user: { url: '/auth/user', method: 'get', propertyName: false },
-          logout: false,
-          // refresh: { url: '/api/auth/refresh', method: 'post' },
+          login: { url: '/auth/login', method: 'post' },
+          // logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get' },
         },
       },
     },
