@@ -34,6 +34,9 @@
     border-radius: 30px !important;
     color: #fff;
 }
+.b-tabs.is-vertical {
+    flex-wrap: nowrap;
+}
 
 // Border
 .border-radius-30px {
@@ -58,6 +61,11 @@ a.dropdown-item {
 
 // Buttons
 .button {
+    font-weight: bold;
+}
+
+// Toast
+.notices .toast {
     font-weight: bold;
 }
 

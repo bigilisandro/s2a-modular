@@ -66,7 +66,7 @@
             <template #header>
               <b-button type="is-primary" expanded>GREENLUX EFFICIENT</b-button>
             </template>
-            <div class="container" style="height: 50vh; overflow: scroll">
+            <div class="container" style="height: 60vh; overflow: scroll">
               <h1 class="title is-4 has-text-white">GREENLUX</h1>
               <div class="columns">
                 <div class="is-6 column">
@@ -241,7 +241,7 @@
             <template #header>
               <span class="has-text-white">APPLIANCES</span>
             </template>
-            <div class="container" style="height: 50vh; overflow: scroll">
+            <div class="container" style="height: 60vh; overflow: scroll">
               <h1 class="title is-4 has-text-white">APPLIANCES</h1>
               <div v-for="appliance in appliances" :key="appliance.length">
                 <div class="p-5 border columns m-5">

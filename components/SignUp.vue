@@ -206,6 +206,12 @@ export default {
             password: this.password,
           },
         })
+        this.cancel()
+        this.$router.push('/')
+        this.$buefy.toast.open({
+          message: 'Welcome ' + this.firstName + '!',
+          type: 'is-success',
+        })
       } catch (e) {
         this.loadingButton = true
         if (e.response.data.message != null) {

@@ -123,7 +123,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   mounted() {
     if (this.isAuthenticated) {
@@ -149,6 +149,10 @@ export default {
         })
         this.loadingButton = true
         this.$router.push('/')
+        this.$buefy.toast.open({
+          message: 'Welcome again ' + this.loggedInUser.firstName + '!',
+          type: 'is-success',
+        })
       } catch (e) {
         this.loadingButton = true
         if (e.response.data.message != null) {

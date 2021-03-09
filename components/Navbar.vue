@@ -50,13 +50,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ProfileModal from '@/components/ProfileModal.vue'
 export default {
   components: { ProfileModal },
   data() {
     return {
       isProfileModalActive: false,
+      firstName: '',
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser']),
+  },
+  mounted() {
+    this.firstName = this.loggedInUser.firstName
   },
   methods: {
     profileModal() {
@@ -67,6 +75,10 @@ export default {
     },
     async logout() {
       await this.$auth.logout()
+      this.$buefy.toast.open({
+        message: 'You have successfully logged out ' + this.firstName + '!',
+        type: 'is-success',
+      })
       // this.$router.push('./login')
     },
   },
