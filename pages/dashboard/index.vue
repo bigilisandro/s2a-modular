@@ -32,7 +32,7 @@ import { mapGetters } from 'vuex'
 import CardDashboard from '@/components/CardDashboard.vue'
 
 export default {
-  name: 'HomePage',
+  name: 'Dashboard',
   components: {
     CardDashboard,
   },

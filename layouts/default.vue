@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-if="isAuthenticated" />
+    <NavbarS2A v-if="isAuthenticated" />
     <NavbarLogin v-else />
 
     <div>
@@ -12,9 +12,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import NavbarLogin from '@/components/NavbarLogin.vue'
-import Navbar from '../components/Navbar'
+import NavbarS2A from '../components/NavbarS2A'
 export default {
-  components: Navbar,
+  components: NavbarS2A,
   NavbarLogin,
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),

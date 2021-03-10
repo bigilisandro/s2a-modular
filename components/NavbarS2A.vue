@@ -1,7 +1,7 @@
 <template>
   <div>
     <profile-modal :is-active="isProfileModalActive" @cancel="trashCancel" />
-    <b-navbar spaced>
+    <b-navbar spaced fixed-top>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img

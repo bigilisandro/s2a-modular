@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'Notification',
   props: {
     type: {
       type: String,

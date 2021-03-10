@@ -76,7 +76,7 @@ import model2 from '@/assets/images/model-2.png'
 import model3 from '@/assets/images/model-3.png'
 
 export default {
-  name: 'HomePage',
+  name: 'Login',
   components: {
     Card,
   },

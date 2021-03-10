@@ -1,7 +1,7 @@
 <template>
   <div>
     <sign-up :is-active="isSignUpActive" @cancel="trashCancel" />
-    <b-navbar spaced>
+    <b-navbar spaced fixed-top>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img

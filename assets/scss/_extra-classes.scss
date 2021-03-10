@@ -69,6 +69,14 @@ a.dropdown-item {
     font-weight: bold;
 }
 
+// Sidebar
+.b-sidebar .sidebar-content.is-fullheight {
+    margin-top: 8vh;
+}
+.b-sidebar .sidebar-content.is-mini {
+    width: 20px;
+}
+
 // Extras
 .model-bottom {
     background-color: $green;

@@ -14,35 +14,35 @@
       >
         <b-tab-item
           label="ALL HOMES"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="0-2,500 SQ. FT."
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="2,500-5,000 SQ. FT."
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="4 BEDROOM"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="MODERN"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="TRADITIONAL"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="CRAFTSMAN"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
         <b-tab-item
           label="COLONIAL"
-          header-class="mx-2 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
         ></b-tab-item>
       </b-tabs>
       <!-- HOMES -->
@@ -74,7 +74,7 @@ import model2 from '@/assets/images/model-2.png'
 import model3 from '@/assets/images/model-3.png'
 
 export default {
-  name: 'HomePage',
+  name: 'Homepage',
   components: {
     Card,
   },
@@ -138,7 +138,7 @@ export default {
 
 <style scoped>
 .bg-home {
-  background-image: url(~assets/images/background.png);
+  background-image: url(~assets/images/background.jpg);
   background-size: cover;
 }
 </style>
