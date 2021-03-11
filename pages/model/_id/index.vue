@@ -13,6 +13,7 @@
     <div class="sidebar-page">
       <section class="sidebar-layout">
         <b-sidebar
+          position="static"
           :expand-on-hover="true"
           :reduce="true"
           type="is-black"
@@ -21,24 +22,22 @@
         >
           <hooper
             :vertical="true"
-            style="height: 100vh; width: 100%"
-            :items-to-show="9"
-            :items-to-slide="0"
-            :mouse-drag="false"
-            :touch-drag="false"
-            :wheel-control="false"
-            :keys-control="false"
+            style="height: 100%; width: 100%"
+            :items-to-show="images.length"
+            infinite-scroll
           >
-            <slide v-for="image in images" :key="image.length">
+            <slide v-for="(image, index) in images" :key="image.length">
               <div
                 :style="{ 'background-image': image.bgImage }"
                 class="bgImage m-3"
+                @click.prevent="goToSlide(index)"
               ></div>
             </slide>
           </hooper>
         </b-sidebar>
 
         <hooper
+          ref="carousel"
           :vertical="true"
           style="height: 100vh; width: 100%"
           :items-to-show="1"
@@ -345,19 +344,13 @@ export default {
         {
           bgImage: 'url(' + model3 + ')',
         },
-        {
-          bgImage: 'url(' + model1 + ')',
-        },
-        {
-          bgImage: 'url(' + model2 + ')',
-        },
-        {
-          bgImage: 'url(' + model3 + ')',
-        },
       ],
     }
   },
   methods: {
+    goToSlide(index) {
+      this.$refs.carousel.slideTo(index)
+    },
     videoModal() {
       this.isVideoModalActive = true
     },
