@@ -10,7 +10,7 @@
       :is-active="isCustomizeHomeModalActive"
       @cancel="trashCancel"
     />
-    <div class="sidebar-page">
+    <div class="sidebar-page is-hidden-touch">
       <section class="sidebar-layout">
         <b-sidebar
           position="static"
@@ -38,17 +38,16 @@
 
         <hooper
           ref="carousel"
-          :vertical="true"
           style="height: 100vh; width: 100%"
-          :items-to-show="1"
-          :center-mode="true"
+          :settings="hooperSettings"
         >
           <slide v-for="image in images" :key="image.length">
             <div
               :style="{ 'background-image': image.bgImage }"
               class="bgImage container is-fluid"
+              style="background-size: 100% 100%"
             >
-              <div class="columns content-bottom">
+              <div class="columns content-bottom is-mobile">
                 <div class="column is-2">
                   <p class="subtitle is-6 has-text-white">
                     Living Room 300 sq. ft.
@@ -165,104 +164,39 @@
               </div>
             </div>
           </slide>
-          <hooper-navigation slot="hooper-addons"></hooper-navigation>
         </hooper>
       </section>
     </div>
-    <hooper
-      :vertical="true"
-      style="height: 100vh"
-      :items-to-show="1"
-      :center-mode="true"
-    >
-      <slide v-for="image in images" :key="image.length">
-        <div
-          :style="{ 'background-image': image.bgImage }"
-          class="bgImage container is-fluid"
-        >
-          <div class="columns content-bottom">
-            <div class="column is-2">
-              <p class="subtitle is-6 has-text-white">
-                Living Room 300 sq. ft.
-              </p>
-            </div>
-            <div class="column columns mb-0">
-              <div class="column is-3">
-                <h1 class="title is-2 has-text-white">MODEL 1</h1>
-                <h4 class="subtitle is-5 has-text-white">
-                  2,000 SQ FT · 2 BED 2 BATH
-                </h4>
-              </div>
-              <!-- <div>
-                <h1 class="title is-1 has-text-white">|</h1>
-              </div> -->
-              <div
-                class="column is-flex is-justify-content-space-around border-left"
-              >
-                <div>
-                  <h1 class="title is-2 has-text-white">$510,250</h1>
-                  <h4 class="subtitle is-5 has-text-white">
-                    GREENLUX Configuration
-                  </h4>
-                </div>
-                <div class="is-flex is-align-items-center">
-                  <b-button
-                    type="is-primary"
-                    rounded
-                    @click.prevent="customizeModal"
-                    >CUSTOMIZE HOME</b-button
-                  >
-                </div>
-              </div>
-              <!-- <div>
-                <h1 class="title is-1 has-text-white">|</h1>
-              </div> -->
-              <div class="column is-3 border-left">
-                <div class="is-flex is-justify-content-space-around">
-                  <a @click.prevent="videoModal">
-                    <img
-                      src="@/assets/images/icon_video.svg"
-                      alt="icon_pdf"
-                      class="image is-48x48"
-                    />
-                    <p
-                      class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                    >
-                      Video
-                    </p>
-                  </a>
-                  <a @click.prevent="detailsModal">
-                    <img
-                      src="@/assets/images/icon_details.svg"
-                      alt="icon_share"
-                      class="image is-48x48"
-                    />
-                    <p
-                      class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                    >
-                      Details
-                    </p>
-                  </a>
-                  <a @click.prevent="floorplanModal">
-                    <img
-                      src="@/assets/images/icon_floorplans.svg"
-                      alt="icon_edit"
-                      class="image is-48x48"
-                    />
-                    <p
-                      class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                    >
-                      Foorplan
-                    </p>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="column is-2">
+    <div class="is-hidden-desktop">
+      <div class="has-background-primary p-4 top-title">
+        <h1 class="title is-2 has-text-white has-text-centered">MODEL 1</h1>
+        <h4 class="subtitle is-5 has-text-white has-text-centered">
+          2,000 SQ FT · 2 BED 2 BATH
+        </h4>
+      </div>
+      <hooper
+        ref="carousel"
+        :vertical="true"
+        style="height: 100vh; width: 100%; margin-top: 3.25rem"
+        :items-to-show="1.5"
+      >
+        <slide v-for="image in images" :key="image.length">
+          <div
+            :style="{ 'background-image': image.bgImage }"
+            class="bgImage container is-fluid"
+          >
+            <div
+              class="content-bottom is-flex is-justify-content-space-between"
+            >
               <div>
-                <a class="is-align-items-center columns">
+                <p class="subtitle is-7 has-text-white">
+                  Living Room 300 sq. ft.
+                </p>
+              </div>
+              <div>
+                <a class="is-align-items-center columns is-flex">
                   <div class="column is-8">
-                    <p class="subtitle is-6 has-text-white has-text-centered">
+                    <p class="subtitle is-7 has-text-white has-text-centered">
                       View in 360º
                     </p>
                   </div>
@@ -274,9 +208,9 @@
                     />
                   </div>
                 </a>
-                <a class="is-align-items-center columns">
+                <a class="is-align-items-center columns is-flex">
                   <div class="column is-8">
-                    <p class="subtitle is-6 has-text-white has-text-centered">
+                    <p class="subtitle is-7 has-text-white has-text-centered">
                       Change interior
                     </p>
                   </div>
@@ -291,15 +225,65 @@
               </div>
             </div>
           </div>
+        </slide>
+      </hooper>
+      <div class="bottom-content columns">
+        <div class="column is-half is-offset-one-quarter is-grid my-2">
+          <div>
+            <h1 class="title is-2 has-text-white has-text-centered">
+              $510,250
+            </h1>
+            <h4 class="subtitle is-5 has-text-white has-text-centered">
+              GREENLUX Configuration
+            </h4>
+          </div>
+          <div>
+            <div class="is-flex is-justify-content-space-around">
+              <a @click.prevent="videoModal">
+                <img
+                  src="@/assets/images/icon_video.svg"
+                  alt="icon_pdf"
+                  class="image is-48x48"
+                />
+                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                  Video
+                </p>
+              </a>
+              <a @click.prevent="detailsModal">
+                <img
+                  src="@/assets/images/icon_details.svg"
+                  alt="icon_share"
+                  class="image is-48x48"
+                />
+                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                  Details
+                </p>
+              </a>
+              <a @click.prevent="floorplanModal">
+                <img
+                  src="@/assets/images/icon_floorplans.svg"
+                  alt="icon_edit"
+                  class="image is-48x48"
+                />
+                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                  Foorplan
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="is-flex is-justify-content-center">
+            <b-button type="is-primary" rounded @click.prevent="customizeModal"
+              >CUSTOMIZE HOME</b-button
+            >
+          </div>
         </div>
-      </slide>
-      <hooper-navigation slot="hooper-addons"></hooper-navigation>
-    </hooper>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper'
+import { Hooper, Slide } from 'hooper'
 import model1 from '@/assets/images/model-1.png'
 import model2 from '@/assets/images/model-2.png'
 import model3 from '@/assets/images/model-3.png'
@@ -312,7 +296,6 @@ export default {
   components: {
     Hooper,
     Slide,
-    HooperNavigation,
     VideoModal,
     DetailsModal,
     FloorplanModal,
@@ -325,6 +308,11 @@ export default {
       isDetailsModalActive: false,
       isFloorplanModalActive: false,
       isCustomizeHomeModalActive: false,
+      hooperSettings: {
+        vertical: true,
+        centerMode: true,
+        infiniteScroll: true,
+      },
       images: [
         {
           bgImage: 'url(' + model1 + ')',
@@ -374,6 +362,21 @@ export default {
 </script>
 
 <style lang="scss">
+.top-title {
+  position: fixed;
+  top: 3.25rem;
+  z-index: 30;
+  left: 0;
+  right: 0;
+}
+.bottom-content {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  right: 0;
+  height: 26vh;
+  background: rgba(0, 0, 0, 0.8);
+}
 .border-left {
   border-left: 2px solid white;
 }
