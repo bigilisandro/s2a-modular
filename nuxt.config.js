@@ -89,6 +89,7 @@ export default {
   },
   env: {
     API_BASE_URL: process.env.API_BASE_URL,
+    IMAGES_BASE_URL: process.env.IMAGES_BASE_URL,
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

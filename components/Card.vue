@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import model1 from '@/assets/images/model-1.png'
+// import model1 from '@/assets/images/model-1.png'
 export default {
   props: {
     model: {
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      bgImage: 'url(' + model1 + ')',
+      bgImage: 'url(' + this.model.url + ')',
     }
   },
   methods: {

@@ -33,7 +33,12 @@
           >
             <slide v-for="(image, index) in images" :key="image.length">
               <div
-                :style="{ 'background-image': image.bgImage }"
+                :style="{
+                  'background-image':
+                    'url(https://as2-cms-strapi.herokuapp.com' +
+                    image.url +
+                    ')',
+                }"
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
               ></div>
@@ -48,7 +53,10 @@
         >
           <slide v-for="image in images" :key="image.length">
             <div
-              :style="{ 'background-image': image.bgImage }"
+              :style="{
+                'background-image':
+                  'url(https://as2-cms-strapi.herokuapp.com' + image.url + ')',
+              }"
               class="bgImage container is-fluid"
               style="background-size: 100% 100%"
             >
@@ -193,7 +201,10 @@
       >
         <slide v-for="image in images" :key="image.length">
           <div
-            :style="{ 'background-image': image.bgImage }"
+            :style="{
+              'background-image':
+                'url(https://as2-cms-strapi.herokuapp.com' + image.url + ')',
+            }"
             class="bgImage container is-fluid"
           >
             <div
@@ -295,9 +306,6 @@
 
 <script>
 import { Hooper, Slide } from 'hooper'
-import model1 from '@/assets/images/model-1.png'
-import model2 from '@/assets/images/model-2.png'
-import model3 from '@/assets/images/model-3.png'
 import VideoModal from '@/components/VideoModal.vue'
 import DetailsModal from '@/components/DetailsModal.vue'
 import FloorplanModal from '@/components/FloorplanModal.vue'
@@ -326,46 +334,26 @@ export default {
       },
       loading: true,
       model: {},
-      images: [
-        {
-          bgImage: 'url(' + model1 + ')',
-        },
-        {
-          bgImage: 'url(' + model2 + ')',
-        },
-        {
-          bgImage: 'url(' + model3 + ')',
-        },
-        {
-          bgImage: 'url(' + model1 + ')',
-        },
-        {
-          bgImage: 'url(' + model2 + ')',
-        },
-        {
-          bgImage: 'url(' + model3 + ')',
-        },
-      ],
+      images: {},
     }
   },
   mounted() {
+    if (this.$route.params.id === undefined) {
+      this.$router.push('/')
+    }
     this.getData()
   },
   methods: {
-    async getData() {
-      try {
-        await this.$axios
-          .get('/management/getModel/' + this.$route.params.id)
-          .then((r) => {
-            this.model = r.data
-            this.loading = false
-            // eslint-disable-next-line no-console
-            console.log(this.model)
-          })
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.log(e)
-      }
+    getData() {
+      this.$axios
+        .get('/management/getModel/' + this.$route.params.id)
+        .then((r) => {
+          this.model = r.data
+          this.images = this.model.images
+          this.loading = false
+          // eslint-disable-next-line no-console
+          console.log(this.images, this.model)
+        })
     },
     goToSlide(index) {
       this.$refs.carousel.slideTo(index)
