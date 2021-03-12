@@ -5,7 +5,7 @@
         <iframe
           width="854"
           height="480"
-          src="https://www.youtube.com/embed/WHRU8UTGt14"
+          :src="videoUrl"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
@@ -28,6 +28,10 @@ export default {
     isActive: {
       type: Boolean,
       default: false,
+    },
+    videoUrl: {
+      type: String,
+      default: '',
     },
   },
   data() {

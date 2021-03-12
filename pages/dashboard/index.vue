@@ -54,11 +54,6 @@ export default {
   },
   methods: {
     async getData() {
-      // const config = {
-      //   headers: {
-      //     Authorization: this.$auth.getToken('local'),
-      //   },
-      // }
       try {
         await this.$axios.get('/auth/user').then((r) => {
           // eslint-disable-next-line no-console
@@ -79,7 +74,7 @@ export default {
 
 <style scoped>
 .bg-home {
-  background-image: url(~assets/images/background.png);
+  background-image: url(~assets/images/background.jpg);
   background-size: cover;
   height: 100vh;
 }

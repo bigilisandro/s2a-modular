@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <video-modal :is-active="isVideoModalActive" @cancel="trashCancel" />
+  <div v-if="loading"></div>
+  <div v-else>
+    <video-modal
+      :video-url="model.video_url"
+      :is-active="isVideoModalActive"
+      @cancel="trashCancel"
+    />
     <details-modal :is-active="isDetailsModalActive" @cancel="trashCancel" />
     <floorplan-modal
       :is-active="isFloorplanModalActive"
@@ -55,9 +60,11 @@
                 </div>
                 <div class="column columns mb-0">
                   <div class="column is-3">
-                    <h1 class="title is-2 has-text-white">MODEL 1</h1>
+                    <h1 class="title is-2 has-text-white">
+                      {{ model.model_name }}
+                    </h1>
                     <h4 class="subtitle is-5 has-text-white">
-                      2,000 SQ FT · 2 BED 2 BATH
+                      {{ model.short_description }}
                     </h4>
                   </div>
                   <!-- <div>
@@ -67,9 +74,11 @@
                     class="column is-flex is-justify-content-space-around border-left"
                   >
                     <div>
-                      <h1 class="title is-2 has-text-white">$510,250</h1>
+                      <h1 class="title is-2 has-text-white">
+                        {{ model.price }}
+                      </h1>
                       <h4 class="subtitle is-5 has-text-white">
-                        GREENLUX Configuration
+                        {{ model.description_price }}
                       </h4>
                     </div>
                     <div class="is-flex is-align-items-center">
@@ -169,9 +178,11 @@
     </div>
     <div class="is-hidden-desktop">
       <div class="has-background-primary p-4 top-title">
-        <h1 class="title is-2 has-text-white has-text-centered">MODEL 1</h1>
+        <h1 class="title is-2 has-text-white has-text-centered">
+          {{ model.model_name }}
+        </h1>
         <h4 class="subtitle is-5 has-text-white has-text-centered">
-          2,000 SQ FT · 2 BED 2 BATH
+          {{ model.short_description }}
         </h4>
       </div>
       <hooper
@@ -231,10 +242,10 @@
         <div class="column is-half is-offset-one-quarter is-grid my-2">
           <div>
             <h1 class="title is-2 has-text-white has-text-centered">
-              $510,250
+              {{ model.price }}
             </h1>
             <h4 class="subtitle is-5 has-text-white has-text-centered">
-              GREENLUX Configuration
+              {{ model.description_price }}
             </h4>
           </div>
           <div>
@@ -313,6 +324,8 @@ export default {
         centerMode: true,
         infiniteScroll: true,
       },
+      loading: true,
+      model: {},
       images: [
         {
           bgImage: 'url(' + model1 + ')',
@@ -335,7 +348,25 @@ export default {
       ],
     }
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
+    async getData() {
+      try {
+        await this.$axios
+          .get('/management/getModel/' + this.$route.params.id)
+          .then((r) => {
+            this.model = r.data
+            this.loading = false
+            // eslint-disable-next-line no-console
+            console.log(this.model)
+          })
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e)
+      }
+    },
     goToSlide(index) {
       this.$refs.carousel.slideTo(index)
     },

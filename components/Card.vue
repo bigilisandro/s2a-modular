@@ -14,14 +14,15 @@
     </div>
     <div class="card-content">
       <div class="content">
-        <h4 class="title has-text-primary">{{ model.title }}</h4>
-        <p class="subtitle is-7">{{ model.description }}</p>
+        <h4 class="title has-text-primary">{{ model.houseModel }}</h4>
+        <p class="subtitle is-7">{{ model.shortHouseDescription }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import model1 from '@/assets/images/model-1.png'
 export default {
   props: {
     model: {
@@ -35,7 +36,7 @@ export default {
   },
   data() {
     return {
-      bgImage: 'url(' + this.model.image + ')',
+      bgImage: 'url(' + model1 + ')',
     }
   },
   methods: {
