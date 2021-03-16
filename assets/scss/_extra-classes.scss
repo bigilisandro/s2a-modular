@@ -1,6 +1,17 @@
+// Body
+// body {
+//     height: 100vh;
+//     overflow: hidden;
+// }
+
 // Text
 .is-underlined {
     text-decoration: underline;
+}
+
+// Margin
+.m-auto {
+    margin: auto !important;
 }
 
 // Width
@@ -119,5 +130,15 @@ a.dropdown-item {
     }
     .is-justify-content-center-mobile {
         justify-content: center;
+    }
+    .is-size-7-mobile {
+        font-size: 0.6rem !important;
+    }
+    .mx-3-mobile {
+        margin-right: 0.5rem !important;
+        margin-left: 0.5rem !important;
+    }
+    .width-17bh-mobile {
+        width: 17vh;
     }
 } 

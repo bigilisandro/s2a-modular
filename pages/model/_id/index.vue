@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading"></div>
-  <div v-else>
+  <div v-else class="no-scroll">
     <video-modal
       :video-url="model.video_url"
       :is-active="isVideoModalActive"
@@ -186,10 +186,10 @@
     </div>
     <div class="is-hidden-desktop">
       <div class="has-background-primary p-4 top-title">
-        <h1 class="title is-2 has-text-white has-text-centered">
+        <h1 class="title is-3 has-text-white has-text-centered">
           {{ model.model_name }}
         </h1>
-        <h4 class="subtitle is-5 has-text-white has-text-centered">
+        <h4 class="subtitle is-6 has-text-white has-text-centered">
           {{ model.short_description }}
         </h4>
       </div>
@@ -198,6 +198,7 @@
         :vertical="true"
         style="height: 100vh; width: 100%; margin-top: 3.25rem"
         :items-to-show="1.5"
+        infinite-scroll
       >
         <slide v-for="image in images" :key="image.length">
           <div
@@ -211,7 +212,7 @@
               class="content-bottom is-flex is-justify-content-space-between"
             >
               <div>
-                <p class="subtitle is-7 has-text-white">
+                <p class="subtitle is-7 has-text-black">
                   Living Room 300 sq. ft.
                 </p>
               </div>
@@ -250,51 +251,55 @@
         </slide>
       </hooper>
       <div class="bottom-content columns">
-        <div class="column is-half is-offset-one-quarter is-grid my-2">
+        <div class="column is-half is-offset-one-quarter is-grid mt-1">
           <div>
-            <h1 class="title is-2 has-text-white has-text-centered">
+            <h1 class="title is-3 has-text-white has-text-centered">
               {{ model.price }}
             </h1>
-            <h4 class="subtitle is-5 has-text-white has-text-centered">
+            <h4 class="subtitle is-6 has-text-white has-text-centered">
               {{ model.description_price }}
             </h4>
           </div>
           <div>
-            <div class="is-flex is-justify-content-space-around">
-              <a @click.prevent="videoModal">
+            <div class="is-flex is-justify-content-center my-2">
+              <a class="mx-2" @click.prevent="videoModal">
                 <img
                   src="@/assets/images/icon_video.svg"
                   alt="icon_pdf"
-                  class="image is-48x48"
+                  class="image is-32x32 m-auto"
                 />
-                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
                   Video
                 </p>
               </a>
-              <a @click.prevent="detailsModal">
+              <a class="mx-2" @click.prevent="detailsModal">
                 <img
                   src="@/assets/images/icon_details.svg"
                   alt="icon_share"
-                  class="image is-48x48"
+                  class="image is-32x32 m-auto"
                 />
-                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
                   Details
                 </p>
               </a>
-              <a @click.prevent="floorplanModal">
+              <a class="mx-2" @click.prevent="floorplanModal">
                 <img
                   src="@/assets/images/icon_floorplans.svg"
                   alt="icon_edit"
-                  class="image is-48x48"
+                  class="image is-32x32 m-auto"
                 />
-                <p class="subtitle is-6 has-text-white mt-3 has-text-centered">
+                <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
                   Foorplan
                 </p>
               </a>
             </div>
           </div>
           <div class="is-flex is-justify-content-center">
-            <b-button type="is-primary" rounded @click.prevent="customizeModal"
+            <b-button
+              type="is-primary"
+              size="is-small"
+              rounded
+              @click.prevent="customizeModal"
               >CUSTOMIZE HOME</b-button
             >
           </div>
@@ -381,6 +386,14 @@ export default {
 </script>
 
 <style lang="scss">
+// body {
+//   height: 100vh;
+//   overflow: hidden;
+// }
+.no-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
 .top-title {
   position: fixed;
   top: 3.25rem;

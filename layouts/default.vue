@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-scroll-lock="true">
     <NavbarS2A v-if="isAuthenticated" />
     <NavbarLogin v-else />
 

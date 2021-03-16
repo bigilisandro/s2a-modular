@@ -14,35 +14,35 @@
       >
         <b-tab-item
           label="ALL HOMES"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="0-2,500 SQ. FT."
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="2,500-5,000 SQ. FT."
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="4 BEDROOM"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="MODERN"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="TRADITIONAL"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="CRAFTSMAN"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
         <b-tab-item
           label="COLONIAL"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
       </b-tabs>
       <!-- HOMES -->

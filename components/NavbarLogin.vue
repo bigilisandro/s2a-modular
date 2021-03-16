@@ -1,24 +1,26 @@
 <template>
   <div>
     <sign-up :is-active="isSignUpActive" @cancel="trashCancel" />
-    <b-navbar spaced fixed-top>
-      <template #brand>
+    <nav
+      class="navbar py-4 is-flex is-justify-content-space-between is-align-items-center"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img
-            src="~assets/images/logo_s2a.svg"
-            alt="s2a-modular"
-            class="image is-fullheight is-fullwidth"
-          />
+          <figure class="image width-17bh-mobile">
+            <img src="~assets/images/logo_s2a.svg" alt="s2a-modular" />
+          </figure>
         </b-navbar-item>
-      </template>
+      </div>
 
-      <template #end>
+      <div class="navbar-end">
         <b-navbar-item tag="div" class="mr-4">
           <div class="buttons">
             <nuxt-link to="/">
-              <strong>BROWSE HOMES</strong>
+              <strong class="is-size-7-mobile">BROWSE HOMES</strong>
             </nuxt-link>
-            <span class="mx-5"> | </span>
+            <span class="mx-5 mx-3-mobile"> | </span>
             <b-dropdown position="is-bottom-left" aria-role="menu" trap-focus>
               <template #trigger>
                 <a>
@@ -99,8 +101,8 @@
             </b-dropdown>
           </div>
         </b-navbar-item>
-      </template>
-    </b-navbar>
+      </div>
+    </nav>
   </div>
 </template>
 
