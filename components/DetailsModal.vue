@@ -1,9 +1,14 @@
 <template>
   <b-modal :active.sync="isModalActive">
     <div class="is-flex">
-      <div class="is-flex mr-2" style="height: 60vh">
-        <img src="@/assets/images/model-1.png" width="50%" />
-        <div class="has-background-white p-5" style="overflow: scroll">
+      <div class="columns mr-2" style="height: 60vh">
+        <div class="column p-0">
+          <img
+            src="@/assets/images/model-1.png"
+            class="is-fullheight is-fullwidth"
+          />
+        </div>
+        <div class="has-background-white p-5 column" style="overflow: scroll">
           <p class="subtitle is-7">
             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
             accusantium doloremque laudantium, totam rem aperiam, eaque ipsa

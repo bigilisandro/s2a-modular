@@ -414,6 +414,7 @@ export default {
       this.error = null
       const config = {
         idHouseStrapi: this.$route.params.id,
+        name: this.nameHome,
         appliances: [1, 2, 3],
       }
       try {
