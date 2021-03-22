@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .border-green {
   border-bottom: 5px solid #027881;
 }
