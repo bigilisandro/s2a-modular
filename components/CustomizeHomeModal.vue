@@ -61,10 +61,25 @@
 
         <b-tab-item label="NORMAL POWER GRID"> </b-tab-item>
       </b-tabs> -->
-        <b-tabs vertical expanded animated>
+        <b-tabs
+          vertical
+          expanded
+          animated
+          multiline
+          position="is-centered"
+          size="is-small"
+        >
           <b-tab-item>
             <template #header>
-              <b-button type="is-primary" expanded>GREENLUX EFFICIENT</b-button>
+              <div>
+                <b-button type="is-primary" expanded
+                  >GREENLUX EFFICIENT</b-button
+                >
+                <a
+                  class="subtitle is-7 has-text-white is-flex is-justify-content-center mt-2 border-0 is-underlined"
+                  ><span>What's included?</span></a
+                >
+              </div>
             </template>
             <div class="container" style="height: 60vh; overflow: scroll">
               <h1 class="title is-4 has-text-white">GREENLUX</h1>
@@ -77,14 +92,14 @@
                     lobortis eget.
                   </p>
                 </div>
-                <div class="column is-offset-4">
+                <!-- <div class="column is-offset-4">
                   <b-field>
                     <b-switch></b-switch>
                   </b-field>
-                </div>
+                </div> -->
               </div>
               <div v-for="greenlux in greenluxProducts" :key="greenlux.length">
-                <div class="p-5 border columns m-5">
+                <div class="p-5 border columns is-mobile m-5">
                   <div class="column">
                     <b-carousel
                       :indicator-inside="false"
@@ -129,19 +144,33 @@
                   </div>
                   <div class="column">
                     <p class="subtitle is-7 has-text-white">Choose a color</p>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small"
-                        >Black Stainless Steel</b-checkbox
+                    <b-field>
+                      <b-checkbox
+                        ><span class="subtitle is-7 has-text-white"
+                          >Black Stainless Steel</span
+                        ></b-checkbox
                       >
                     </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">Stainless Steel</b-checkbox>
+                    <b-field>
+                      <b-checkbox
+                        ><span class="subtitle is-7 has-text-white"
+                          >Stainless Steel</span
+                        ></b-checkbox
+                      >
                     </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">White</b-checkbox>
+                    <b-field>
+                      <b-checkbox
+                        ><span class="subtitle is-7 has-text-white"
+                          >White</span
+                        ></b-checkbox
+                      >
                     </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">Black</b-checkbox>
+                    <b-field>
+                      <b-checkbox
+                        ><span class="subtitle is-7 has-text-white"
+                          >Black</span
+                        ></b-checkbox
+                      >
                     </b-field>
                   </div>
                 </div>
@@ -151,10 +180,29 @@
 
           <b-tab-item>
             <template #header>
-              <b-button type="is-light" expanded>NORMAL POWER GRID</b-button>
+              <div>
+                <b-button type="is-light" expanded>NORMAL POWER GRID</b-button>
+                <div class="mt-2">
+                  <p
+                    class="has-text-white subtitle is-7 has-text-centered mb-0"
+                  >
+                    Lorem ipsum dolor sit amet.
+                  </p>
+                  <p
+                    class="has-text-white subtitle is-7 has-text-centered mb-0"
+                  >
+                    Lorem ipsum dolor sit amet.
+                  </p>
+                  <p
+                    class="has-text-white subtitle is-7 has-text-centered mb-0"
+                  >
+                    Lorem ipsum dolor sit amet.
+                  </p>
+                </div>
+              </div>
             </template>
           </b-tab-item>
-          <b-tab-item disabled>
+          <!-- <b-tab-item disabled>
             <template #header>
               <div>
                 <p class="has-text-white subtitle is-7 has-text-centered mb-0">
@@ -168,7 +216,7 @@
                 </p>
               </div>
             </template>
-          </b-tab-item>
+          </b-tab-item> -->
 
           <b-tab-item>
             <template #header>
@@ -265,17 +313,16 @@
                   </div>
                   <div class="column is-6">
                     <h1 class="title is-5 has-text-white">
-                      {{ appliance.title }}
+                      {{ appliance.name }}
                     </h1>
-                    <p class="subtitle mb-0 has-text-white">LG/543434JNKDW</p>
+                    <p class="subtitle mb-0 has-text-white">
+                      {{ appliance.brand }}
+                    </p>
                     <p class="subtitle has-text-white has-text-weight-bold">
-                      ${{ appliance.price }}
+                      ${{ appliance.appliancePerHousePrice }}
                     </p>
                     <p class="subtitle has-text-white is-7">
-                      Nunc nec velit nec libero vestibulum eleifend. Curabitur
-                      pulvinar congue luctus. Nullam hendrerit iaculis augue
-                      vitae ornare. Maecenas vehicula pulvinar tellus, id
-                      sodales felis lobortis eget.
+                      {{ appliance.description }}
                     </p>
                     <ul
                       class="subtitle is-7 has-text-white ml-5"
@@ -288,25 +335,44 @@
                     </ul>
                   </div>
                   <div class="column">
-                    <p class="subtitle is-7 has-text-white">Choose a color</p>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small"
-                        >Black Stainless Steel</b-checkbox
-                      >
-                    </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">Stainless Steel</b-checkbox>
-                    </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">White</b-checkbox>
-                    </b-field>
-                    <b-field class="has-text-white">
-                      <b-checkbox size="is-small">Black</b-checkbox>
-                    </b-field>
+                    <div class="is-grid is-fullheight">
+                      <div>
+                        <p class="subtitle is-7 has-text-white">
+                          Choose a color
+                        </p>
+                        <b-field class="has-text-white">
+                          <b-checkbox size="is-small"
+                            >Black Stainless Steel</b-checkbox
+                          >
+                        </b-field>
+                        <b-field class="has-text-white">
+                          <b-checkbox size="is-small"
+                            >Stainless Steel</b-checkbox
+                          >
+                        </b-field>
+                        <b-field class="has-text-white">
+                          <b-checkbox size="is-small">White</b-checkbox>
+                        </b-field>
+                        <b-field class="has-text-white">
+                          <b-checkbox size="is-small">Black</b-checkbox>
+                        </b-field>
+                      </div>
+                      <div class="is-flex is-align-items-flex-end">
+                        <a
+                          class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
+                          @click="removeAppliance(appliance)"
+                          ><span>Remove from Home</span></a
+                        >
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="is-flex is-justify-content-flex-end">
-                  <b-button size="is-small" type="is-primary" rounded
+                  <b-button
+                    size="is-small"
+                    type="is-primary"
+                    rounded
+                    @click="addAppliance(appliance)"
                     >+ ADD TO HOME</b-button
                   >
                 </div>
@@ -331,8 +397,11 @@
           <div class="is-flex is-align-items-center">
             <span class="has-text-white">As configured</span>
             <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1>
-            <b-button rounded @click.prevent="nameHomeModal"
+            <b-button rounded class="mr-2" @click.prevent="nameHomeModal"
               >SAVE HOME</b-button
+            >
+            <b-button type="is-primary" rounded @click="cancel"
+              >CANCEL</b-button
             >
           </div>
         </div>
@@ -350,6 +419,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    appliances: {
+      type: Array,
+      default: null,
+    },
   },
   data() {
     return {
@@ -357,20 +430,20 @@ export default {
       isNameHomeModalActive: false,
       nameHome: '',
       error: null,
-      appliances: [
-        {
-          title: 'REFRIGERATOR',
-          price: '2,000',
-        },
-        {
-          title: 'MICROWAVE',
-          price: '500',
-        },
-        {
-          title: 'OVEN',
-          price: '1000',
-        },
-      ],
+      // appliances: [
+      //   {
+      //     title: 'REFRIGERATOR',
+      //     price: '2,000',
+      //   },
+      //   {
+      //     title: 'MICROWAVE',
+      //     price: '500',
+      //   },
+      //   {
+      //     title: 'OVEN',
+      //     price: '1000',
+      //   },
+      // ],
       greenluxProducts: [
         {
           title: 'GREENLUX PRODUCT',
@@ -397,7 +470,37 @@ export default {
       }
     },
   },
+  mounted() {
+    // this.getData()
+    console.log('appliances', this.appliances)
+  },
   methods: {
+    // getData() {
+    //   this.$axios.get('/admin/houses-info/').then((r) => {
+    //     console.log(r, 'data')
+    //   })
+    // },
+    addAppliance(appliance) {
+      this.$axios
+        .post('/admin/save-appliance-price', {
+          overridePrice: parseInt(appliance.appliancePerHousePrice),
+          applianceId: appliance.applianceId,
+          houseId: this.$route.params.id,
+        })
+        .then((r) => {
+          console.log(r, 'response')
+        })
+    },
+    removeAppliance(appliance) {
+      this.$axios
+        .post('/admin/delete-appliance-house', {
+          applianceId: appliance.applianceId,
+          houseId: this.$route.params.id,
+        })
+        .then((r) => {
+          console.log(r, 'response')
+        })
+    },
     cancel() {
       this.$emit('cancel')
     },

@@ -13,6 +13,7 @@
     />
     <customize-home-modal
       :is-active="isCustomizeHomeModalActive"
+      :appliances="model.appliances"
       @cancel="trashCancel"
     />
     <div class="sidebar-page is-hidden-touch">
@@ -101,13 +102,13 @@
                   <!-- <div>
                 <h1 class="title is-1 has-text-white">|</h1>
               </div> -->
-                  <div class="column is-3 border-left">
+                  <div class="column is-4 border-left">
                     <div class="is-flex is-justify-content-space-around">
                       <a @click.prevent="videoModal">
                         <img
                           src="@/assets/images/icon_video.svg"
                           alt="icon_pdf"
-                          class="image is-48x48"
+                          class="image is-48x48 m-auto"
                         />
                         <p
                           class="subtitle is-6 has-text-white mt-3 has-text-centered"
@@ -115,11 +116,23 @@
                           Video
                         </p>
                       </a>
+                      <a>
+                        <img
+                          src="@/assets/images/icon_360.svg"
+                          alt="icon_pdf"
+                          class="image is-48x48 m-auto"
+                        />
+                        <p
+                          class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                        >
+                          View in 360º
+                        </p>
+                      </a>
                       <a @click.prevent="detailsModal">
                         <img
                           src="@/assets/images/icon_details.svg"
                           alt="icon_share"
-                          class="image is-48x48"
+                          class="image is-48x48 m-auto"
                         />
                         <p
                           class="subtitle is-6 has-text-white mt-3 has-text-centered"
@@ -131,7 +144,7 @@
                         <img
                           src="@/assets/images/icon_floorplans.svg"
                           alt="icon_edit"
-                          class="image is-48x48"
+                          class="image is-48x48 m-auto"
                         />
                         <p
                           class="subtitle is-6 has-text-white mt-3 has-text-centered"
@@ -144,7 +157,7 @@
                 </div>
                 <div class="column is-2">
                   <div>
-                    <a class="is-align-items-center columns">
+                    <!-- <a class="is-align-items-center columns">
                       <div class="column is-8">
                         <p
                           class="subtitle is-6 has-text-white has-text-centered"
@@ -159,7 +172,7 @@
                           class="image is-48x48"
                         />
                       </div>
-                    </a>
+                    </a> -->
                     <a class="is-align-items-center columns">
                       <div class="column is-8">
                         <p
@@ -270,6 +283,16 @@
                 />
                 <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
                   Video
+                </p>
+              </a>
+              <a class="mx-2" @click.prevent="videoModal">
+                <img
+                  src="@/assets/images/icon_360.svg"
+                  alt="icon_pdf"
+                  class="image is-32x32 m-auto"
+                />
+                <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
+                  View in 360º
                 </p>
               </a>
               <a class="mx-2" @click.prevent="detailsModal">
