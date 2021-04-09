@@ -5,6 +5,10 @@
       <h1 class="title is-2 has-text-centered my-6">
         {{ loggedInUser.firstName.toUpperCase() }}'S HOMES
       </h1>
+      <!-- Loader  -->
+      <div>
+        <b-loading v-model="isLoading"></b-loading>
+      </div>
       <!-- HOMES -->
       <div class="mx-5 mx-0-mobile">
         <div class="columns is-multiline">
@@ -41,6 +45,7 @@ export default {
       showByIndex: null,
       signUpModal: false,
       models: {},
+      isLoading: true,
     }
   },
   computed: {
@@ -59,6 +64,7 @@ export default {
           // eslint-disable-next-line no-console
           console.log(r)
           this.models = r.data.data
+          this.isLoading = false
         })
       } catch (e) {
         // eslint-disable-next-line no-console

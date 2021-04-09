@@ -3,10 +3,14 @@
     <div>
       <!-- <b-tabs type="is-boxed" expanded>
         <b-tab-item label="Homes"> -->
-      <div class="my-3 is-flex is-justify-content-center">
+      <!-- <div class="my-3 is-flex is-justify-content-center">
         <b-button icon-left="plus" size="is-large" type="is-primary" outlined
           >Add Home Model</b-button
         >
+      </div> -->
+      <!-- Loader  -->
+      <div>
+        <b-loading v-model="isLoading"></b-loading>
       </div>
       <b-collapse
         v-for="(model, index) of models"
@@ -19,7 +23,7 @@
         <template #trigger="props">
           <div class="card-header" role="button">
             <p class="card-header-title">
-              {{ model.title }}
+              {{ model.house.houseModel }}
             </p>
             <a class="card-header-icon">
               <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"> </b-icon>
@@ -51,11 +55,42 @@
                 <div class="is-flex is-align-items-center">
                   <div class="is-flex mx-2 is-align-items-center">
                     <h6 class="mr-2 subtitle is-7 mb-0">Price Override</h6>
-                    <b-input name="price" size="is-small" expanded></b-input>
+                    <form
+                      class="is-flex"
+                      @submit.prevent="
+                        changePrice(model.house.houseId, appliance)
+                      "
+                    >
+                      <b-input
+                        v-model="appliance.price"
+                        type="number"
+                        class="mr-2"
+                        name="price"
+                        size="is-small"
+                        required
+                        expanded
+                      ></b-input>
+                      <b-button
+                        native-type="submit"
+                        size="is-small"
+                        type="is-primary"
+                        >Override Price</b-button
+                      >
+                    </form>
                   </div>
-                  <div class="is-flex mx-2 is-align-items-center">
+                  <!-- <div class="is-flex mx-2 is-align-items-center">
                     <h6 class="mr-2 subtitle is-7 mb-0">Remove from Home</h6>
                     <b-checkbox></b-checkbox>
+                  </div> -->
+                  <div class="mx-2">
+                    <b-button
+                      size="is-small"
+                      type="is-primary"
+                      @click.prevent.prevent="
+                        removeAppliance(model.house.houseId, appliance)
+                      "
+                      >Remove from Home</b-button
+                    >
                   </div>
                 </div>
               </div>
@@ -97,7 +132,7 @@
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click="viewModel"
+                            @click.prevent="viewModel"
                             >VIEW</b-button
                           >
                         </div>
@@ -115,7 +150,7 @@
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click="viewModel"
+                            @click.prevent="viewModel"
                             >VIEW</b-button
                           >
                         </div>
@@ -137,7 +172,7 @@
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click="viewModel"
+                            @click.prevent="viewModel"
                             >VIEW</b-button
                           >
                         </div>
@@ -155,7 +190,7 @@
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click="viewModel"
+                            @click.prevent="viewModel"
                             >VIEW</b-button
                           >
                         </div>
@@ -177,7 +212,7 @@
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click="viewModel"
+                            @click.prevent="viewModel"
                             >VIEW</b-button
                           >
                         </div>
@@ -202,10 +237,10 @@
             </div>
           </b-collapse>
         </div>
-        <div class="mb-2 is-flex is-justify-content-center">
+        <!-- <div class="mb-2 is-flex is-justify-content-center">
           <b-button type="is-primary" class="mx-2">Save Changes</b-button>
           <b-button type="is-primary" class="mx-2">Delete Home</b-button>
-        </div>
+        </div> -->
       </b-collapse>
       <!-- </b-tab-item> -->
       <!-- <b-tab-item label="Catalog"></b-tab-item>
@@ -220,25 +255,12 @@
 export default {
   data() {
     return {
-      // isOpen: 1,
-      models: [
-        {
-          title: 'Model 1',
-          text: 'Text 1',
-        },
-        {
-          title: 'Model 2',
-          text: 'Text 2',
-        },
-        {
-          title: 'Model 3',
-          text: 'Text 3',
-        },
-        {
-          title: 'Model 4',
-          text: 'Text 4',
-        },
-      ],
+      isOpen: undefined,
+      bgImage: 'url',
+      isLoading: true,
+      hover: false,
+      models: null,
+      price: null,
       appliances: [
         {
           title: 'Product 1, LG 2626626262',
@@ -258,6 +280,42 @@ export default {
         { title: 'Bathroom' },
       ],
     }
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      this.isLoading = true
+      this.$axios.get('/admin/houses-info/').then((r) => {
+        this.models = r.data.data
+        this.isLoading = false
+        console.log(r, 'data')
+      })
+    },
+    removeAppliance(id, appliance) {
+      this.$axios
+        .post('/admin/delete-appliance-house', {
+          applianceId: appliance.applianceId,
+          houseId: id,
+        })
+        .then((r) => {
+          console.log(r, 'response')
+          this.getData()
+        })
+    },
+    changePrice(id, appliance) {
+      this.$axios
+        .post('/admin/save-appliance-price', {
+          overridePrice: parseInt(appliance.price),
+          applianceId: appliance.applianceId,
+          houseId: id,
+        })
+        .then((r) => {
+          console.log(r, 'response')
+          this.getData()
+        })
+    },
   },
 }
 </script>

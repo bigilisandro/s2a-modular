@@ -45,6 +45,10 @@
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         ></b-tab-item>
       </b-tabs>
+      <!-- Loader  -->
+      <div>
+        <b-loading v-model="isLoading"></b-loading>
+      </div>
       <!-- HOMES -->
       <div class="mx-5 mx-0-mobile">
         <div class="columns is-multiline">
@@ -83,6 +87,7 @@ export default {
       showByIndex: null,
       signUpModal: false,
       models: {},
+      isLoading: true,
     }
   },
   mounted() {
@@ -95,6 +100,7 @@ export default {
           this.models = r.data
           // eslint-disable-next-line no-console
           console.log(this.models)
+          this.isLoading = false
         })
       } catch (e) {
         // eslint-disable-next-line no-console
