@@ -1,6 +1,11 @@
 <template>
   <div>
     <b-modal :active.sync="isModalActive" full-screen>
+      <sign-up
+        :is-active="isSignUpActive"
+        save-home-modal
+        @clicked="register"
+      />
       <b-modal
         :active.sync="isNameHomeModalActive"
         has-modal-card
@@ -39,7 +44,7 @@
                     expanded
                     rounded
                   />
-                  <div class="is-flex is-justify-content-center">
+                  <div class="is-flex is-justify-content-center my-2">
                     <Notification v-if="error" :message="error" />
                   </div>
                 </div>
@@ -47,6 +52,95 @@
             </form>
           </div>
           <a @click.prevent="closeNameHomeModal">
+            <img
+              src="@/assets/images/button_close.svg"
+              alt="icon_share"
+              class="image is-32x32"
+            />
+          </a>
+        </div>
+      </b-modal>
+      <b-modal
+        :active.sync="isLoginModalActive"
+        has-modal-card
+        :width="1000"
+        :custom-class="'is-fullwidth'"
+      >
+        <div class="is-flex">
+          <div class="modal-card mr-2">
+            <form method="post" @submit.prevent="login">
+              <section class="modal-card-body px-6 modal-card-name-home">
+                <div class="is-flex is-justify-content-center my-4">
+                  <img
+                    src="~assets/images/logo_s2a.svg"
+                    alt="s2a-modular"
+                    class="image"
+                    style="width: 250px"
+                  />
+                </div>
+
+                <div>
+                  <p class="subtitle is-6 has-text-centered mb-3">
+                    Login or Register first.
+                  </p>
+                  <b-field>
+                    <b-input
+                      v-model="email"
+                      type="email"
+                      placeholder="Email"
+                      required
+                      rounded
+                    >
+                    </b-input>
+                  </b-field>
+
+                  <b-field>
+                    <b-input
+                      v-model="password"
+                      type="password"
+                      password-reveal
+                      placeholder="Password"
+                      required
+                      rounded
+                    >
+                    </b-input>
+                  </b-field>
+
+                  <b-button
+                    v-if="loadingButton"
+                    native-type="submit"
+                    label="Login"
+                    type="is-primary"
+                    expanded
+                    rounded
+                  />
+                  <b-button v-else type="is-primary" rounded expanded
+                    >Logging in
+                    <b-icon
+                      pack="fas"
+                      icon="sync-alt"
+                      size="is-small"
+                      custom-class="fa-spin ml-4"
+                    ></b-icon
+                  ></b-button>
+                  <div class="is-flex is-justify-content-center my-2">
+                    <Notification v-if="loginError" :message="loginError" />
+                  </div>
+                  <b-button
+                    type="is-text"
+                    expanded
+                    class="bg-hover"
+                    @click.prevent="signUpModal"
+                    >Sign Up</b-button
+                  >
+                  <p class="subtitle is-7 has-text-centered">
+                    Save, share and download specs for all your custom homes.
+                  </p>
+                </div>
+              </section>
+            </form>
+          </div>
+          <a @click.prevent="cancel">
             <img
               src="@/assets/images/button_close.svg"
               alt="icon_share"
@@ -360,7 +454,6 @@
                       <div class="is-flex is-align-items-flex-end">
                         <a
                           class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                          @click="removeAppliance(appliance)"
                           ><span>Remove from Home</span></a
                         >
                       </div>
@@ -368,11 +461,7 @@
                   </div>
                 </div>
                 <div class="is-flex is-justify-content-flex-end">
-                  <b-button
-                    size="is-small"
-                    type="is-primary"
-                    rounded
-                    @click="addAppliance(appliance)"
+                  <b-button size="is-small" type="is-primary" rounded
                     >+ ADD TO HOME</b-button
                   >
                 </div>
@@ -412,8 +501,9 @@
 
 <script>
 import Notification from '@/components/Notification.vue'
+import SignUp from '@/components/SignUp.vue'
 export default {
-  components: { Notification },
+  components: { Notification, SignUp },
   props: {
     isActive: {
       type: Boolean,
@@ -428,8 +518,14 @@ export default {
     return {
       isModalActive: false,
       isNameHomeModalActive: false,
+      isLoginModalActive: false,
+      isSignUpActive: false,
       nameHome: '',
       error: null,
+      email: '',
+      password: '',
+      loadingButton: true,
+      loginError: null,
       // appliances: [
       //   {
       //     title: 'REFRIGERATOR',
@@ -470,39 +566,13 @@ export default {
       }
     },
   },
-  mounted() {
-    // this.getData()
-    console.log('appliances', this.appliances)
-  },
   methods: {
-    // getData() {
-    //   this.$axios.get('/admin/houses-info/').then((r) => {
-    //     console.log(r, 'data')
-    //   })
-    // },
-    addAppliance(appliance) {
-      this.$axios
-        .post('/admin/save-appliance-price', {
-          overridePrice: parseInt(appliance.appliancePerHousePrice),
-          applianceId: appliance.applianceId,
-          houseId: this.$route.params.id,
-        })
-        .then((r) => {
-          console.log(r, 'response')
-        })
-    },
-    removeAppliance(appliance) {
-      this.$axios
-        .post('/admin/delete-appliance-house', {
-          applianceId: appliance.applianceId,
-          houseId: this.$route.params.id,
-        })
-        .then((r) => {
-          console.log(r, 'response')
-        })
-    },
     cancel() {
       this.$emit('cancel')
+    },
+    signUpModal() {
+      this.isLoginModalActive = false
+      this.isSignUpActive = true
     },
     getImgUrl(value) {
       return `https://picsum.photos/id/43${value}/1230/500`
@@ -520,16 +590,61 @@ export default {
         name: this.nameHome,
         appliances: [1, 2, 3],
       }
+      if (!this.$auth.loggedIn) {
+        this.isNameHomeModalActive = false
+        this.isLoginModalActive = true
+      } else {
+        try {
+          await this.$axios.post('/management/save-house', config)
+          this.error = null
+          this.$router.push('/dashboard')
+        } catch (e) {
+          // this.loadingButton = true
+          if (e.response.data.message != null) {
+            this.error = e.response.data.message
+          } else {
+            this.error = e.response.data.error
+          }
+        }
+      }
+    },
+    async login() {
+      this.loadingButton = false
+      this.error = null
       try {
-        await this.$axios.post('/management/save-house', config)
-        this.error = null
-        this.$router.push('/dashboard')
+        await this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+        this.loadingButton = true
+        this.saveHome()
       } catch (e) {
         this.loadingButton = true
         if (e.response.data.message != null) {
-          this.error = e.response.data.message
+          this.loginError = e.response.data.message
         } else {
-          this.error = e.response.data.error
+          this.loginError = e.response.data.error
+        }
+      }
+    },
+    async register(email, password) {
+      try {
+        await this.$auth.loginWith('local', {
+          data: {
+            email,
+            password,
+          },
+        })
+        this.loadingButton = true
+        this.saveHome()
+      } catch (e) {
+        this.loadingButton = true
+        if (e.response.data.message != null) {
+          this.loginError = e.response.data.message
+        } else {
+          this.loginError = e.response.data.error
         }
       }
     },
@@ -537,7 +652,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .footer-modal {
   position: absolute;
   bottom: 0;

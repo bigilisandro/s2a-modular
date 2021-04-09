@@ -380,7 +380,7 @@ export default {
           this.images = this.model.images
           this.loading = false
           // eslint-disable-next-line no-console
-          console.log(this.images, this.model)
+          console.log(this.model)
         })
     },
     goToSlide(index) {

@@ -308,7 +308,7 @@ export default {
       this.$axios
         .post('/admin/save-appliance-price', {
           overridePrice: parseInt(appliance.price),
-          applianceId: appliance.applianceId,
+          applianceId: 1,
           houseId: id,
         })
         .then((r) => {

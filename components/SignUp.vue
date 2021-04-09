@@ -114,7 +114,7 @@
               expanded
               rounded
             />
-            <div class="is-flex is-justify-content-center">
+            <div class="is-flex is-justify-content-center my-2">
               <Notification v-if="error" :message="error" />
             </div>
             <a
@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import Notification from '@/components/Notification.vue'
 export default {
   components: {
@@ -145,6 +145,10 @@ export default {
   },
   props: {
     isActive: {
+      type: Boolean,
+      default: false,
+    },
+    saveHomeModal: {
       type: Boolean,
       default: false,
     },
@@ -163,9 +167,9 @@ export default {
       error: null,
     }
   },
-  computed: {
-    ...mapGetters(['isAuthenticated']),
-  },
+  // computed: {
+  //   ...mapGetters(['isAuthenticated']),
+  // },
   watch: {
     isActive(newValue) {
       this.isModalActive = newValue
@@ -176,11 +180,11 @@ export default {
       }
     },
   },
-  mounted() {
-    if (this.isAuthenticated) {
-      this.$router.push('./')
-    }
-  },
+  // mounted() {
+  //   if (this.isAuthenticated) {
+  //     this.$router.push('./')
+  //   }
+  // },
   methods: {
     cancel() {
       this.$emit('cancel')
@@ -200,18 +204,22 @@ export default {
         })
         this.error = null
         this.loadingButton = true
-        this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password,
-          },
-        })
-        this.cancel()
-        this.$router.push('/')
-        this.$buefy.toast.open({
-          message: 'Welcome ' + this.firstName + '!',
-          type: 'is-success',
-        })
+        if (this.saveHomeModal) {
+          this.$emit('clicked', this.email, this.password)
+        } else {
+          this.$auth.loginWith('local', {
+            data: {
+              email: this.email,
+              password: this.password,
+            },
+          })
+          this.cancel()
+          this.$router.push('/')
+          this.$buefy.toast.open({
+            message: 'Welcome ' + this.firstName + '!',
+            type: 'is-success',
+          })
+        }
       } catch (e) {
         this.loadingButton = true
         if (e.response.data.message != null) {

@@ -80,7 +80,7 @@
                           custom-class="fa-spin ml-4"
                         ></b-icon
                       ></b-button>
-                      <div class="is-flex is-justify-content-center">
+                      <div class="is-flex is-justify-content-center my-2">
                         <Notification v-if="error" :message="error" />
                       </div>
                       <b-button
