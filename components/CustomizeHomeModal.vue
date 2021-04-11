@@ -5,6 +5,7 @@
         :is-active="isSignUpActive"
         save-home-modal
         @clicked="register"
+        @cancel="cancelRegisterModal"
       />
       <b-modal
         :active.sync="isNameHomeModalActive"
@@ -140,7 +141,7 @@
               </section>
             </form>
           </div>
-          <a @click.prevent="cancel">
+          <a @click.prevent="cancelLoginModal">
             <img
               src="@/assets/images/button_close.svg"
               alt="icon_share"
@@ -451,17 +452,30 @@
                           <b-checkbox size="is-small">Black</b-checkbox>
                         </b-field>
                       </div>
-                      <div class="is-flex is-align-items-flex-end">
+                      <div
+                        v-if="
+                          selectedAppliances.includes(appliance.applianceId)
+                        "
+                        class="is-flex is-align-items-flex-end"
+                      >
                         <a
                           class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
+                          @click="removeAppliance(appliance)"
                           ><span>Remove from Home</span></a
                         >
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="is-flex is-justify-content-flex-end">
-                  <b-button size="is-small" type="is-primary" rounded
+                <div
+                  v-if="!selectedAppliances.includes(appliance.applianceId)"
+                  class="is-flex is-justify-content-flex-end"
+                >
+                  <b-button
+                    size="is-small"
+                    type="is-primary"
+                    rounded
+                    @click="addAppliance(appliance)"
                     >+ ADD TO HOME</b-button
                   >
                 </div>
@@ -526,6 +540,7 @@ export default {
       password: '',
       loadingButton: true,
       loginError: null,
+      selectedAppliances: [],
       // appliances: [
       //   {
       //     title: 'REFRIGERATOR',
@@ -570,6 +585,12 @@ export default {
     cancel() {
       this.$emit('cancel')
     },
+    cancelLoginModal() {
+      this.isLoginModalActive = false
+    },
+    cancelRegisterModal() {
+      this.isSignUpActive = false
+    },
     signUpModal() {
       this.isLoginModalActive = false
       this.isSignUpActive = true
@@ -583,12 +604,24 @@ export default {
     closeNameHomeModal() {
       this.isNameHomeModalActive = false
     },
+    addAppliance(appliance) {
+      this.selectedAppliances.push(appliance.applianceId)
+      console.log(this.selectedAppliances)
+    },
+    removeAppliance(appliance) {
+      const index = this.selectedAppliances.indexOf(appliance.applianceId)
+      if (index > -1) {
+        this.selectedAppliances.splice(index, 1)
+      }
+
+      console.log(this.selectedAppliances)
+    },
     async saveHome() {
       this.error = null
       const config = {
         idHouseStrapi: this.$route.params.id,
         name: this.nameHome,
-        appliances: [1, 2, 3],
+        appliances: this.selectedAppliances,
       }
       if (!this.$auth.loggedIn) {
         this.isNameHomeModalActive = false
