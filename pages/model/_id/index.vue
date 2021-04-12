@@ -64,11 +64,13 @@
                   </p>
                 </div>
                 <div class="column columns mb-0">
-                  <div class="column is-3">
-                    <h1 class="title is-2 has-text-white">
+                  <div class="column">
+                    <h1 class="title is-2 has-text-white has-text-centered">
                       {{ model.model_name }}
                     </h1>
-                    <h4 class="subtitle is-5 has-text-white text-max">
+                    <h4
+                      class="subtitle is-5 has-text-white text-max has-text-centered"
+                    >
                       {{ model.short_description }}
                     </h4>
                   </div>
@@ -76,16 +78,16 @@
                 <h1 class="title is-1 has-text-white">|</h1>
               </div> -->
                   <div
-                    class="column is-flex is-justify-content-space-around border-left"
+                    class="column is-3 is-flex is-justify-content-space-around border-left"
                   >
-                    <div>
+                    <!-- <div>
                       <h1 class="title is-2 has-text-white">
                         ${{ model.price }}
                       </h1>
                       <h4 class="subtitle is-5 has-text-white text-max">
                         {{ model.description_price }}
                       </h4>
-                    </div>
+                    </div> -->
                     <div class="is-flex is-align-items-center">
                       <b-button
                         type="is-primary"
@@ -98,7 +100,7 @@
                   <!-- <div>
                 <h1 class="title is-1 has-text-white">|</h1>
               </div> -->
-                  <div class="column is-4 border-left">
+                  <div class="column border-left">
                     <div class="is-flex is-justify-content-space-around">
                       <a @click.prevent="videoModal">
                         <img
@@ -224,7 +226,7 @@
                 </p>
               </div>
               <div>
-                <a class="is-align-items-center columns is-flex">
+                <!-- <a class="is-align-items-center columns is-flex">
                   <div class="column is-8">
                     <p class="subtitle is-7 has-text-white has-text-centered">
                       View in 360º
@@ -237,7 +239,7 @@
                       class="image is-48x48"
                     />
                   </div>
-                </a>
+                </a> -->
                 <a class="is-align-items-center columns is-flex">
                   <div class="column is-8">
                     <p class="subtitle is-7 has-text-white has-text-centered">
@@ -258,15 +260,17 @@
         </slide>
       </hooper>
       <div class="bottom-content columns">
-        <div class="column is-half is-offset-one-quarter is-grid mt-1">
-          <div>
+        <div
+          class="column is-half is-offset-one-quarter is-grid mt-5 is-fullheight"
+        >
+          <!-- <div>
             <h1 class="title is-3 has-text-white has-text-centered">
               ${{ model.price }}
             </h1>
             <h4 class="subtitle is-6 has-text-white has-text-centered text-max">
               {{ model.description_price }}
             </h4>
-          </div>
+          </div> -->
           <div>
             <div class="is-flex is-justify-content-center my-2">
               <a class="mx-2" @click.prevent="videoModal">
@@ -411,7 +415,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 .no-scroll {
@@ -420,7 +424,7 @@ export default {
 }
 .top-title {
   position: fixed;
-  top: 3.25rem;
+  top: 4rem;
   z-index: 30;
   left: 0;
   right: 0;
