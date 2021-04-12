@@ -35,10 +35,7 @@
             <slide v-for="(image, index) in images" :key="image.length">
               <div
                 :style="{
-                  'background-image':
-                    'url(https://as2-cms-strapi.herokuapp.com' +
-                    image.url +
-                    ')',
+                  'background-image': 'url(' + image.url + ')',
                 }"
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
@@ -55,8 +52,7 @@
           <slide v-for="image in images" :key="image.length">
             <div
               :style="{
-                'background-image':
-                  'url(https://as2-cms-strapi.herokuapp.com' + image.url + ')',
+                'background-image': 'url(' + image.url + ')',
               }"
               class="bgImage container is-fluid"
               style="background-size: 100% 100%"
@@ -72,7 +68,7 @@
                     <h1 class="title is-2 has-text-white">
                       {{ model.model_name }}
                     </h1>
-                    <h4 class="subtitle is-5 has-text-white">
+                    <h4 class="subtitle is-5 has-text-white text-max">
                       {{ model.short_description }}
                     </h4>
                   </div>
@@ -84,9 +80,9 @@
                   >
                     <div>
                       <h1 class="title is-2 has-text-white">
-                        {{ model.price }}
+                        ${{ model.price }}
                       </h1>
-                      <h4 class="subtitle is-5 has-text-white">
+                      <h4 class="subtitle is-5 has-text-white text-max">
                         {{ model.description_price }}
                       </h4>
                     </div>
@@ -202,7 +198,7 @@
         <h1 class="title is-3 has-text-white has-text-centered">
           {{ model.model_name }}
         </h1>
-        <h4 class="subtitle is-6 has-text-white has-text-centered">
+        <h4 class="subtitle is-6 has-text-white has-text-centered text-max">
           {{ model.short_description }}
         </h4>
       </div>
@@ -216,8 +212,7 @@
         <slide v-for="image in images" :key="image.length">
           <div
             :style="{
-              'background-image':
-                'url(https://as2-cms-strapi.herokuapp.com' + image.url + ')',
+              'background-image': 'url(' + image.url + ')',
             }"
             class="bgImage container is-fluid"
           >
@@ -267,9 +262,9 @@
         <div class="column is-half is-offset-one-quarter is-grid mt-1">
           <div>
             <h1 class="title is-3 has-text-white has-text-centered">
-              {{ model.price }}
+              ${{ model.price }}
             </h1>
-            <h4 class="subtitle is-6 has-text-white has-text-centered">
+            <h4 class="subtitle is-6 has-text-white has-text-centered text-max">
               {{ model.description_price }}
             </h4>
           </div>
@@ -408,11 +403,18 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // body {
 //   height: 100vh;
 //   overflow: hidden;
 // }
+.text-max {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 .no-scroll {
   height: 100vh;
   overflow: hidden;
@@ -442,7 +444,7 @@ export default {
   background-position: center;
 }
 .content-bottom {
-  height: 90%;
+  height: 95%;
   align-items: flex-end;
 }
 .p-1 {
