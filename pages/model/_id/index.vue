@@ -203,7 +203,6 @@
         </h4>
       </div>
       <hooper
-        ref="carousel"
         :vertical="true"
         style="height: 100vh; width: 100%; margin-top: 3.25rem"
         :items-to-show="1.5"
@@ -220,7 +219,7 @@
               class="content-bottom is-flex is-justify-content-space-between"
             >
               <div>
-                <p class="subtitle is-7 has-text-black">
+                <p class="subtitle is-7 has-text-white">
                   Living Room 300 sq. ft.
                 </p>
               </div>
@@ -431,7 +430,7 @@ export default {
   bottom: 0%;
   left: 0;
   right: 0;
-  height: 26vh;
+  height: 23vh;
   background: rgba(0, 0, 0, 0.8);
 }
 .border-left {
