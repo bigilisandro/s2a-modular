@@ -54,7 +54,7 @@
               :style="{
                 'background-image': 'url(' + image.url + ')',
               }"
-              class="bgImage container is-fluid"
+              class="bgImage container is-fluid margin-nav"
               style="background-size: 100% 100%"
             >
               <div class="columns content-bottom is-mobile">
@@ -446,6 +446,9 @@ export default {
   background-size: cover;
   background-position: center;
 }
+// .margin-nav {
+//   margin-top: 3.25rem;
+// }
 .content-bottom {
   height: 95%;
   align-items: flex-end;

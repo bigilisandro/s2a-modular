@@ -6,6 +6,7 @@
       </h1>
       <!-- TABS -->
       <b-tabs
+        v-model="tab"
         position="is-centered"
         type="is-toggle"
         class="block"
@@ -15,57 +16,199 @@
         <b-tab-item
           label="ALL HOMES"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- ALL HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in models"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- ALL HOMES --></b-tab-item
+        >
         <b-tab-item
           label="0-2,500 SQ. FT."
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- 0-2,500 SQ. FT. HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in smallModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- 0-2,500 SQ. FT. HOMES --></b-tab-item
+        >
         <b-tab-item
           label="2,500-5,000 SQ. FT."
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- 2,500-5,000 SQ. FT. HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in bigModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- 2,500-5,000 SQ. FT. HOMES --></b-tab-item
+        >
         <b-tab-item
           label="4 BEDROOM"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- 4 BEDROOM HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in fourBedsModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- 4 BEDROOM HOMES --></b-tab-item
+        >
         <b-tab-item
           label="MODERN"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- MODERN HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in modernModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- MODERN HOMES --></b-tab-item
+        >
         <b-tab-item
           label="TRADITIONAL"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- TRADITIONAL HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in traditionalModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- TRADITIONAL HOMES --></b-tab-item
+        >
         <b-tab-item
           label="CRAFTSMAN"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- CRAFTSMAN HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in craftsmanModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- CRAFTSMAN HOMES --></b-tab-item
+        >
         <b-tab-item
           label="COLONIAL"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
-        ></b-tab-item>
+        >
+          <!-- COLONIAL HOMES -->
+          <div class="mx-5 mx-0-mobile">
+            <div class="columns is-multiline">
+              <div
+                v-for="model in colonialModels"
+                :key="model.houseId"
+                class="column is-4"
+                @mouseover="showByIndex = model"
+                @mouseout="showByIndex = null"
+              >
+                <Card
+                  :hover="showByIndex === model"
+                  :model="model"
+                  @view-model="viewModel(model.houseId)"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- COLONIAL HOMES --></b-tab-item
+        >
       </b-tabs>
       <!-- Loader  -->
       <div>
         <b-loading v-model="isLoading"></b-loading>
-      </div>
-      <!-- HOMES -->
-      <div class="mx-5 mx-0-mobile">
-        <div class="columns is-multiline">
-          <div
-            v-for="model in models"
-            :key="model.houseId"
-            class="column is-4"
-            @mouseover="showByIndex = model"
-            @mouseout="showByIndex = null"
-          >
-            <Card
-              :hover="showByIndex === model"
-              :model="model"
-              @view-model="viewModel(model.houseId)"
-            />
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -73,9 +216,6 @@
 
 <script>
 import Card from '@/components/Card.vue'
-// import model1 from '@/assets/images/model-1.png'
-// import model2 from '@/assets/images/model-2.png'
-// import model3 from '@/assets/images/model-3.png'
 
 export default {
   name: 'Homepage',
@@ -87,7 +227,15 @@ export default {
       showByIndex: null,
       signUpModal: false,
       models: {},
+      colonialModels: {},
+      craftsmanModels: {},
+      smallModels: {},
+      bigModels: {},
+      modernModels: {},
+      traditionalModels: {},
+      fourBedsModels: {},
       isLoading: true,
+      tab: 0,
     }
   },
   mounted() {
@@ -97,7 +245,29 @@ export default {
     async getData() {
       try {
         await this.$axios.get('/management/getAllModels').then((r) => {
-          this.models = r.data
+          this.models = r.data.data
+          this.colonialModels = this.models.filter(
+            (model) => model.tag === 'Colonial'
+          )
+          this.craftsmanModels = this.models.filter(
+            (model) => model.tag === 'Craftsman'
+          )
+          this.smallModels = this.models.filter(
+            (model) => model.tag === '0-2,500 SQ. FT.'
+          )
+          this.bigModels = this.models.filter(
+            (model) => model.tag === '2,500-5,000 SQ. FT.'
+          )
+          this.modernModels = this.models.filter(
+            (model) => model.tag === 'Modern'
+          )
+          this.traditionalModels = this.models.filter(
+            (model) => model.tag === 'Traditional'
+          )
+          this.fourBedsModels = this.models.filter(
+            (model) => model.tag === '4 Bedroom'
+          )
+
           // eslint-disable-next-line no-console
           console.log(this.models)
           this.isLoading = false
