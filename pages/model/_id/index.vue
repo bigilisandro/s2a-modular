@@ -8,6 +8,7 @@
     />
     <details-modal :is-active="isDetailsModalActive" @cancel="trashCancel" />
     <floorplan-modal
+      :floor-plan="model.floorPlan"
       :is-active="isFloorplanModalActive"
       @cancel="trashCancel"
     />

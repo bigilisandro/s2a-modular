@@ -22,7 +22,11 @@
         </h4>
         <p class="subtitle is-7">{{ model.description }}</p>
         <div class="is-flex is-justify-content-space-between">
-          <a class="is-flex is-align-items-center">
+          <a
+            :href="model.pdfSpecs"
+            download
+            class="is-flex is-align-items-center"
+          >
             <img
               src="@/assets/images/icon_pdf.svg"
               alt="icon_pdf"

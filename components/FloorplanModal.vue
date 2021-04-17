@@ -2,7 +2,7 @@
   <b-modal :active.sync="isModalActive">
     <div class="is-flex">
       <div class="mr-2">
-        <img src="@/assets/images/floorplants.jpg" />
+        <img :src="floorPlan" />
       </div>
       <a @click.prevent="cancel">
         <img
@@ -21,6 +21,10 @@ export default {
     isActive: {
       type: Boolean,
       default: false,
+    },
+    floorPlan: {
+      type: String,
+      default: '',
     },
   },
   data() {

@@ -103,7 +103,9 @@
             </b-field>
             <b-checkbox
               >I agree to the
-              <a class="is-underlined has-text-black"
+              <a
+                class="is-underlined has-text-black"
+                @click.prevent="termsOfUse"
                 >Terms of Use</a
               ></b-checkbox
             >
@@ -119,6 +121,7 @@
             </div>
             <a
               class="is-flex is-justify-content-center my-4 is-underlined has-text-black"
+              @click.prevent="privacyPolicy"
             >
               Privacy Policy
             </a>
@@ -228,6 +231,56 @@ export default {
           this.error = e.response.data.error
         }
       }
+    },
+    privacyPolicy() {
+      this.$buefy.dialog.confirm({
+        title: 'Privacy Policy',
+        message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce id fermentum quam. Proin sagittis,
+                        nibh id hendrerit imperdiet, elit sapien laoreet elit,
+                        ac scelerisque diam velit in nisl. Nunc maximus ex non
+                        laoreet semper. Nunc scelerisque, libero sit amet pretium dignissim,
+                        augue purus placerat justo,
+                        sit amet porttitor dui metus in nisl.
+                        Nulla non leo placerat, porta metus eu, laoreet risus.
+                        Etiam lacinia, purus eu luctus maximus, elit ex viverra tellus,
+                        sit amet sodales quam dui nec odio.
+                        Nullam porta mollis est. Quisque aliquet malesuada fringilla.
+                        Pellentesque volutpat lacus at ante posuere,
+                        non pulvinar ante porta. Proin viverra eu massa nec porta.
+                        Aliquam rhoncus velit quis sem hendrerit,
+                        ut dictum nisl accumsan. Maecenas erat enim, scelerisque non ligula ac,
+                        eleifend venenatis ligula.
+                        Praesent molestie mauris sed elit posuere, non malesuada libero gravida.
+                        In hac habitasse platea dictumst.
+                        Pellentesque habitant morbi tristique senectus
+                        et netus et malesuada fames ac turpis egestas.`,
+      })
+    },
+    termsOfUse() {
+      this.$buefy.dialog.confirm({
+        title: 'Terms of Use',
+        message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce id fermentum quam. Proin sagittis,
+                        nibh id hendrerit imperdiet, elit sapien laoreet elit,
+                        ac scelerisque diam velit in nisl. Nunc maximus ex non
+                        laoreet semper. Nunc scelerisque, libero sit amet pretium dignissim,
+                        augue purus placerat justo,
+                        sit amet porttitor dui metus in nisl.
+                        Nulla non leo placerat, porta metus eu, laoreet risus.
+                        Etiam lacinia, purus eu luctus maximus, elit ex viverra tellus,
+                        sit amet sodales quam dui nec odio.
+                        Nullam porta mollis est. Quisque aliquet malesuada fringilla.
+                        Pellentesque volutpat lacus at ante posuere,
+                        non pulvinar ante porta. Proin viverra eu massa nec porta.
+                        Aliquam rhoncus velit quis sem hendrerit,
+                        ut dictum nisl accumsan. Maecenas erat enim, scelerisque non ligula ac,
+                        eleifend venenatis ligula.
+                        Praesent molestie mauris sed elit posuere, non malesuada libero gravida.
+                        In hac habitasse platea dictumst.
+                        Pellentesque habitant morbi tristique senectus
+                        et netus et malesuada fames ac turpis egestas.`,
+      })
     },
   },
 }

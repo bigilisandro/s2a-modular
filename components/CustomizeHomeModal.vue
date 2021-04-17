@@ -172,6 +172,7 @@
                 >
                 <a
                   class="subtitle is-7 has-text-white is-flex is-justify-content-center mt-2 border-0 is-underlined"
+                  @click.prevent="whatsIncluded"
                   ><span>What's included?</span></a
                 >
               </div>
@@ -680,6 +681,31 @@ export default {
           this.loginError = e.response.data.error
         }
       }
+    },
+    whatsIncluded() {
+      this.$buefy.dialog.confirm({
+        title: "What's included",
+        message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce id fermentum quam. Proin sagittis,
+                        nibh id hendrerit imperdiet, elit sapien laoreet elit,
+                        ac scelerisque diam velit in nisl. Nunc maximus ex non
+                        laoreet semper. Nunc scelerisque, libero sit amet pretium dignissim,
+                        augue purus placerat justo,
+                        sit amet porttitor dui metus in nisl.
+                        Nulla non leo placerat, porta metus eu, laoreet risus.
+                        Etiam lacinia, purus eu luctus maximus, elit ex viverra tellus,
+                        sit amet sodales quam dui nec odio.
+                        Nullam porta mollis est. Quisque aliquet malesuada fringilla.
+                        Pellentesque volutpat lacus at ante posuere,
+                        non pulvinar ante porta. Proin viverra eu massa nec porta.
+                        Aliquam rhoncus velit quis sem hendrerit,
+                        ut dictum nisl accumsan. Maecenas erat enim, scelerisque non ligula ac,
+                        eleifend venenatis ligula.
+                        Praesent molestie mauris sed elit posuere, non malesuada libero gravida.
+                        In hac habitasse platea dictumst.
+                        Pellentesque habitant morbi tristique senectus
+                        et netus et malesuada fames ac turpis egestas.`,
+      })
     },
   },
 }
