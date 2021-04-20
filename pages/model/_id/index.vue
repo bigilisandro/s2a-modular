@@ -2,14 +2,23 @@
   <div v-if="loading"></div>
   <div v-else class="no-scroll">
     <video-modal
-      :video-url="model.video_url"
+      :video-url="'https://www.youtube.com/embed/' + youtubeId"
       :is-active="isVideoModalActive"
       @cancel="trashCancel"
     />
-    <details-modal :is-active="isDetailsModalActive" @cancel="trashCancel" />
+    <details-modal
+      :is-active="isDetailsModalActive"
+      :details="model"
+      @cancel="trashCancel"
+    />
     <floorplan-modal
       :floor-plan="model.floorPlan"
       :is-active="isFloorplanModalActive"
+      @cancel="trashCancel"
+    />
+    <view-in-360-modal
+      :floor-plan="model.floorPlan"
+      :is-active="isViewIn360ModalActive"
       @cancel="trashCancel"
     />
     <customize-home-modal
@@ -65,7 +74,7 @@
                   </p>
                 </div>
                 <div class="column columns mb-0">
-                  <div class="column">
+                  <!-- <div class="column">
                     <h1 class="title is-2 has-text-white has-text-centered">
                       {{ model.model_name }}
                     </h1>
@@ -74,14 +83,14 @@
                     >
                       {{ model.short_description }}
                     </h4>
-                  </div>
+                  </div> -->
                   <!-- <div>
                 <h1 class="title is-1 has-text-white">|</h1>
               </div> -->
-                  <div
+                  <!-- <div
                     class="column is-3 is-flex is-justify-content-space-around border-left"
-                  >
-                    <!-- <div>
+                  > -->
+                  <!-- <div>
                       <h1 class="title is-2 has-text-white">
                         ${{ model.price }}
                       </h1>
@@ -89,7 +98,7 @@
                         {{ model.description_price }}
                       </h4>
                     </div> -->
-                    <div class="is-flex is-align-items-center">
+                  <!-- <div class="is-flex is-align-items-center">
                       <b-button
                         type="is-primary"
                         rounded
@@ -97,11 +106,11 @@
                         >CUSTOMIZE HOME</b-button
                       >
                     </div>
-                  </div>
+                  </div> -->
                   <!-- <div>
                 <h1 class="title is-1 has-text-white">|</h1>
               </div> -->
-                  <div class="column border-left">
+                  <!-- <div class="column border-left">
                     <div class="is-flex is-justify-content-space-around">
                       <a @click.prevent="videoModal">
                         <img
@@ -115,7 +124,7 @@
                           Video
                         </p>
                       </a>
-                      <a>
+                      <a @click.prevent="view360Modal">
                         <img
                           src="@/assets/images/icon_360.svg"
                           alt="icon_pdf"
@@ -152,7 +161,7 @@
                         </p>
                       </a>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="column is-2">
                   <div>
@@ -194,6 +203,90 @@
             </div>
           </slide>
         </hooper>
+        <div class="content-bottom-desktop">
+          <div class="column columns mb-0">
+            <div class="column">
+              <h1 class="title is-2 has-text-white has-text-centered">
+                {{ model.model_name }}
+              </h1>
+              <h4
+                class="subtitle is-5 has-text-white text-max has-text-centered"
+              >
+                {{ model.short_description }}
+              </h4>
+            </div>
+            <div
+              class="column is-flex is-justify-content-space-around border-left"
+            >
+              <!-- <div>
+                <h1 class="title is-2 has-text-white">${{ model.price }}</h1>
+                <h4 class="subtitle is-5 has-text-white text-max">
+                  {{ model.description_price }}
+                </h4>
+              </div> -->
+              <div class="is-flex is-align-items-center">
+                <b-button
+                  type="is-primary"
+                  rounded
+                  @click.prevent="customizeModal"
+                  >CUSTOMIZE HOME</b-button
+                >
+              </div>
+            </div>
+            <div class="column is-5 border-left">
+              <div class="is-flex is-justify-content-space-around">
+                <a @click.prevent="videoModal">
+                  <img
+                    src="@/assets/images/icon_video.svg"
+                    alt="icon_pdf"
+                    class="image is-48x48 m-auto"
+                  />
+                  <p
+                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                  >
+                    Video
+                  </p>
+                </a>
+                <a @click.prevent="view360Modal">
+                  <img
+                    src="@/assets/images/icon_360.svg"
+                    alt="icon_pdf"
+                    class="image is-48x48 m-auto"
+                  />
+                  <p
+                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                  >
+                    View in 360º
+                  </p>
+                </a>
+                <a @click.prevent="detailsModal">
+                  <img
+                    src="@/assets/images/icon_details.svg"
+                    alt="icon_share"
+                    class="image is-48x48 m-auto"
+                  />
+                  <p
+                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                  >
+                    Details
+                  </p>
+                </a>
+                <a @click.prevent="floorplanModal">
+                  <img
+                    src="@/assets/images/icon_floorplans.svg"
+                    alt="icon_edit"
+                    class="image is-48x48 m-auto"
+                  />
+                  <p
+                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                  >
+                    Foorplan
+                  </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
     <div class="is-hidden-desktop">
@@ -284,7 +377,7 @@
                   Video
                 </p>
               </a>
-              <a class="mx-2" @click.prevent="videoModal">
+              <a class="mx-2" @click.prevent="view360Modal">
                 <img
                   src="@/assets/images/icon_360.svg"
                   alt="icon_pdf"
@@ -336,6 +429,7 @@ import { Hooper, Slide } from 'hooper'
 import VideoModal from '@/components/VideoModal.vue'
 import DetailsModal from '@/components/DetailsModal.vue'
 import FloorplanModal from '@/components/FloorplanModal.vue'
+import ViewIn360Modal from '@/components/ViewIn360Modal.vue'
 import CustomizeHomeModal from '@/components/CustomizeHomeModal.vue'
 
 export default {
@@ -345,6 +439,7 @@ export default {
     VideoModal,
     DetailsModal,
     FloorplanModal,
+    ViewIn360Modal,
     CustomizeHomeModal,
   },
   // auth: 'guest',
@@ -353,6 +448,7 @@ export default {
       isVideoModalActive: false,
       isDetailsModalActive: false,
       isFloorplanModalActive: false,
+      isViewIn360ModalActive: false,
       isCustomizeHomeModalActive: false,
       hooperSettings: {
         vertical: true,
@@ -360,6 +456,7 @@ export default {
         infiniteScroll: true,
       },
       loading: true,
+      youtubeId: '',
       model: {},
       images: {},
     }
@@ -378,8 +475,9 @@ export default {
           this.model = r.data
           this.images = this.model.images
           this.loading = false
+          this.youtubeId = this.model.video_url.substring(17)
           // eslint-disable-next-line no-console
-          console.log(this.model)
+          console.log(this.model, this.youtubeId)
         })
     },
     goToSlide(index) {
@@ -394,6 +492,9 @@ export default {
     floorplanModal() {
       this.isFloorplanModalActive = true
     },
+    view360Modal() {
+      this.isViewIn360ModalActive = true
+    },
     customizeModal() {
       this.isCustomizeHomeModalActive = true
     },
@@ -401,6 +502,7 @@ export default {
       this.isVideoModalActive = false
       this.isDetailsModalActive = false
       this.isFloorplanModalActive = false
+      this.isViewIn360ModalActive = false
       this.isCustomizeHomeModalActive = false
     },
   },
@@ -437,6 +539,14 @@ export default {
   right: 0;
   height: 23vh;
   background: rgba(0, 0, 0, 0.8);
+}
+.content-bottom-desktop {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  right: 0;
+  width: 60%;
+  margin: auto;
 }
 .border-left {
   border-left: 2px solid white;

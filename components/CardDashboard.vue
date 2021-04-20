@@ -1,5 +1,10 @@
 <template>
   <div>
+    <edit-home-modal
+      :is-active="isEditModalHomeActive"
+      :appliances="appliances"
+      @cancel="trashCancel"
+    />
     <div class="card">
       <div :style="{ 'background-image': bgImage }" class="bgImage">
         <div
@@ -42,7 +47,7 @@
             />
             <p class="subtitle is-7">Share</p>
           </a>
-          <a class="is-flex is-align-items-center">
+          <a class="is-flex is-align-items-center" @click.prevent="editModal">
             <img
               src="@/assets/images/icon_edit.svg"
               alt="icon_edit"
@@ -75,19 +80,34 @@
 </template>
 
 <script>
-import model1 from '@/assets/images/model-1.png'
+import EditHomeModal from '@/components/EditHomeModal.vue'
 export default {
+  components: { EditHomeModal },
   props: {
     model: {
+      type: Object,
+      default: () => {},
+    },
+    appliances: {
+      type: Object,
+      default: () => {},
+    },
+    areas: {
       type: Object,
       default: () => {},
     },
   },
   data() {
     return {
-      // bgImage: 'url(' + this.model.image + ')',
-      bgImage: 'url(' + model1 + ')',
+      bgImage: 'url(' + this.areas[0].url + ')',
+      // bgImage: 'url(' + model1 + ')',
+      isEditModalHomeActive: false,
     }
+  },
+  methods: {
+    editModal() {
+      this.isEditModalHomeActive = true
+    },
   },
 }
 </script>
