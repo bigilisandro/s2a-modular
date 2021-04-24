@@ -7,7 +7,7 @@
       </h1>
       <!-- Loader  -->
       <div>
-        <b-loading v-model="isLoading"></b-loading>
+        <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
       </div>
       <!-- HOMES -->
       <div class="mx-5 mx-0-mobile">
@@ -21,7 +21,7 @@
           >
             <card-dashboard
               :hover="showByIndex === model"
-              :model="model.house[0]"
+              :model="model.house.data"
               :areas="model.areas"
               :appliances="model.appliances"
               @view-model="viewModel(model.id)"

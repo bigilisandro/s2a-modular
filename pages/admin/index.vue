@@ -10,7 +10,7 @@
       </div> -->
       <!-- Loader  -->
       <div>
-        <b-loading v-model="isLoading"></b-loading>
+        <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
       </div>
       <b-collapse
         v-for="(model, index) of models"

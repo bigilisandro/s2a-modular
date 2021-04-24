@@ -1,5 +1,6 @@
 <template>
   <div>
+    <share-modal :is-active="isShareModalActive" @cancel="trashCancel" />
     <edit-home-modal
       :is-active="isEditModalHomeActive"
       :appliances="appliances"
@@ -26,10 +27,12 @@
           {{ model.name }} <span class="mx-2">|</span> $ {{ model.price }}
         </h4>
         <p class="subtitle is-7">{{ model.description }}</p>
-        <div class="is-flex is-justify-content-space-between">
+        <div class="is-flex is-justify-content-space-around">
           <a
+            v-if="model.pdfSpecs"
             :href="model.pdfSpecs"
             download
+            target="_blank"
             class="is-flex is-align-items-center"
           >
             <img
@@ -39,7 +42,7 @@
             />
             <p class="subtitle is-7">Download Specs</p>
           </a>
-          <a class="is-flex is-align-items-center">
+          <a class="is-flex is-align-items-center" @click.prevent="shareModal">
             <img
               src="@/assets/images/icon_share.svg"
               alt="icon_share"
@@ -81,8 +84,9 @@
 
 <script>
 import EditHomeModal from '@/components/EditHomeModal.vue'
+import ShareModal from '@/components/ShareModal.vue'
 export default {
-  components: { EditHomeModal },
+  components: { EditHomeModal, ShareModal },
   props: {
     model: {
       type: Object,
@@ -99,14 +103,26 @@ export default {
   },
   data() {
     return {
-      bgImage: 'url(' + this.areas[0].url + ')',
-      // bgImage: 'url(' + model1 + ')',
+      bgImage: null,
       isEditModalHomeActive: false,
+      isShareModalActive: false,
     }
   },
+  // computed: {
+  //   bgImage() {
+  //     return 'url(' + this.areas[0].images[0].url + ')'
+  //   },
+  // },
   methods: {
     editModal() {
       this.isEditModalHomeActive = true
+    },
+    shareModal() {
+      this.isShareModalActive = true
+    },
+    trashCancel() {
+      this.isShareModalActive = false
+      this.isEditModalHomeActive = false
     },
   },
 }

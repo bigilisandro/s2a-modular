@@ -208,7 +208,7 @@
       </b-tabs>
       <!-- Loader  -->
       <div>
-        <b-loading v-model="isLoading"></b-loading>
+        <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
       </div>
     </div>
   </section>
