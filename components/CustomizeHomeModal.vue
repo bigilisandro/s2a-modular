@@ -158,7 +158,6 @@
       </b-tabs> -->
         <b-tabs
           vertical
-          expanded
           animated
           multiline
           position="is-centered"
@@ -316,78 +315,14 @@
 
           <b-tab-item>
             <template #header>
-              <span class="has-text-white">EXTERIOR</span>
-            </template>
-            Lorem ipsum dolor sit amet. <br />
-            Lorem ipsum dolor sit amet. <br />
-            Lorem ipsum dolor sit amet. <br />
-            Lorem ipsum dolor sit amet. <br />
-            Lorem ipsum dolor sit amet. <br />
-            Lorem ipsum dolor sit amet.
-          </b-tab-item>
-
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">INTERIOR</span>
-            </template>
-            What light is light, if Silvia be not seen? <br />
-            What joy is joy, if Silvia be not by— <br />
-            Unless it be to think that she is by <br />
-            And feed upon the shadow of perfection? <br />
-            Except I be by Silvia in the night, <br />
-            There is no music in the nightingale.
-          </b-tab-item>
-
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">KITCHEN</span>
-            </template>
-            Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
-            congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
-            vehicula pulvinar tellus, id sodales felis lobortis eget.
-          </b-tab-item>
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">MASTER BEDROOM</span>
-            </template>
-            What light is light, if Silvia be not seen? <br />
-            What joy is joy, if Silvia be not by— <br />
-            Unless it be to think that she is by <br />
-            And feed upon the shadow of perfection? <br />
-            Except I be by Silvia in the night, <br />
-            There is no music in the nightingale.
-          </b-tab-item>
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">MASTER BATHROOM</span>
-            </template>
-            Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
-            congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
-            vehicula pulvinar tellus, id sodales felis lobortis eget.
-          </b-tab-item>
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">BEDROOM 2</span>
-            </template>
-            Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
-            congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
-            vehicula pulvinar tellus, id sodales felis lobortis eget.
-          </b-tab-item>
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">BATHROOM 2</span>
-            </template>
-            Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
-            congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
-            vehicula pulvinar tellus, id sodales felis lobortis eget.
-          </b-tab-item>
-          <b-tab-item>
-            <template #header>
               <span class="has-text-white">APPLIANCES</span>
             </template>
             <div class="container" style="height: 60vh; overflow: scroll">
               <h1 class="title is-4 has-text-white">APPLIANCES</h1>
-              <div v-for="appliance in appliances" :key="appliance.length">
+              <div
+                v-for="appliance in model.appliances"
+                :key="appliance.length"
+              >
                 <div class="p-5 border columns m-5">
                   <div class="column">
                     <b-carousel
@@ -415,7 +350,7 @@
                       {{ appliance.brand }}
                     </p>
                     <p class="subtitle has-text-white has-text-weight-bold">
-                      ${{ appliance.appliancePerHousePrice }}
+                      ${{ appliance.price }}
                     </p>
                     <p class="subtitle has-text-white is-7">
                       {{ appliance.description }}
@@ -483,9 +418,9 @@
               </div>
             </div>
           </b-tab-item>
-          <b-tab-item>
+          <b-tab-item v-for="area in model.areas" :key="area.length">
             <template #header>
-              <span class="has-text-white">ELECTRICAL</span>
+              <span class="has-text-white">{{ area.areaName }}</span>
             </template>
             Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
             congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
@@ -524,8 +459,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    appliances: {
-      type: Array,
+    model: {
+      type: Object,
       default: null,
     },
   },
@@ -542,20 +477,6 @@ export default {
       loadingButton: true,
       loginError: null,
       selectedAppliances: [],
-      // appliances: [
-      //   {
-      //     title: 'REFRIGERATOR',
-      //     price: '2,000',
-      //   },
-      //   {
-      //     title: 'MICROWAVE',
-      //     price: '500',
-      //   },
-      //   {
-      //     title: 'OVEN',
-      //     price: '1000',
-      //   },
-      // ],
       greenluxProducts: [
         {
           title: 'GREENLUX PRODUCT',

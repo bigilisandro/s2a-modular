@@ -44,13 +44,13 @@
             >
             <div class="p-3">
               <div
-                v-for="appliance in appliances"
+                v-for="appliance in model.appliances"
                 :key="appliance.length"
                 class="is-flex is-justify-content-space-between py-3"
                 style="border-bottom: 2px solid black"
               >
                 <div class="is-6">
-                  <h6>{{ appliance.title }}</h6>
+                  <h6>{{ appliance.name }}, {{ appliance.brand }}</h6>
                 </div>
                 <div class="is-flex is-align-items-center">
                   <div class="is-flex mx-2 is-align-items-center">
@@ -97,7 +97,7 @@
             </div>
           </b-collapse>
           <b-collapse
-            v-for="interior in interiors"
+            v-for="interior in model.areas"
             :key="interior.length"
             animation="slide"
             :open="false"
@@ -108,15 +108,15 @@
                 role="button"
               >
                 <p class="card-header-title has-text-primary-light">
-                  {{ interior.title }}
+                  {{ interior.areaName }}
                 </p>
               </div></template
             >
-            <div class="my-3 is-flex is-justify-content-center">
+            <!-- <div class="my-3 is-flex is-justify-content-center">
               <b-button icon-left="plus" type="is-primary"
                 >Add Gallery Image</b-button
               >
-            </div>
+            </div> -->
             <div class="p-5">
               <div class="columns">
                 <div class="column">
@@ -124,7 +124,9 @@
                     <h6>Primary Image (Desktop)</h6>
                     <div class="card">
                       <div
-                        :style="{ 'background-image': bgImage }"
+                        :style="{
+                          'background-image': 'url(' + interior.url + ')',
+                        }"
                         class="bgImage"
                       >
                         <div v-show="hover" class="hoverImage">
@@ -221,10 +223,17 @@
                     <p class="subtitle is-7">JPEG, 300x170</p>
                     <div class="mt-5">
                       <b-field label="Short Description" class="my-3">
-                        <b-input type="text" maxlength="50"></b-input>
+                        <b-input
+                          v-model="interior.shortDescription"
+                          type="text"
+                          maxlength="50"
+                        ></b-input>
                       </b-field>
                       <b-field label="360º Youtube Link" class="my-3">
-                        <b-input type="text"></b-input>
+                        <b-input
+                          v-model="interior.youtubeLink360"
+                          type="text"
+                        ></b-input>
                       </b-field>
                     </div>
                   </div>
@@ -261,24 +270,6 @@ export default {
       hover: false,
       models: null,
       price: null,
-      appliances: [
-        {
-          title: 'Product 1, LG 2626626262',
-        },
-        { title: 'Product 2, LG 2626626262' },
-        { title: 'Product 3, LG 26266' },
-        { title: 'Product 4, LG 26266' },
-      ],
-      interiors: [
-        {
-          title: 'Front Exterior 1',
-        },
-        { title: 'Front Exterior 2' },
-        { title: 'Great Room' },
-        { title: 'Kitchen' },
-        { title: 'Master Bedroom' },
-        { title: 'Bathroom' },
-      ],
     }
   },
   mounted() {

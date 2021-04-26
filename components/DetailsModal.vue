@@ -86,9 +86,6 @@ export default {
       }
     },
   },
-  mounted() {
-    console.log('jshdjashd')
-  },
   methods: {
     cancel() {
       this.$emit('cancel')

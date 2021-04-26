@@ -23,7 +23,7 @@
     />
     <customize-home-modal
       :is-active="isCustomizeHomeModalActive"
-      :appliances="model.appliances"
+      :model="model"
       @cancel="trashCancel"
     />
     <div class="sidebar-page is-hidden-touch">

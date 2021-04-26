@@ -93,11 +93,11 @@ export default {
       default: () => {},
     },
     appliances: {
-      type: Object,
+      type: Array,
       default: () => {},
     },
     areas: {
-      type: Object,
+      type: Array,
       default: () => {},
     },
   },
