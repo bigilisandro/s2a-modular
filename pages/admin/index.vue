@@ -128,14 +128,19 @@
                           'background-image': 'url(' + interior.url + ')',
                         }"
                         class="bgImage"
+                        @mouseover="primaryImageDesktop = interior"
+                        @mouseout="primaryImageDesktop = null"
                       >
-                        <div v-show="hover" class="hoverImage">
+                        <div
+                          v-show="primaryImageDesktop === interior"
+                          class="hoverImage"
+                        >
                           <b-button
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click.prevent="viewModel"
-                            >VIEW</b-button
+                            @click.prevent="editModel"
+                            >EDIT</b-button
                           >
                         </div>
                       </div>
@@ -143,18 +148,30 @@
                     <p class="subtitle is-7">JPEG, 1920x1080</p>
                     <h6 class="mt-4">Primary Image (Mobile)</h6>
                     <div class="card">
+                      <img :src="file" style="width: 200px" />
                       <div
-                        :style="{ 'background-image': bgImage }"
+                        :style="{
+                          'background-image':
+                            'url(' + interior.imageField + ')',
+                        }"
                         class="bgImage"
+                        @mouseover="primaryImageMobile = interior"
+                        @mouseout="primaryImageMobile = null"
                       >
-                        <div v-show="hover" class="hoverImage">
-                          <b-button
-                            type="is-primary"
-                            rounded
-                            class="px-6"
-                            @click.prevent="viewModel"
-                            >VIEW</b-button
+                        <div
+                          v-show="primaryImageMobile === interior"
+                          class="hoverImage"
+                        >
+                          <b-upload
+                            v-model="interior.imageField"
+                            accept="image/*"
+                            class="file-label"
+                            @input="updatePhoto"
                           >
+                            <span class="button is-primary px-6 is-rounded">
+                              EDIT
+                            </span>
+                          </b-upload>
                         </div>
                       </div>
                     </div>
@@ -166,16 +183,24 @@
                     <h6>Alternate Image (Desktop)</h6>
                     <div class="card">
                       <div
-                        :style="{ 'background-image': bgImage }"
+                        :style="{
+                          'background-image':
+                            'url(' + interior.imageFormats + ')',
+                        }"
                         class="bgImage"
+                        @mouseover="alternateImageDesktop = interior"
+                        @mouseout="alternateImageDesktop = null"
                       >
-                        <div v-show="hover" class="hoverImage">
+                        <div
+                          v-show="alternateImageDesktop === interior"
+                          class="hoverImage"
+                        >
                           <b-button
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click.prevent="viewModel"
-                            >VIEW</b-button
+                            @click.prevent="editModel"
+                            >EDIT</b-button
                           >
                         </div>
                       </div>
@@ -184,16 +209,23 @@
                     <h6 class="mt-4">Alternate Image (Mobile)</h6>
                     <div class="card">
                       <div
-                        :style="{ 'background-image': bgImage }"
+                        :style="{
+                          'background-image': 'url(' + interior.imageName + ')',
+                        }"
                         class="bgImage"
+                        @mouseover="alternateImageMobile = interior"
+                        @mouseout="alternateImageMobile = null"
                       >
-                        <div v-show="hover" class="hoverImage">
+                        <div
+                          v-show="alternateImageMobile === interior"
+                          class="hoverImage"
+                        >
                           <b-button
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click.prevent="viewModel"
-                            >VIEW</b-button
+                            @click.prevent="editModel"
+                            >EDIT</b-button
                           >
                         </div>
                       </div>
@@ -208,14 +240,16 @@
                       <div
                         :style="{ 'background-image': bgImage }"
                         class="bgImage"
+                        @mouseover="thumbnail = interior"
+                        @mouseout="thumbnail = null"
                       >
-                        <div v-show="hover" class="hoverImage">
+                        <div v-show="thumbnail === interior" class="hoverImage">
                           <b-button
                             type="is-primary"
                             rounded
                             class="px-6"
-                            @click.prevent="viewModel"
-                            >VIEW</b-button
+                            @click.prevent="editModel"
+                            >EDIT</b-button
                           >
                         </div>
                       </div>
@@ -242,7 +276,7 @@
             </div>
             <div class="mb-2 is-flex is-justify-content-center">
               <b-button type="is-primary" class="mx-2">Save</b-button>
-              <b-button type="is-primary" class="mx-2">Delete</b-button>
+              <!-- <b-button type="is-primary" class="mx-2">Delete</b-button> -->
             </div>
           </b-collapse>
         </div>
@@ -268,8 +302,14 @@ export default {
       bgImage: 'url',
       isLoading: true,
       hover: false,
+      primaryImageDesktop: null,
+      primaryImageMobile: null,
+      alternateImageDesktop: null,
+      alternateImageMobile: null,
+      thumbnail: null,
       models: null,
       price: null,
+      file: null,
     }
   },
   mounted() {
@@ -306,6 +346,9 @@ export default {
           console.log(r, 'response')
           this.getData()
         })
+    },
+    updatePhoto(photo) {
+      photo = URL.createObjectURL(photo)
     },
   },
 }

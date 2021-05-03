@@ -1,6 +1,10 @@
 <template>
   <div>
     <sign-up :is-active="isSignUpActive" @cancel="trashCancel" />
+    <forgot-password
+      :is-active="isForgotPasswordActive"
+      @cancel="trashCancel"
+    />
     <nav
       class="navbar py-4 is-flex is-justify-content-space-between is-align-items-center"
       role="navigation"
@@ -52,7 +56,7 @@
                         </b-input>
                       </b-field>
 
-                      <b-field>
+                      <b-field class="mb-0">
                         <b-input
                           v-model="password"
                           type="password"
@@ -63,6 +67,13 @@
                         >
                         </b-input>
                       </b-field>
+                      <div class="mb-3">
+                        <a
+                          class="subtitle is-7 has-text-primary"
+                          @click.prevent="forgotPasswordModal"
+                          >Forgot password?</a
+                        >
+                      </div>
                       <b-button
                         v-if="loadingButton"
                         native-type="submit"
@@ -110,10 +121,12 @@
 import { mapGetters } from 'vuex'
 import Notification from '@/components/Notification.vue'
 import SignUp from './SignUp.vue'
+import ForgotPassword from './ForgotPassword.vue'
 export default {
   components: {
     SignUp,
     Notification,
+    ForgotPassword,
   },
   data() {
     return {
@@ -122,6 +135,7 @@ export default {
       password: '',
       loadingButton: true,
       error: null,
+      isForgotPasswordActive: false,
     }
   },
   computed: {
@@ -136,31 +150,51 @@ export default {
     signUpModal() {
       this.isSignUpActive = true
     },
+    forgotPasswordModal() {
+      this.isForgotPasswordActive = true
+    },
     trashCancel() {
       this.isSignUpActive = false
+      this.isForgotPasswordActive = false
     },
     async login() {
       this.loadingButton = false
       this.error = null
+
       try {
-        await this.$auth.loginWith('local', {
+        await this.$auth.loginWith('admin', {
           data: {
             email: this.email,
             password: this.password,
           },
         })
         this.loadingButton = true
-        this.$router.push('/')
-        this.$buefy.toast.open({
-          message: 'Welcome again ' + this.loggedInUser.firstName + '!',
-          type: 'is-success',
-        })
+        this.$router.push('/admin')
+        // this.$buefy.toast.open({
+        //   message: 'Welcome again ' + this.loggedInUser.firstName + '!',
+        //   type: 'is-success',
+        // })
       } catch (e) {
-        this.loadingButton = true
-        if (e.response.data.message != null) {
-          this.error = e.response.data.message
-        } else {
-          this.error = e.response.data.error
+        try {
+          await this.$auth.loginWith('local', {
+            data: {
+              email: this.email,
+              password: this.password,
+            },
+          })
+          this.loadingButton = true
+          this.$router.push('/')
+          this.$buefy.toast.open({
+            message: 'Welcome again ' + this.loggedInUser.firstName + '!',
+            type: 'is-success',
+          })
+        } catch (e) {
+          this.loadingButton = true
+          if (e.response.data.message != null) {
+            this.error = e.response.data.message
+          } else {
+            this.error = e.response.data.error
+          }
         }
       }
     },

@@ -246,26 +246,26 @@ export default {
       try {
         await this.$axios.get('/management/getAllModels').then((r) => {
           this.models = r.data.data
-          this.colonialModels = this.models.filter(
-            (model) => model.tag === 'Colonial'
+          this.colonialModels = this.models.filter((model) =>
+            model.tag.includes('Colonial')
           )
-          this.craftsmanModels = this.models.filter(
-            (model) => model.tag === 'Craftsman'
+          this.craftsmanModels = this.models.filter((model) =>
+            model.tag.includes('Craftsman')
           )
-          this.smallModels = this.models.filter(
-            (model) => model.tag === '0-2,500 SQ. FT.'
+          this.smallModels = this.models.filter((model) =>
+            model.tag.includes('0-2,500 SQ. FT.')
           )
-          this.bigModels = this.models.filter(
-            (model) => model.tag === '2,500-5,000 SQ. FT.'
+          this.bigModels = this.models.filter((model) =>
+            model.tag.includes('2,500-5,000 SQ. FT.')
           )
-          this.modernModels = this.models.filter(
-            (model) => model.tag === 'Modern'
+          this.modernModels = this.models.filter((model) =>
+            model.tag.includes('Modern')
           )
-          this.traditionalModels = this.models.filter(
-            (model) => model.tag === 'Traditional'
+          this.traditionalModels = this.models.filter((model) =>
+            model.tag.includes('Traditional')
           )
-          this.fourBedsModels = this.models.filter(
-            (model) => model.tag === '4 Bedroom'
+          this.fourBedsModels = this.models.filter((model) =>
+            model.tag.includes('4 Bedroom')
           )
 
           // eslint-disable-next-line no-console

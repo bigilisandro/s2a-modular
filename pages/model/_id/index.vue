@@ -17,7 +17,7 @@
       @cancel="trashCancel"
     />
     <view-in-360-modal
-      :floor-plan="model.floorPlan"
+      :view="model.youtube_360"
       :is-active="isViewIn360ModalActive"
       @cancel="trashCancel"
     />
@@ -64,7 +64,7 @@
               :style="{
                 'background-image': 'url(' + image.url + ')',
               }"
-              class="bgImage container is-fluid margin-nav"
+              class="bgImage container is-fluid margin-nav mt-2"
               style="background-size: 100% 100%"
             >
               <div class="columns content-bottom is-mobile">

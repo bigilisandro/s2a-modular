@@ -70,6 +70,7 @@ export default {
   auth: {
     strategies: {
       local: {
+        scheme: 'local',
         token: {
           property: 'jwt',
           // required: true,
@@ -83,6 +84,23 @@ export default {
           login: { url: '/auth/login', method: 'post' },
           // logout: { url: '/auth/logout', method: 'post' },
           user: { url: '/auth/user', method: 'get' },
+        },
+      },
+      admin: {
+        scheme: 'local',
+        token: {
+          property: 'jwt',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/auth/admin/login', method: 'post' },
+          // logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/admin/user', method: 'get' },
         },
       },
     },

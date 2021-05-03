@@ -158,7 +158,6 @@
       </b-tabs> -->
         <b-tabs
           vertical
-          expanded
           animated
           multiline
           position="is-centered"
@@ -499,8 +498,8 @@
             <h1 class="title is-2 has-text-white mb-0">MODEL 1</h1>
           </div>
           <div class="is-flex is-align-items-center">
-            <span class="has-text-white">As configured</span>
-            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1>
+            <!-- <span class="has-text-white">As configured</span>
+            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1> -->
             <b-button rounded class="mr-2" @click.prevent="nameHomeModal"
               >SAVE HOME</b-button
             >
