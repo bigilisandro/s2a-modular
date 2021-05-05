@@ -88,7 +88,8 @@
               <b-radio-button
                 v-model="communicationPreference"
                 native-value="PHONE"
-                type="is-text"
+                class="mx-5"
+                expanded
               >
                 <span>Phone</span>
               </b-radio-button>
@@ -96,19 +97,22 @@
               <b-radio-button
                 v-model="communicationPreference"
                 native-value="EMAIL"
-                type="is-text"
+                class="mx-5"
+                expanded
               >
                 <span>Email</span>
               </b-radio-button>
             </b-field>
-            <b-checkbox
-              >I agree to the
-              <a
-                class="is-underlined has-text-black"
-                @click.prevent="termsOfUse"
-                >Terms of Use</a
-              ></b-checkbox
-            >
+            <b-field>
+              <b-checkbox required size="is-small"
+                >I agree to the
+                <a
+                  class="is-underlined has-text-black"
+                  @click.prevent="termsOfUse"
+                  >Terms of Use</a
+                ></b-checkbox
+              >
+            </b-field>
             <b-button
               native-type="submit"
               label="Sign Up"
@@ -120,7 +124,7 @@
               <Notification v-if="error" :message="error" />
             </div>
             <a
-              class="is-flex is-justify-content-center my-4 is-underlined has-text-black"
+              class="is-flex is-justify-content-center my-4 is-underlined has-text-black is-7 subtitle"
               @click.prevent="privacyPolicy"
             >
               Privacy Policy

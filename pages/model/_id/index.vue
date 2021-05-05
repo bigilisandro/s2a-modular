@@ -39,10 +39,10 @@
           <hooper
             :vertical="true"
             style="height: 100%; width: 100%"
-            :items-to-show="images.length"
+            :items-to-show="imagesDesktop.length"
             infinite-scroll
           >
-            <slide v-for="(image, index) in images" :key="image.length">
+            <slide v-for="(image, index) in imagesDesktop" :key="image.length">
               <div
                 :style="{
                   'background-image': 'url(' + image.url + ')',
@@ -59,7 +59,7 @@
           style="height: 100vh; width: 100%"
           :settings="hooperSettings"
         >
-          <slide v-for="image in images" :key="image.length">
+          <slide v-for="image in imagesDesktop" :key="image.length">
             <div
               :style="{
                 'background-image': 'url(' + image.url + ')',
@@ -304,7 +304,7 @@
         :items-to-show="1.5"
         infinite-scroll
       >
-        <slide v-for="image in images" :key="image.length">
+        <slide v-for="image in imagesMobile" :key="image.length">
           <div
             :style="{
               'background-image': 'url(' + image.url + ')',
@@ -334,17 +334,17 @@
                     />
                   </div>
                 </a> -->
-                <a class="is-align-items-center columns is-flex">
-                  <div class="column is-8">
+                <a class="is-flex">
+                  <div class="is-flex is-align-items-center mr-3">
                     <p class="subtitle is-7 has-text-white has-text-centered">
                       Change interior
                     </p>
                   </div>
-                  <div class="column">
+                  <div>
                     <img
                       src="@/assets/images/icon_interior.svg"
                       alt="icon_pdf"
-                      class="image is-48x48"
+                      class="image is-24x24 ml-auto"
                     />
                   </div>
                 </a>
@@ -353,10 +353,8 @@
           </div>
         </slide>
       </hooper>
-      <div class="bottom-content columns">
-        <div
-          class="column is-half is-offset-one-quarter is-grid mt-5 is-fullheight"
-        >
+      <div class="bottom-content columns mb-0">
+        <div class="column is-half is-offset-one-quarter is-grid is-fullheight">
           <!-- <div>
             <h1 class="title is-3 has-text-white has-text-centered">
               ${{ model.price }}
@@ -459,6 +457,8 @@ export default {
       youtubeId: '',
       model: {},
       images: {},
+      imagesDesktop: {},
+      imagesMobile: {},
     }
   },
   mounted() {
@@ -474,10 +474,16 @@ export default {
         .then((r) => {
           this.model = r.data
           this.images = this.model.images
+          this.imagesDesktop = this.images.filter(
+            (image) => image.imageField === 'galery'
+          )
+          this.imagesMobile = this.images.filter(
+            (image) => image.imageField === 'galery_mobile'
+          )
           this.loading = false
           this.youtubeId = this.model.video_url.substring(17)
           // eslint-disable-next-line no-console
-          console.log(this.model, this.youtubeId)
+          console.log(this.model, this.imagesDesktop)
         })
     },
     goToSlide(index) {
@@ -537,7 +543,7 @@ export default {
   bottom: 0%;
   left: 0;
   right: 0;
-  height: 23vh;
+  height: 18vh;
   background: rgba(0, 0, 0, 0.8);
 }
 .content-bottom-desktop {
@@ -561,7 +567,7 @@ export default {
 //   margin-top: 3.25rem;
 // }
 .content-bottom {
-  height: 95%;
+  height: 90%;
   align-items: flex-end;
 }
 .p-1 {
