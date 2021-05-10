@@ -425,7 +425,7 @@ export default {
         })
         this.loadingButton = true
         this.isAuthenticated = false
-        this.$router.go()
+        this.$router.go(this.$router.currentRoute)
         this.$buefy.toast.open({
           message:
             'Welcome again to the Admin panel ' +

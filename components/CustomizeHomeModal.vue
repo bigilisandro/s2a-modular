@@ -530,6 +530,7 @@
 <script>
 import Notification from '@/components/Notification.vue'
 import SignUp from '@/components/SignUp.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { Notification, SignUp },
   props: {
@@ -571,6 +572,9 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'isStrategy', 'loggedInUser']),
   },
   watch: {
     isActive(newValue) {
@@ -621,7 +625,7 @@ export default {
         name: this.nameHome,
         appliances: this.selectedAppliances,
       }
-      if (!this.$auth.loggedIn) {
+      if (!this.$auth.loggedIn || this.isStrategy === 'admin') {
         this.isNameHomeModalActive = false
         this.isLoginModalActive = true
       } else {
