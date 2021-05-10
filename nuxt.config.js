@@ -95,12 +95,12 @@ export default {
         },
         user: {
           property: 'user',
-          // autoFetch: true
+          autoFetch: false,
         },
         endpoints: {
           login: { url: '/auth/admin/login', method: 'post' },
           // logout: { url: '/auth/logout', method: 'post' },
-          user: { url: '/auth/admin/user', method: 'get' },
+          user: { url: '/auth/admin', method: 'get' },
         },
       },
     },

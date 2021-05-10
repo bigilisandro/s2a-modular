@@ -38,7 +38,7 @@
               >
               </b-input>
             </b-field>
-            <b-field>
+            <!-- <b-field>
               <b-input
                 v-model="user.email"
                 type="email"
@@ -47,7 +47,7 @@
                 rounded
               >
               </b-input>
-            </b-field>
+            </b-field> -->
 
             <b-field>
               <b-input
@@ -193,9 +193,9 @@ export default {
         await this.$axios.put('/auth/update-user', {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
-          ...(this.user.email !== this.loggedInUser.email
-            ? { email: this.user.email }
-            : {}),
+          // ...(this.user.email !== this.loggedInUser.email
+          //   ? { email: this.user.email }
+          //   : {}),
           mobilePhone: parseFloat(this.user.mobilePhone),
           zipCode: parseFloat(this.user.zipCode),
           communicationPreference: this.user.communicationPreference,

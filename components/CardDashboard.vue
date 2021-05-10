@@ -7,7 +7,10 @@
       @cancel="trashCancel"
     />
     <div class="card">
-      <div :style="{ 'background-image': bgImage }" class="bgImage">
+      <div
+        :style="{ 'background-image': 'url(' + model.mainImage + ')' }"
+        class="bgImage"
+      >
         <div
           class="is-flex is-align-items-flex-end is-justify-content-flex-end is-fullheight"
         >
@@ -103,14 +106,14 @@ export default {
   },
   data() {
     return {
-      bgImage: null,
+      // bgImage: null,
       isEditModalHomeActive: false,
       isShareModalActive: false,
     }
   },
   // computed: {
   //   bgImage() {
-  //     return 'url(' + this.areas[0].images[0].url + ')'
+  //     return 'url(' + this.model.mainImage + ')'
   //   },
   // },
   methods: {

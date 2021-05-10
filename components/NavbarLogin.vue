@@ -160,41 +160,25 @@ export default {
     async login() {
       this.loadingButton = false
       this.error = null
-
       try {
-        await this.$auth.loginWith('admin', {
+        await this.$auth.loginWith('local', {
           data: {
             email: this.email,
             password: this.password,
           },
         })
         this.loadingButton = true
-        this.$router.push('/admin')
-        // this.$buefy.toast.open({
-        //   message: 'Welcome again ' + this.loggedInUser.firstName + '!',
-        //   type: 'is-success',
-        // })
+        this.$router.push('/')
+        this.$buefy.toast.open({
+          message: 'Welcome again ' + this.loggedInUser.firstName + '!',
+          type: 'is-success',
+        })
       } catch (e) {
-        try {
-          await this.$auth.loginWith('local', {
-            data: {
-              email: this.email,
-              password: this.password,
-            },
-          })
-          this.loadingButton = true
-          this.$router.push('/')
-          this.$buefy.toast.open({
-            message: 'Welcome again ' + this.loggedInUser.firstName + '!',
-            type: 'is-success',
-          })
-        } catch (e) {
-          this.loadingButton = true
-          if (e.response.data.message != null) {
-            this.error = e.response.data.message
-          } else {
-            this.error = e.response.data.error
-          }
+        this.loadingButton = true
+        if (e.response.data.message != null) {
+          this.error = e.response.data.message
+        } else {
+          this.error = e.response.data.error
         }
       }
     },

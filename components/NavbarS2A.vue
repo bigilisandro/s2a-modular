@@ -37,11 +37,11 @@
                 @click="$router.push('/dashboard')"
                 >MY HOMES</b-dropdown-item
               >
-              <b-dropdown-item
+              <!-- <b-dropdown-item
                 aria-role="listitem"
                 @click="$router.push('/admin')"
                 >ADMIN</b-dropdown-item
-              >
+              > -->
               <b-dropdown-item aria-role="listitem" @click="profileModal()"
                 >PROFILE</b-dropdown-item
               >
