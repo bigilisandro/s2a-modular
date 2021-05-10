@@ -150,299 +150,377 @@
           </a>
         </div>
       </b-modal>
-      <div class="mx-6 my-6 py-6">
-        <!-- <b-tabs vertical expanded animated type="is-toggle">
+      <div class="is-hidden-touch">
+        <div class="mx-6 my-6 py-6">
+          <!-- <b-tabs vertical expanded animated type="is-toggle">
         <b-tab-item label="GREENLUX EFFICIENT"></b-tab-item>
 
         <b-tab-item label="NORMAL POWER GRID"> </b-tab-item>
       </b-tabs> -->
-        <b-tabs
-          vertical
-          animated
-          multiline
-          position="is-centered"
-          size="is-small"
-        >
-          <b-tab-item>
-            <template #header>
-              <div>
-                <b-button type="is-primary" expanded
-                  >GREENLUX EFFICIENT</b-button
+          <b-tabs
+            v-model="tabIndex"
+            vertical
+            animated
+            multiline
+            position="is-centered"
+            size="is-small"
+          >
+            <b-tab-item>
+              <template #header>
+                <div>
+                  <b-button type="is-primary" expanded
+                    >GREENLUX EFFICIENT</b-button
+                  >
+                  <a
+                    class="subtitle is-7 has-text-white is-flex is-justify-content-center mt-2 border-0 is-underlined"
+                    @click.prevent="whatsIncluded"
+                    ><span>What's included?</span></a
+                  >
+                </div>
+              </template>
+            </b-tab-item>
+
+            <b-tab-item>
+              <template #header>
+                <div>
+                  <b-button type="is-light" expanded
+                    >NORMAL POWER GRID</b-button
+                  >
+                  <div class="mt-2">
+                    <p
+                      class="has-text-white subtitle is-7 has-text-centered mb-0"
+                    >
+                      Lorem ipsum dolor sit amet.
+                    </p>
+                    <p
+                      class="has-text-white subtitle is-7 has-text-centered mb-0"
+                    >
+                      Lorem ipsum dolor sit amet.
+                    </p>
+                    <p
+                      class="has-text-white subtitle is-7 has-text-centered mb-0"
+                    >
+                      Lorem ipsum dolor sit amet.
+                    </p>
+                  </div>
+                </div>
+              </template>
+            </b-tab-item>
+
+            <b-tab-item>
+              <template #header>
+                <span class="has-text-white">APPLIANCES</span>
+              </template>
+              <div class="container" style="height: 60vh; overflow: scroll">
+                <h1 class="title is-4 has-text-white">APPLIANCES</h1>
+                <div
+                  v-for="appliance in model.appliances"
+                  :key="appliance.length"
                 >
-                <a
-                  class="subtitle is-7 has-text-white is-flex is-justify-content-center mt-2 border-0 is-underlined"
-                  @click.prevent="whatsIncluded"
-                  ><span>What's included?</span></a
-                >
+                  <div class="p-5 border columns m-5">
+                    <div class="column">
+                      <b-carousel
+                        :indicator-inside="false"
+                        :autoplay="false"
+                        :arrow="false"
+                      >
+                        <b-carousel-item v-for="(item, i) in 3" :key="i">
+                          <span class="image">
+                            <img :src="getImgUrl(i)" style="height: 20vh" />
+                          </span>
+                        </b-carousel-item>
+                        <template #indicators="props">
+                          <span class="al image">
+                            <img :src="getImgUrl(props.i)" :title="props.i" />
+                          </span>
+                        </template>
+                      </b-carousel>
+                    </div>
+                    <div class="column is-6">
+                      <h1 class="title is-5 has-text-white">
+                        {{ appliance.name }}
+                      </h1>
+                      <p class="subtitle mb-0 has-text-white">
+                        {{ appliance.brand }}
+                      </p>
+                      <p class="subtitle has-text-white has-text-weight-bold">
+                        ${{ appliance.price }}
+                      </p>
+                      <p class="subtitle has-text-white is-7">
+                        {{ appliance.description }}
+                      </p>
+                      <ul
+                        class="subtitle is-7 has-text-white ml-5"
+                        style="list-style: disc"
+                      >
+                        <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                        <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                        <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                        <li>Nunc nec velit nec libero vestibulum eleifend.</li>
+                      </ul>
+                    </div>
+                    <div class="column">
+                      <div class="is-grid is-fullheight">
+                        <div>
+                          <p class="subtitle is-7 has-text-white">
+                            Choose a color
+                          </p>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small"
+                              >Black Stainless Steel</b-checkbox
+                            >
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small"
+                              >Stainless Steel</b-checkbox
+                            >
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small">White</b-checkbox>
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small">Black</b-checkbox>
+                          </b-field>
+                        </div>
+                        <div
+                          v-if="
+                            !selectedAppliances.includes(appliance.applianceId)
+                          "
+                          class="is-flex is-align-items-flex-end"
+                        >
+                          <b-button
+                            size="is-small"
+                            type="is-primary"
+                            rounded
+                            @click="addAppliance(appliance)"
+                            >+ ADD TO HOME</b-button
+                          >
+                        </div>
+                        <div
+                          v-if="
+                            selectedAppliances.includes(appliance.applianceId)
+                          "
+                          class="is-flex is-align-items-flex-end"
+                        >
+                          <a
+                            class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
+                            @click="removeAppliance(appliance)"
+                            ><span>Remove from Home</span></a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </template>
-            <div class="container" style="height: 60vh; overflow: scroll">
-              <h1 class="title is-4 has-text-white">GREENLUX</h1>
-              <div class="columns">
-                <div class="is-6 column">
-                  <p class="subtitle has-text-white is-7">
+            </b-tab-item>
+            <b-tab-item v-for="area in model.areas" :key="area.length">
+              <template #header>
+                <span class="has-text-white">{{ area.areaName }}</span>
+              </template>
+              Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
+              congue luctus. Nullam hendrerit iaculis augue vitae ornare.
+              Maecenas vehicula pulvinar tellus, id sodales felis lobortis eget.
+            </b-tab-item>
+          </b-tabs>
+        </div>
+        <div class="footer-modal py-5">
+          <div class="is-flex is-justify-content-space-between px-6 my-3">
+            <div>
+              <h1 class="title is-2 has-text-white mb-0">
+                {{ model.model_name.toUpperCase() }}
+              </h1>
+            </div>
+            <div class="is-flex is-align-items-center">
+              <!-- <span class="has-text-white">As configured</span>
+            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1> -->
+              <b-button rounded class="mr-2" @click.prevent="nameHomeModal"
+                >SAVE HOME</b-button
+              >
+              <b-button type="is-primary" rounded @click="cancel"
+                >CANCEL</b-button
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="is-hidden-desktop">
+        <div class="has-background-primary p-4 top-title">
+          <h1 class="title is-3 has-text-white has-text-centered mt-5 mb-1">
+            {{ model.model_name }}
+          </h1>
+          <div class="is-flex is-justify-content-center">
+            <b-tabs type="is-toggle" expanded>
+              <b-tab-item>
+                <template #header>
+                  <div>
+                    <b-button type="is-primary" expanded
+                      >GREENLUX EFFICIENT</b-button
+                    >
+                  </div>
+                </template>
+                <div>
+                  <a
+                    class="subtitle is-7 has-text-white is-flex is-justify-content-center mb-1 border-0 is-underlined"
+                    @click.prevent="whatsIncluded"
+                    ><span>What's included?</span></a
+                  >
+                  <p class="subtitle is-7 is-text-centered has-text-white">
                     Nunc nec velit nec libero vestibulum eleifend. Curabitur
                     pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
                     ornare. Maecenas vehicula pulvinar tellus, id sodales felis
                     lobortis eget.
                   </p>
                 </div>
-                <!-- <div class="column is-offset-4">
-                  <b-field>
-                    <b-switch></b-switch>
-                  </b-field>
-                </div> -->
-              </div>
-              <div v-for="greenlux in greenluxProducts" :key="greenlux.length">
-                <div class="p-5 border columns is-mobile m-5">
-                  <div class="column">
-                    <b-carousel
-                      :indicator-inside="false"
-                      :autoplay="false"
-                      :arrow="false"
+              </b-tab-item>
+              <b-tab-item>
+                <template #header>
+                  <div>
+                    <b-button type="is-light" expanded
+                      >NORMAL POWER GRID</b-button
                     >
-                      <b-carousel-item v-for="(item, i) in 3" :key="i">
-                        <span class="image">
-                          <img :src="getImgUrl(i)" style="height: 20vh" />
-                        </span>
-                      </b-carousel-item>
-                      <template #indicators="props">
-                        <span class="al image">
-                          <img :src="getImgUrl(props.i)" :title="props.i" />
-                        </span>
-                      </template>
-                    </b-carousel>
                   </div>
-                  <div class="column is-6">
-                    <h1 class="title is-5 has-text-white">
-                      {{ greenlux.title }}
-                    </h1>
-                    <p class="subtitle mb-0 has-text-white">LG/543434JNKDW</p>
-                    <p class="subtitle has-text-white has-text-weight-bold">
-                      ${{ greenlux.price }}
-                    </p>
-                    <p class="subtitle has-text-white is-7">
-                      Nunc nec velit nec libero vestibulum eleifend. Curabitur
-                      pulvinar congue luctus. Nullam hendrerit iaculis augue
-                      vitae ornare. Maecenas vehicula pulvinar tellus, id
-                      sodales felis lobortis eget.
-                    </p>
-                    <ul
-                      class="subtitle is-7 has-text-white ml-5"
-                      style="list-style: disc"
-                    >
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                    </ul>
-                  </div>
-                  <div class="column">
-                    <p class="subtitle is-7 has-text-white">Choose a color</p>
-                    <b-field>
-                      <b-checkbox
-                        ><span class="subtitle is-7 has-text-white"
-                          >Black Stainless Steel</span
-                        ></b-checkbox
-                      >
-                    </b-field>
-                    <b-field>
-                      <b-checkbox
-                        ><span class="subtitle is-7 has-text-white"
-                          >Stainless Steel</span
-                        ></b-checkbox
-                      >
-                    </b-field>
-                    <b-field>
-                      <b-checkbox
-                        ><span class="subtitle is-7 has-text-white"
-                          >White</span
-                        ></b-checkbox
-                      >
-                    </b-field>
-                    <b-field>
-                      <b-checkbox
-                        ><span class="subtitle is-7 has-text-white"
-                          >Black</span
-                        ></b-checkbox
-                      >
-                    </b-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </b-tab-item>
-
-          <b-tab-item>
-            <template #header>
-              <div>
-                <b-button type="is-light" expanded>NORMAL POWER GRID</b-button>
-                <div class="mt-2">
-                  <p
-                    class="has-text-white subtitle is-7 has-text-centered mb-0"
-                  >
-                    Lorem ipsum dolor sit amet.
-                  </p>
-                  <p
-                    class="has-text-white subtitle is-7 has-text-centered mb-0"
-                  >
-                    Lorem ipsum dolor sit amet.
-                  </p>
-                  <p
-                    class="has-text-white subtitle is-7 has-text-centered mb-0"
-                  >
-                    Lorem ipsum dolor sit amet.
+                </template>
+                <div>
+                  <p class="subtitle is-7 is-text-centered has-text-white">
+                    Nunc nec velit nec libero vestibulum eleifend. Curabitur
+                    pulvinar congue luctus. Nullam hendrerit iaculis augue vitae
+                    ornare. Maecenas vehicula pulvinar tellus, id sodales felis
+                    lobortis eget.
                   </p>
                 </div>
-              </div>
-            </template>
-          </b-tab-item>
-          <!-- <b-tab-item disabled>
-            <template #header>
-              <div>
-                <p class="has-text-white subtitle is-7 has-text-centered mb-0">
-                  Lorem ipsum dolor sit amet.
-                </p>
-                <p class="has-text-white subtitle is-7 has-text-centered mb-0">
-                  Lorem ipsum dolor sit amet.
-                </p>
-                <p class="has-text-white subtitle is-7 has-text-centered mb-0">
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </template>
-          </b-tab-item> -->
-
-          <b-tab-item>
-            <template #header>
-              <span class="has-text-white">APPLIANCES</span>
-            </template>
-            <div class="container" style="height: 60vh; overflow: scroll">
-              <h1 class="title is-4 has-text-white">APPLIANCES</h1>
-              <div
-                v-for="appliance in model.appliances"
-                :key="appliance.length"
-              >
-                <div class="p-5 border columns m-5">
-                  <div class="column">
-                    <b-carousel
-                      :indicator-inside="false"
-                      :autoplay="false"
-                      :arrow="false"
-                    >
-                      <b-carousel-item v-for="(item, i) in 3" :key="i">
-                        <span class="image">
-                          <img :src="getImgUrl(i)" style="height: 20vh" />
-                        </span>
-                      </b-carousel-item>
-                      <template #indicators="props">
-                        <span class="al image">
-                          <img :src="getImgUrl(props.i)" :title="props.i" />
-                        </span>
-                      </template>
-                    </b-carousel>
-                  </div>
-                  <div class="column is-6">
-                    <h1 class="title is-5 has-text-white">
-                      {{ appliance.name }}
-                    </h1>
-                    <p class="subtitle mb-0 has-text-white">
-                      {{ appliance.brand }}
-                    </p>
-                    <p class="subtitle has-text-white has-text-weight-bold">
-                      ${{ appliance.price }}
-                    </p>
-                    <p class="subtitle has-text-white is-7">
-                      {{ appliance.description }}
-                    </p>
-                    <ul
-                      class="subtitle is-7 has-text-white ml-5"
-                      style="list-style: disc"
-                    >
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                      <li>Nunc nec velit nec libero vestibulum eleifend.</li>
-                    </ul>
-                  </div>
-                  <div class="column">
-                    <div class="is-grid is-fullheight">
-                      <div>
-                        <p class="subtitle is-7 has-text-white">
-                          Choose a color
-                        </p>
-                        <b-field class="has-text-white">
-                          <b-checkbox size="is-small"
-                            >Black Stainless Steel</b-checkbox
-                          >
-                        </b-field>
-                        <b-field class="has-text-white">
-                          <b-checkbox size="is-small"
-                            >Stainless Steel</b-checkbox
-                          >
-                        </b-field>
-                        <b-field class="has-text-white">
-                          <b-checkbox size="is-small">White</b-checkbox>
-                        </b-field>
-                        <b-field class="has-text-white">
-                          <b-checkbox size="is-small">Black</b-checkbox>
-                        </b-field>
-                      </div>
-                      <div
-                        v-if="
-                          selectedAppliances.includes(appliance.applianceId)
-                        "
-                        class="is-flex is-align-items-flex-end"
-                      >
-                        <a
-                          class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                          @click="removeAppliance(appliance)"
-                          ><span>Remove from Home</span></a
+              </b-tab-item>
+            </b-tabs>
+          </div>
+        </div>
+        <div>
+          <b-tabs position="is-centered" class="block">
+            <b-tab-item>
+              <template #header>
+                <span class="has-text-white">APPLIANCES</span>
+              </template>
+              <div class="container" style="height: 60vh; overflow: scroll">
+                <h1 class="title is-4 has-text-white">APPLIANCES</h1>
+                <div
+                  v-for="appliance in model.appliances"
+                  :key="appliance.length"
+                >
+                  <div class="p-5 border m-5">
+                    <div class="columns is-flex">
+                      <div class="column">
+                        <b-carousel
+                          :indicator-inside="false"
+                          :autoplay="false"
+                          :arrow="false"
                         >
+                          <b-carousel-item v-for="(item, i) in 3" :key="i">
+                            <span class="image">
+                              <img :src="getImgUrl(i)" style="height: 20vh" />
+                            </span>
+                          </b-carousel-item>
+                          <template #indicators="props">
+                            <span class="al image">
+                              <img :src="getImgUrl(props.i)" :title="props.i" />
+                            </span>
+                          </template>
+                        </b-carousel>
+                        <div>
+                          <p class="subtitle is-7 has-text-white">
+                            Choose a color
+                          </p>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small"
+                              >Black Stainless Steel</b-checkbox
+                            >
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small"
+                              >Stainless Steel</b-checkbox
+                            >
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small">White</b-checkbox>
+                          </b-field>
+                          <b-field class="has-text-white">
+                            <b-checkbox size="is-small">Black</b-checkbox>
+                          </b-field>
+                        </div>
+                      </div>
+                      <div class="column">
+                        <h1 class="title is-5 has-text-white">
+                          {{ appliance.name }}
+                        </h1>
+                        <p class="subtitle mb-0 has-text-white">
+                          {{ appliance.brand }}
+                        </p>
+                        <p class="subtitle has-text-white has-text-weight-bold">
+                          ${{ appliance.price }}
+                        </p>
+                        <p class="subtitle has-text-white is-7">
+                          {{ appliance.description }}
+                        </p>
+                        <ul
+                          class="subtitle is-7 has-text-white ml-5"
+                          style="list-style: disc"
+                        >
+                          <li>
+                            Nunc nec velit nec libero vestibulum eleifend.
+                          </li>
+                          <li>
+                            Nunc nec velit nec libero vestibulum eleifend.
+                          </li>
+                          <li>
+                            Nunc nec velit nec libero vestibulum eleifend.
+                          </li>
+                          <li>
+                            Nunc nec velit nec libero vestibulum eleifend.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <div
+                          v-if="
+                            !selectedAppliances.includes(appliance.applianceId)
+                          "
+                          class="is-flex is-justify-content-center"
+                        >
+                          <b-button
+                            size="is-small"
+                            type="is-primary"
+                            rounded
+                            @click="addAppliance(appliance)"
+                            >+ ADD TO HOME</b-button
+                          >
+                        </div>
+                        <div
+                          v-if="
+                            selectedAppliances.includes(appliance.applianceId)
+                          "
+                          class="is-flex is-justify-content-center"
+                        >
+                          <a
+                            class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
+                            @click="removeAppliance(appliance)"
+                            ><span>Remove from Home</span></a
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div
-                  v-if="!selectedAppliances.includes(appliance.applianceId)"
-                  class="is-flex is-justify-content-flex-end"
-                >
-                  <b-button
-                    size="is-small"
-                    type="is-primary"
-                    rounded
-                    @click="addAppliance(appliance)"
-                    >+ ADD TO HOME</b-button
-                  >
-                </div>
               </div>
-            </div>
-          </b-tab-item>
-          <b-tab-item v-for="area in model.areas" :key="area.length">
-            <template #header>
-              <span class="has-text-white">{{ area.areaName }}</span>
-            </template>
-            Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
-            congue luctus. Nullam hendrerit iaculis augue vitae ornare. Maecenas
-            vehicula pulvinar tellus, id sodales felis lobortis eget.
-          </b-tab-item>
-        </b-tabs>
-      </div>
-      <div class="footer-modal py-5">
-        <div class="is-flex is-justify-content-space-between px-6 my-3">
-          <div>
-            <h1 class="title is-2 has-text-white mb-0">MODEL 1</h1>
-          </div>
-          <div class="is-flex is-align-items-center">
-            <!-- <span class="has-text-white">As configured</span>
-            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1> -->
-            <b-button rounded class="mr-2" @click.prevent="nameHomeModal"
-              >SAVE HOME</b-button
-            >
-            <b-button type="is-primary" rounded @click="cancel"
-              >CANCEL</b-button
-            >
-          </div>
+            </b-tab-item>
+            <b-tab-item v-for="area in model.areas" :key="area.length">
+              <template #header>
+                <span class="has-text-white">{{ area.areaName }}</span>
+              </template>
+              Nunc nec velit nec libero vestibulum eleifend. Curabitur pulvinar
+              congue luctus. Nullam hendrerit iaculis augue vitae ornare.
+              Maecenas vehicula pulvinar tellus, id sodales felis lobortis eget.
+            </b-tab-item>
+          </b-tabs>
         </div>
       </div>
     </b-modal>
@@ -466,6 +544,7 @@ export default {
   },
   data() {
     return {
+      tabIndex: 2,
       isModalActive: false,
       isNameHomeModalActive: false,
       isLoginModalActive: false,
@@ -528,15 +607,12 @@ export default {
     },
     addAppliance(appliance) {
       this.selectedAppliances.push(appliance.applianceId)
-      console.log(this.selectedAppliances)
     },
     removeAppliance(appliance) {
       const index = this.selectedAppliances.indexOf(appliance.applianceId)
       if (index > -1) {
         this.selectedAppliances.splice(index, 1)
       }
-
-      console.log(this.selectedAppliances)
     },
     async saveHome() {
       this.error = null

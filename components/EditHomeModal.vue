@@ -527,6 +527,10 @@ export default {
       type: Array,
       default: null,
     },
+    model: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -541,20 +545,6 @@ export default {
       loadingButton: true,
       loginError: null,
       selectedAppliances: [],
-      // appliances: [
-      //   {
-      //     title: 'REFRIGERATOR',
-      //     price: '2,000',
-      //   },
-      //   {
-      //     title: 'MICROWAVE',
-      //     price: '500',
-      //   },
-      //   {
-      //     title: 'OVEN',
-      //     price: '1000',
-      //   },
-      // ],
       greenluxProducts: [
         {
           title: 'GREENLUX PRODUCT',
@@ -619,7 +609,7 @@ export default {
     async saveHome() {
       this.error = null
       const config = {
-        idHouseStrapi: this.$route.params.id,
+        idHouseStrapi: this.model.id,
         name: this.nameHome,
         appliances: this.selectedAppliances,
       }

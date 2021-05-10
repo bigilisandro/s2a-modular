@@ -42,10 +42,22 @@
             :items-to-show="imagesDesktop.length"
             infinite-scroll
           >
-            <slide v-for="(image, index) in imagesDesktop" :key="image.length">
+            <slide
+              v-for="(image, index) in imagesDesktopAndAlternative"
+              :key="image.length"
+            >
               <div
+                v-show="image.imageDesktop.imageField === 'gallery'"
                 :style="{
-                  'background-image': 'url(' + image.url + ')',
+                  'background-image': 'url(' + image.imageDesktop.url + ')',
+                }"
+                class="bgImage m-3"
+                @click.prevent="goToSlide(index)"
+              ></div>
+              <div
+                v-show="image.imageDesktop.imageField === 'alternative'"
+                :style="{
+                  'background-image': 'url(' + image.imageAlternative.url + ')',
                 }"
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
@@ -59,8 +71,12 @@
           style="height: 100vh; width: 100%"
           :settings="hooperSettings"
         >
-          <slide v-for="image in imagesTest" :key="image.length">
+          <slide
+            v-for="image in imagesDesktopAndAlternative"
+            :key="image.length"
+          >
             <div
+              v-show="image.imageDesktop.imageField === 'gallery'"
               :style="{
                 'background-image': 'url(' + image.imageDesktop.url + ')',
               }"
@@ -73,125 +89,60 @@
                     Living Room 300 sq. ft.
                   </p>
                 </div>
-                <div class="column columns mb-0">
-                  <!-- <div class="column">
-                    <h1 class="title is-2 has-text-white has-text-centered">
-                      {{ model.model_name }}
-                    </h1>
-                    <h4
-                      class="subtitle is-5 has-text-white text-max has-text-centered"
-                    >
-                      {{ model.short_description }}
-                    </h4>
-                  </div> -->
-                  <!-- <div>
-                <h1 class="title is-1 has-text-white">|</h1>
-              </div> -->
-                  <!-- <div
-                    class="column is-3 is-flex is-justify-content-space-around border-left"
-                  > -->
-                  <!-- <div>
-                      <h1 class="title is-2 has-text-white">
-                        ${{ model.price }}
-                      </h1>
-                      <h4 class="subtitle is-5 has-text-white text-max">
-                        {{ model.description_price }}
-                      </h4>
-                    </div> -->
-                  <!-- <div class="is-flex is-align-items-center">
-                      <b-button
-                        type="is-primary"
-                        rounded
-                        @click.prevent="customizeModal"
-                        >CUSTOMIZE HOME</b-button
-                      >
-                    </div>
-                  </div> -->
-                  <!-- <div>
-                <h1 class="title is-1 has-text-white">|</h1>
-              </div> -->
-                  <!-- <div class="column border-left">
-                    <div class="is-flex is-justify-content-space-around">
-                      <a @click.prevent="videoModal">
-                        <img
-                          src="@/assets/images/icon_video.svg"
-                          alt="icon_pdf"
-                          class="image is-48x48 m-auto"
-                        />
-                        <p
-                          class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                        >
-                          Video
-                        </p>
-                      </a>
-                      <a @click.prevent="view360Modal">
-                        <img
-                          src="@/assets/images/icon_360.svg"
-                          alt="icon_pdf"
-                          class="image is-48x48 m-auto"
-                        />
-                        <p
-                          class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                        >
-                          View in 360º
-                        </p>
-                      </a>
-                      <a @click.prevent="detailsModal">
-                        <img
-                          src="@/assets/images/icon_details.svg"
-                          alt="icon_share"
-                          class="image is-48x48 m-auto"
-                        />
-                        <p
-                          class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                        >
-                          Details
-                        </p>
-                      </a>
-                      <a @click.prevent="floorplanModal">
-                        <img
-                          src="@/assets/images/icon_floorplans.svg"
-                          alt="icon_edit"
-                          class="image is-48x48 m-auto"
-                        />
-                        <p
-                          class="subtitle is-6 has-text-white mt-3 has-text-centered"
-                        >
-                          Foorplan
-                        </p>
-                      </a>
-                    </div>
-                  </div> -->
-                </div>
+                <div class="column columns mb-0"></div>
                 <div class="column is-2">
                   <div>
-                    <!-- <a class="is-align-items-center columns">
-                      <div class="column is-8">
-                        <p
-                          class="subtitle is-6 has-text-white has-text-centered"
-                        >
-                          View in 360º
-                        </p>
-                      </div>
-                      <div class="column">
-                        <img
-                          src="@/assets/images/icon_360.svg"
-                          alt="icon_pdf"
-                          class="image is-48x48"
-                        />
-                      </div>
-                    </a> -->
                     <a
                       class="is-align-items-center columns"
                       @click.prevent="
-                        image.imageDesktop.url = image.imageAlternative.url
+                        image.imageDesktop.imageField = 'alternative'
                       "
                     >
                       <div class="column is-8">
                         <p
                           class="subtitle is-6 has-text-white has-text-centered"
                         >
-                          Change interior
+                          Change to interior
+                        </p>
+                      </div>
+                      <div class="column">
+                        <img
+                          src="@/assets/images/icon_interior.svg"
+                          alt="icon_pdf"
+                          class="image is-48x48"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              v-show="image.imageDesktop.imageField === 'alternative'"
+              :style="{
+                'background-image': 'url(' + image.imageAlternative.url + ')',
+              }"
+              class="bgImage container is-fluid margin-nav mt-2"
+              style="background-size: 100% 100%"
+            >
+              <div class="columns content-bottom is-mobile">
+                <div class="column is-2">
+                  <p class="subtitle is-6 has-text-white">
+                    Living Room 300 sq. ft.
+                  </p>
+                </div>
+                <div class="column columns mb-0"></div>
+                <div class="column is-2">
+                  <div>
+                    <a
+                      class="is-align-items-center columns"
+                      @click.prevent="image.imageDesktop.imageField = 'gallery'"
+                    >
+                      <div class="column is-8">
+                        <p
+                          class="subtitle is-6 has-text-white has-text-centered"
+                        >
+                          Change to exterior
                         </p>
                       </div>
                       <div class="column">
@@ -212,7 +163,7 @@
           <div class="column columns mb-0">
             <div class="column">
               <h1 class="title is-2 has-text-white has-text-centered">
-                {{ model.model_name }}
+                {{ model.model_name.toUpperCase() }}
               </h1>
               <h4
                 class="subtitle is-5 has-text-white text-max has-text-centered"
@@ -252,7 +203,7 @@
                     Video
                   </p>
                 </a>
-                <a @click.prevent="view360Modal">
+                <a :href="model.youtube_360" target="_blank">
                   <img
                     src="@/assets/images/icon_360.svg"
                     alt="icon_pdf"
@@ -309,10 +260,11 @@
         :items-to-show="1.5"
         infinite-scroll
       >
-        <slide v-for="image in imagesMobile" :key="image.length">
+        <slide v-for="image in imagesMobileAndAlternative" :key="image.length">
           <div
+            v-show="image.imageMobile.imageField === 'gallery_mobile'"
             :style="{
-              'background-image': 'url(' + image.url + ')',
+              'background-image': 'url(' + image.imageMobile.url + ')',
             }"
             class="bgImage container is-fluid"
           >
@@ -339,10 +291,70 @@
                     />
                   </div>
                 </a> -->
-                <a class="is-flex">
+                <a
+                  class="is-flex"
+                  @click.prevent="
+                    image.imageMobile.imageField = 'gallery_alternative_mobile'
+                  "
+                >
                   <div class="is-flex is-align-items-center mr-3">
                     <p class="subtitle is-7 has-text-white has-text-centered">
-                      Change interior
+                      Change to interior
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      src="@/assets/images/icon_interior.svg"
+                      alt="icon_pdf"
+                      class="image is-24x24 ml-auto"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            v-show="
+              image.imageMobile.imageField === 'gallery_alternative_mobile'
+            "
+            :style="{
+              'background-image':
+                'url(' + image.imageMobileAlternative.url + ')',
+            }"
+            class="bgImage container is-fluid"
+          >
+            <div
+              class="content-bottom is-flex is-justify-content-space-between"
+            >
+              <div>
+                <p class="subtitle is-7 has-text-white">
+                  Living Room 300 sq. ft.
+                </p>
+              </div>
+              <div>
+                <!-- <a class="is-align-items-center columns is-flex">
+                  <div class="column is-8">
+                    <p class="subtitle is-7 has-text-white has-text-centered">
+                      View in 360º
+                    </p>
+                  </div>
+                  <div class="column">
+                    <img
+                      src="@/assets/images/icon_360.svg"
+                      alt="icon_pdf"
+                      class="image is-48x48"
+                    />
+                  </div>
+                </a> -->
+                <a
+                  class="is-flex"
+                  @click.prevent="
+                    image.imageMobile.imageField = 'gallery_mobile'
+                  "
+                >
+                  <div class="is-flex is-align-items-center mr-3">
+                    <p class="subtitle is-7 has-text-white has-text-centered">
+                      Change to exterior
                     </p>
                   </div>
                   <div>
@@ -380,7 +392,7 @@
                   Video
                 </p>
               </a>
-              <a class="mx-2" @click.prevent="view360Modal">
+              <a class="mx-2" :href="model.youtube_360" target="_blank">
                 <img
                   src="@/assets/images/icon_360.svg"
                   alt="icon_pdf"
@@ -469,11 +481,19 @@ export default {
     }
   },
   computed: {
-    imagesTest() {
+    imagesDesktopAndAlternative() {
       return this.imagesDesktop.map((imageDesktop, i) => {
         return {
           imageDesktop,
           imageAlternative: this.imagesDesktopAlternative[i],
+        }
+      })
+    },
+    imagesMobileAndAlternative() {
+      return this.imagesMobile.map((imageMobile, i) => {
+        return {
+          imageMobile,
+          imageMobileAlternative: this.imagesMobileAlternative[i],
         }
       })
     },

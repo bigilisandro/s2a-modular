@@ -4,17 +4,18 @@
     <edit-home-modal
       :is-active="isEditModalHomeActive"
       :appliances="appliances"
+      :model="model"
       @cancel="trashCancel"
     />
     <div class="card">
       <div
-        :style="{ 'background-image': 'url(' + model.mainImage + ')' }"
+        :style="{ 'background-image': 'url(' + model.data.mainImage + ')' }"
         class="bgImage"
       >
         <div
           class="is-flex is-align-items-flex-end is-justify-content-flex-end is-fullheight"
         >
-          <div class="model-bottom">{{ model.model_name }}</div>
+          <div class="model-bottom">{{ model.data.model_name }}</div>
         </div>
         <!-- <figure class="image">
           <img :src="model.image" :alt="model.title" class="border-green" />
@@ -27,13 +28,14 @@
     <div class="card-content">
       <div class="content">
         <h4 class="title has-text-primary">
-          {{ model.name }} <span class="mx-2">|</span> $ {{ model.price }}
+          {{ model.userModelName }} <span class="mx-2">|</span> $
+          {{ model.data.price }}
         </h4>
-        <p class="subtitle is-7">{{ model.description }}</p>
+        <p class="subtitle is-7">{{ model.data.description }}</p>
         <div class="is-flex is-justify-content-space-around">
           <a
-            v-if="model.pdfSpecs"
-            :href="model.pdfSpecs"
+            v-if="model.data.pdfSpecs"
+            :href="model.data.pdfSpecs"
             download
             target="_blank"
             class="is-flex is-align-items-center"

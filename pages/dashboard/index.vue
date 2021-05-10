@@ -21,10 +21,9 @@
           >
             <card-dashboard
               :hover="showByIndex === model"
-              :model="model.house.data"
+              :model="model.house"
               :areas="model.areas"
               :appliances="model.appliances"
-              @view-model="viewModel(model.id)"
             />
           </div>
         </div>
