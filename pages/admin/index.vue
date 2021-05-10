@@ -425,9 +425,7 @@ export default {
         })
         this.loadingButton = true
         this.isAuthenticated = false
-        // this.$router.go(this.$router.currentRoute)
-        // eslint-disable-next-line no-undef
-        vm.$forceUpdate()
+        this.$router.go()
         this.$buefy.toast.open({
           message:
             'Welcome again to the Admin panel ' +
