@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavbarS2A v-if="isAuthenticated" />
+    <NavbarS2A v-if="isAuthenticated && isStrategy === 'local'" />
     <NavbarLogin v-else />
 
     <div>
@@ -17,7 +17,7 @@ export default {
   components: NavbarS2A,
   NavbarLogin,
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    ...mapGetters(['isAuthenticated', 'isStrategy', 'loggedInUser']),
   },
 }
 </script>

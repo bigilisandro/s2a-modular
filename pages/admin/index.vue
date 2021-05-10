@@ -1,57 +1,6 @@
 <template>
   <section>
-    <div v-if="authenticated" class="mt-6">
-      <form method="post" @submit.prevent="login">
-        <div class="modal-card" style="width: 300px">
-          <section class="modal-card-body">
-            <b-field>
-              <b-input
-                v-model="email"
-                type="email"
-                placeholder="Email"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-
-            <b-field class="mb-3">
-              <b-input
-                v-model="password"
-                type="password"
-                password-reveal
-                placeholder="Password"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-            <b-button
-              v-if="loadingButton"
-              native-type="submit"
-              label="Login"
-              type="is-primary"
-              expanded
-              rounded
-            />
-            <b-button v-else type="is-primary" rounded expanded
-              >Logging in
-              <b-icon
-                pack="fas"
-                icon="sync-alt"
-                size="is-small"
-                custom-class="fa-spin ml-4"
-              ></b-icon
-            ></b-button>
-            <div class="is-flex is-justify-content-center my-2">
-              <Notification v-if="error" :message="error" />
-            </div>
-            <p class="subtitle is-7 has-text-centered">Login for Admin panel</p>
-          </section>
-        </div>
-      </form>
-    </div>
-    <div v-else>
+    <div v-if="isAuthenticated && isStrategy === 'admin'">
       <!-- <b-tabs type="is-boxed" expanded>
         <b-tab-item label="Homes"> -->
       <!-- <div class="my-3 is-flex is-justify-content-center">
@@ -342,10 +291,62 @@
         <b-tab-item label="Sales"></b-tab-item> -->
       <!-- </b-tabs> -->
     </div>
+    <div v-else class="mt-6">
+      <form method="post" @submit.prevent="login">
+        <div class="modal-card" style="width: 300px">
+          <section class="modal-card-body">
+            <b-field>
+              <b-input
+                v-model="email"
+                type="email"
+                placeholder="Email"
+                required
+                rounded
+              >
+              </b-input>
+            </b-field>
+
+            <b-field class="mb-3">
+              <b-input
+                v-model="password"
+                type="password"
+                password-reveal
+                placeholder="Password"
+                required
+                rounded
+              >
+              </b-input>
+            </b-field>
+            <b-button
+              v-if="loadingButton"
+              native-type="submit"
+              label="Login"
+              type="is-primary"
+              expanded
+              rounded
+            />
+            <b-button v-else type="is-primary" rounded expanded
+              >Logging in
+              <b-icon
+                pack="fas"
+                icon="sync-alt"
+                size="is-small"
+                custom-class="fa-spin ml-4"
+              ></b-icon
+            ></b-button>
+            <div class="is-flex is-justify-content-center my-2">
+              <Notification v-if="error" :message="error" />
+            </div>
+            <p class="subtitle is-7 has-text-centered">Login for Admin panel</p>
+          </section>
+        </div>
+      </form>
+    </div>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   layout: 'login',
   data() {
@@ -369,8 +370,11 @@ export default {
       error: null,
     }
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'isStrategy', 'loggedInUser']),
+  },
   mounted() {
-    if (!this.authenticated) {
+    if (this.isAuthenticated && this.isStrategy === 'admin') {
       this.getData()
     }
   },
@@ -421,8 +425,12 @@ export default {
         })
         this.loadingButton = true
         this.isAuthenticated = false
+        this.$router.go()
         this.$buefy.toast.open({
-          message: 'Welcome again ' + this.loggedInUser.firstName + '!',
+          message:
+            'Welcome again to the Admin panel ' +
+            this.loggedInUser[0].username +
+            '!',
           type: 'is-success',
         })
       } catch (e) {
