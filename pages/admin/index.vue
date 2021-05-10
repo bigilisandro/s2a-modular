@@ -62,7 +62,7 @@
                       "
                     >
                       <b-input
-                        v-model="appliance.price"
+                        v-model="appliance.applianceOverridePrice"
                         type="number"
                         class="mr-2"
                         name="price"
@@ -96,7 +96,7 @@
               </div>
             </div>
           </b-collapse>
-          <b-collapse
+          <!-- <b-collapse
             v-for="interior in model.areas"
             :key="interior.length"
             animation="slide"
@@ -112,11 +112,11 @@
                 </p>
               </div></template
             >
-            <!-- <div class="my-3 is-flex is-justify-content-center">
+            <div class="my-3 is-flex is-justify-content-center">
               <b-button icon-left="plus" type="is-primary"
                 >Add Gallery Image</b-button
               >
-            </div> -->
+            </div>
             <div class="p-5">
               <div class="columns">
                 <div class="column">
@@ -276,9 +276,9 @@
             </div>
             <div class="mb-2 is-flex is-justify-content-center">
               <b-button type="is-primary" class="mx-2">Save</b-button>
-              <!-- <b-button type="is-primary" class="mx-2">Delete</b-button> -->
+              <b-button type="is-primary" class="mx-2">Delete</b-button>
             </div>
-          </b-collapse>
+          </b-collapse> -->
         </div>
         <!-- <div class="mb-2 is-flex is-justify-content-center">
           <b-button type="is-primary" class="mx-2">Save Changes</b-button>
@@ -401,7 +401,7 @@ export default {
     changePrice(id, appliance) {
       this.$axios
         .post('/admin/save-appliance-price', {
-          overridePrice: parseInt(appliance.price),
+          overridePrice: parseInt(appliance.applianceOverridePrice),
           applianceId: 1,
           houseId: id,
         })
