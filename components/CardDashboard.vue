@@ -15,7 +15,9 @@
         <div
           class="is-flex is-align-items-flex-end is-justify-content-flex-end is-fullheight"
         >
-          <div class="model-bottom">{{ model.data.model_name }}</div>
+          <div class="model-bottom">
+            {{ model.data.model_name.toUpperCase() }}
+          </div>
         </div>
         <!-- <figure class="image">
           <img :src="model.image" :alt="model.title" class="border-green" />
@@ -28,7 +30,7 @@
     <div class="card-content">
       <div class="content">
         <h4 class="title has-text-primary">
-          {{ model.userModelName }} <span class="mx-2">|</span> $
+          {{ model.userModelName.toUpperCase() }} <span class="mx-2">|</span> $
           {{ model.data.price }}
         </h4>
         <p class="subtitle is-7">{{ model.data.description }}</p>

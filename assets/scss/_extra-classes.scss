@@ -92,6 +92,9 @@ a.dropdown-item {
 .button {
     font-weight: bold;
 }
+.button:active, .button:focus {
+    color: #027881;
+}
 
 // Toast
 .notices .toast {

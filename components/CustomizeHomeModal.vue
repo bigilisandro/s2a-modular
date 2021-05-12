@@ -557,20 +557,6 @@ export default {
       loadingButton: true,
       loginError: null,
       selectedAppliances: [],
-      greenluxProducts: [
-        {
-          title: 'GREENLUX PRODUCT',
-          price: '2,000',
-        },
-        {
-          title: 'GREENLUX TECH',
-          price: '500',
-        },
-        {
-          title: 'GREENLUX FEATURE',
-          price: '1000',
-        },
-      ],
     }
   },
   computed: {
