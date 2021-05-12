@@ -17,8 +17,13 @@
           label="ALL HOMES"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
+          <!-- Loader -->
+          <div v-if="isLoading">
+            <skeleton-loader />
+          </div>
+          <!-- Loader -->
           <!-- ALL HOMES -->
-          <div class="mx-5 mx-0-mobile">
+          <div v-else class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
                 v-for="model in models"
@@ -206,21 +211,19 @@
           <!-- COLONIAL HOMES --></b-tab-item
         >
       </b-tabs>
-      <!-- Loader  -->
-      <div>
-        <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
-      </div>
     </div>
   </section>
 </template>
 
 <script>
 import Card from '@/components/Card.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 export default {
   name: 'Homepage',
   components: {
     Card,
+    SkeletonLoader,
   },
   data() {
     return {

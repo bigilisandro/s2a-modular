@@ -350,16 +350,16 @@
             {{ model.model_name }}
           </h1>
           <div class="is-flex is-justify-content-center">
-            <b-tabs type="is-toggle" expanded>
+            <b-tabs type="is-toggle" size="is-small">
               <b-tab-item>
                 <template #header>
                   <div>
-                    <b-button type="is-primary" expanded
+                    <b-button size="is-small" type="is-primary" expanded
                       >GREENLUX EFFICIENT</b-button
                     >
                   </div>
                 </template>
-                <div>
+                <div class="px-3">
                   <a
                     class="subtitle is-7 has-text-white is-flex is-justify-content-center mb-1 border-0 is-underlined"
                     @click.prevent="whatsIncluded"
@@ -376,12 +376,12 @@
               <b-tab-item>
                 <template #header>
                   <div>
-                    <b-button type="is-light" expanded
+                    <b-button size="is-small" type="is-light" expanded
                       >NORMAL POWER GRID</b-button
                     >
                   </div>
                 </template>
-                <div>
+                <div class="px-3">
                   <p class="subtitle is-7 is-text-centered has-text-white">
                     Nunc nec velit nec libero vestibulum eleifend. Curabitur
                     pulvinar congue luctus. Nullam hendrerit iaculis augue vitae

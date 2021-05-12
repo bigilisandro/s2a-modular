@@ -13,10 +13,18 @@
 .m-auto {
     margin: auto !important;
 }
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 
 // Width
 .w-15vh {
     width: 15vh;
+}
+
+.is-fullwidth {
+    width: 100%;
 }
 
 // Display
@@ -61,6 +69,11 @@
 }
 .b-tabs.is-vertical {
     flex-wrap: nowrap;
+}
+
+.b-tabs .tab-content {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 // Border
@@ -144,6 +157,9 @@ a.dropdown-item {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+    .mx-auto-mobile {
+        margin: auto !important;
+    }
     .is-justify-content-center-mobile {
         justify-content: center;
     }
@@ -156,5 +172,11 @@ a.dropdown-item {
     }
     .width-17bh-mobile {
         width: 17vh;
+    }
+    .is-flex-wrap-wrap-reverse-mobile {
+        flex-wrap: wrap-reverse;
+    }
+    .mb-2-mobile {
+        margin-bottom: 0.5rem;
     }
 } 

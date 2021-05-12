@@ -43,7 +43,7 @@
                 paddingless
               >
                 <form method="post" @submit.prevent="login">
-                  <div class="modal-card" style="width: 300px">
+                  <div class="modal-card m-auto" style="width: 300px">
                     <section class="modal-card-body">
                       <b-field>
                         <b-input

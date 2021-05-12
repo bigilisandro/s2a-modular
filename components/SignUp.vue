@@ -5,7 +5,7 @@
     :width="1000"
     :custom-class="'is-fullwidth'"
   >
-    <div class="is-flex">
+    <div class="is-flex is-flex-wrap-wrap-reverse">
       <div class="modal-card mr-2">
         <form method="post" @submit.prevent="signup">
           <section class="modal-card-body px-6">
@@ -52,7 +52,7 @@
             <b-field>
               <b-input
                 v-model="mobilePhone"
-                type="phone"
+                type="tel"
                 placeholder="Mobile Phone"
                 required
                 rounded
@@ -62,7 +62,8 @@
             <b-field>
               <b-input
                 v-model="zipCode"
-                type="number"
+                type="text"
+                pattern="[0-9]*"
                 placeholder="ZIP"
                 required
                 rounded
@@ -132,7 +133,7 @@
           </section>
         </form>
       </div>
-      <a @click.prevent="cancel">
+      <a class="mx-auto" @click.prevent="cancel">
         <img
           src="@/assets/images/button_close.svg"
           alt="icon_share"

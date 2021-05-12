@@ -190,8 +190,10 @@
               </div>
             </div>
             <div class="column is-5 border-left">
-              <div class="is-flex is-justify-content-space-around">
-                <a @click.prevent="videoModal">
+              <div
+                class="is-flex is-justify-content-space-around is-flex-wrap-wrap"
+              >
+                <a v-if="model.video_url" @click.prevent="videoModal">
                   <img
                     src="@/assets/images/icon_video.svg"
                     alt="icon_pdf"
@@ -203,7 +205,11 @@
                     Video
                   </p>
                 </a>
-                <a :href="model.youtube_360" target="_blank">
+                <a
+                  v-if="model.youtube_360"
+                  :href="model.youtube_360"
+                  target="_blank"
+                >
                   <img
                     src="@/assets/images/icon_360.svg"
                     alt="icon_pdf"
@@ -227,7 +233,7 @@
                     Details
                   </p>
                 </a>
-                <a @click.prevent="floorplanModal">
+                <a v-if="model.floorPlan" @click.prevent="floorplanModal">
                   <img
                     src="@/assets/images/icon_floorplans.svg"
                     alt="icon_edit"
@@ -382,7 +388,11 @@
           </div> -->
           <div>
             <div class="is-flex is-justify-content-center my-2">
-              <a class="mx-2" @click.prevent="videoModal">
+              <a
+                v-if="model.video_url"
+                class="mx-2"
+                @click.prevent="videoModal"
+              >
                 <img
                   src="@/assets/images/icon_video.svg"
                   alt="icon_pdf"
@@ -412,7 +422,11 @@
                   Details
                 </p>
               </a>
-              <a class="mx-2" @click.prevent="floorplanModal">
+              <a
+                v-if="model.floorPlan"
+                class="mx-2"
+                @click.prevent="floorplanModal"
+              >
                 <img
                   src="@/assets/images/icon_floorplans.svg"
                   alt="icon_edit"

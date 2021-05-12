@@ -46,14 +46,16 @@
               <div
                 v-for="appliance in model.appliances"
                 :key="appliance.length"
-                class="is-flex is-justify-content-space-between py-3"
+                class="is-flex is-justify-content-space-between py-3 is-flex-wrap-wrap"
                 style="border-bottom: 2px solid black"
               >
-                <div class="is-6">
+                <div class="mx-auto-mobile">
                   <h6>{{ appliance.name }}, {{ appliance.brand }}</h6>
                 </div>
-                <div class="is-flex is-align-items-center">
-                  <div class="is-flex mx-2 is-align-items-center">
+                <div
+                  class="is-flex is-align-items-center is-flex-wrap-wrap is-justify-content-space-around"
+                >
+                  <div class="is-flex mx-2 is-align-items-center mb-2-mobile">
                     <h6 class="mr-2 subtitle is-7 mb-0">Price Override</h6>
                     <form
                       class="is-flex"
@@ -82,7 +84,7 @@
                     <h6 class="mr-2 subtitle is-7 mb-0">Remove from Home</h6>
                     <b-checkbox></b-checkbox>
                   </div> -->
-                  <div class="mx-2">
+                  <div class="mx-2 mb-2-mobile">
                     <b-button
                       size="is-small"
                       type="is-primary"

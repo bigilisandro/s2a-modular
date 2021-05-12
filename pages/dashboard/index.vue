@@ -5,12 +5,13 @@
       <h1 class="title is-2 has-text-centered my-6">
         {{ loggedInUser.firstName.toUpperCase() }}'S HOMES
       </h1>
-      <!-- Loader  -->
-      <div>
-        <b-loading v-model="isLoading" :is-full-page="false"></b-loading>
+      <!-- Loader -->
+      <div v-if="isLoading">
+        <skeleton-loader />
       </div>
+      <!-- Loader -->
       <!-- HOMES -->
-      <div class="mx-5 mx-0-mobile">
+      <div v-else class="mx-5 mx-0-mobile">
         <div class="columns is-multiline">
           <div
             v-for="model in models"
@@ -35,11 +36,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import CardDashboard from '@/components/CardDashboard.vue'
+import SkeletonLoader from '@/components/SkeletonLoader.vue'
 
 export default {
   name: 'Dashboard',
   components: {
     CardDashboard,
+    SkeletonLoader,
   },
   data() {
     return {

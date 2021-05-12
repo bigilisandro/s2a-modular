@@ -1,10 +1,10 @@
 <template>
-  <b-modal :active.sync="isModalActive">
-    <div class="is-flex">
+  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
+    <div class="is-flex is-flex-wrap-wrap-reverse">
       <div class="mr-2">
         <img :src="floorPlan" />
       </div>
-      <a @click.prevent="cancel">
+      <a class="mx-auto" @click.prevent="cancel">
         <img
           src="@/assets/images/button_close.svg"
           alt="icon_share"

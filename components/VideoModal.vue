@@ -1,9 +1,9 @@
 <template>
-  <b-modal :active.sync="isModalActive">
-    <div class="is-flex">
-      <div class="mr-2">
+  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
+    <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
+      <div class="mx-2 is-fullwidth">
         <iframe
-          width="854"
+          width="100%"
           height="480"
           :src="videoUrl"
           frameborder="0"
@@ -11,7 +11,7 @@
           allowfullscreen
         ></iframe>
       </div>
-      <a @click.prevent="cancel">
+      <a class="mx-auto mb-2-mobile" @click.prevent="cancel">
         <img
           src="@/assets/images/button_close.svg"
           alt="icon_share"

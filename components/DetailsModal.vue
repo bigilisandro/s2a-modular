@@ -1,7 +1,7 @@
 <template>
-  <b-modal :active.sync="isModalActive" width="50%">
-    <div class="is-flex">
-      <div class="columns mr-2" style="height: 60vh; width: 100%">
+  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
+    <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
+      <div class="columns is-flex mr-2" style="height: 60vh; width: 100%">
         <div class="column p-0">
           <img
             :src="details.images[1].url"
@@ -14,7 +14,11 @@
           </p>
         </div>
       </div>
-      <a style="width: 10vh" @click.prevent="cancel">
+      <a
+        class="mx-auto mb-2-mobile"
+        style="width: 10vh"
+        @click.prevent="cancel"
+      >
         <img
           src="@/assets/images/button_close.svg"
           alt="icon_share"
