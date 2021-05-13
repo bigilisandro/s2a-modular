@@ -581,11 +581,9 @@ export default {
   overflow: hidden;
 }
 .top-title {
-  position: fixed;
-  top: 4rem;
-  z-index: 30;
-  left: 0;
-  right: 0;
+  position: absolute;
+  top: 5rem;
+  z-index: 25;
 }
 .bottom-content {
   position: absolute;

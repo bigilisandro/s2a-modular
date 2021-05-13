@@ -13,8 +13,8 @@
         :width="1000"
         :custom-class="'is-fullwidth'"
       >
-        <div class="is-flex">
-          <div class="modal-card mr-2">
+        <div class="is-flex is-flex-wrap-wrap-reverse">
+          <div class="modal-card mx-2">
             <form method="post" @submit.prevent="saveHome">
               <section class="modal-card-body px-6 modal-card-name-home">
                 <div class="is-flex is-justify-content-center">
@@ -52,7 +52,7 @@
               </section>
             </form>
           </div>
-          <a @click.prevent="closeNameHomeModal">
+          <a class="mx-auto" @click.prevent="closeNameHomeModal">
             <img
               src="@/assets/images/button_close.svg"
               alt="icon_share"
@@ -67,8 +67,8 @@
         :width="1000"
         :custom-class="'is-fullwidth'"
       >
-        <div class="is-flex">
-          <div class="modal-card mr-2">
+        <div class="is-flex is-flex-wrap-wrap-reverse">
+          <div class="modal-card mx-2">
             <form method="post" @submit.prevent="login">
               <section class="modal-card-body px-6 modal-card-name-home">
                 <div class="is-flex is-justify-content-center my-4">
@@ -141,7 +141,7 @@
               </section>
             </form>
           </div>
-          <a @click.prevent="cancelLoginModal">
+          <a class="mx-auto" @click.prevent="cancelLoginModal">
             <img
               src="@/assets/images/button_close.svg"
               alt="icon_share"
@@ -224,14 +224,22 @@
                         :autoplay="false"
                         :arrow="false"
                       >
-                        <b-carousel-item v-for="(item, i) in 3" :key="i">
+                        <b-carousel-item
+                          v-for="(item, i) in appliance.gallery.gallery"
+                          :key="i"
+                        >
                           <span class="image">
-                            <img :src="getImgUrl(i)" style="height: 20vh" />
+                            <img :src="item.url" style="height: 20vh" />
                           </span>
                         </b-carousel-item>
                         <template #indicators="props">
                           <span class="al image">
-                            <img :src="getImgUrl(props.i)" :title="props.i" />
+                            <img
+                              :src="
+                                getImgUrl(appliance.gallery.gallery, props.i)
+                              "
+                              :title="props.i"
+                            />
                           </span>
                         </template>
                       </b-carousel>
@@ -346,11 +354,11 @@
       </div>
       <div class="is-hidden-desktop">
         <div class="has-background-primary p-4 top-title">
-          <h1 class="title is-3 has-text-white has-text-centered mt-5 mb-1">
-            {{ model.model_name }}
+          <h1 class="title is-4 has-text-white has-text-centered mt-2 mb-1">
+            {{ model.model_name.toUpperCase() }}
           </h1>
           <div class="is-flex is-justify-content-center">
-            <b-tabs type="is-toggle" size="is-small">
+            <b-tabs type="is-toggle" size="is-small" position="is-centered">
               <b-tab-item>
                 <template #header>
                   <div>
@@ -400,12 +408,12 @@
                 <span class="has-text-white">APPLIANCES</span>
               </template>
               <div class="container" style="height: 60vh; overflow: scroll">
-                <h1 class="title is-4 has-text-white">APPLIANCES</h1>
+                <!-- <h1 class="title is-4 has-text-white">APPLIANCES</h1> -->
                 <div
                   v-for="appliance in model.appliances"
                   :key="appliance.length"
                 >
-                  <div class="p-5 border m-5">
+                  <div class="p-5 border m-4">
                     <div class="columns is-flex">
                       <div class="column">
                         <b-carousel
@@ -413,14 +421,26 @@
                           :autoplay="false"
                           :arrow="false"
                         >
-                          <b-carousel-item v-for="(item, i) in 3" :key="i">
+                          <b-carousel-item
+                            v-for="(item, i) in appliance.gallery
+                              .gallery_mobile"
+                            :key="i"
+                          >
                             <span class="image">
-                              <img :src="getImgUrl(i)" style="height: 20vh" />
+                              <img :src="item.url" style="height: 20vh" />
                             </span>
                           </b-carousel-item>
                           <template #indicators="props">
                             <span class="al image">
-                              <img :src="getImgUrl(props.i)" :title="props.i" />
+                              <img
+                                :src="
+                                  getImgUrl(
+                                    appliance.gallery.gallery_mobile,
+                                    props.i
+                                  )
+                                "
+                                :title="props.i"
+                              />
                             </span>
                           </template>
                         </b-carousel>
@@ -522,6 +542,35 @@
             </b-tab-item>
           </b-tabs>
         </div>
+        <div class="footer-modal py-3">
+          <div
+            class="is-flex is-justify-content-space-between px-5 my-2 is-align-items-center"
+          >
+            <div>
+              <h1 class="title is-5 has-text-white mb-0">
+                {{ model.model_name.toUpperCase() }}
+              </h1>
+            </div>
+            <div class="is-flex is-align-items-center">
+              <!-- <span class="has-text-white">As configured</span>
+            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1> -->
+              <b-button
+                size="is-small"
+                rounded
+                class="mr-1"
+                @click.prevent="nameHomeModal"
+                >SAVE HOME</b-button
+              >
+              <b-button
+                size="is-small"
+                type="is-primary"
+                rounded
+                @click="cancel"
+                >CANCEL</b-button
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </b-modal>
   </div>
@@ -586,8 +635,8 @@ export default {
       this.isLoginModalActive = false
       this.isSignUpActive = true
     },
-    getImgUrl(value) {
-      return `https://picsum.photos/id/43${value}/1230/500`
+    getImgUrl(gallery, value) {
+      return gallery[value].url
     },
     nameHomeModal() {
       this.isNameHomeModalActive = true

@@ -20,7 +20,7 @@
             <nuxt-link to="/">
               <strong class="is-size-7-mobile">BROWSE HOMES</strong>
             </nuxt-link>
-            <span class="mx-5"> | </span>
+            <span class="mx-5 mx-2-mobile"> | </span>
             <b-dropdown position="is-bottom-left" aria-role="menu" trap-focus>
               <template #trigger>
                 <a>

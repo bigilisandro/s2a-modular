@@ -2,7 +2,7 @@
   <div v-if="!loggedInUser"></div>
   <section v-else>
     <div class="bg-home py-6">
-      <h1 class="title is-2 has-text-centered my-6">
+      <h1 class="title is-2 is-size-3-mobile has-text-centered my-6">
         {{ loggedInUser.firstName.toUpperCase() }}'S HOMES
       </h1>
       <!-- Loader -->

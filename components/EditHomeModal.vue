@@ -75,14 +75,22 @@
                         :autoplay="false"
                         :arrow="false"
                       >
-                        <b-carousel-item v-for="(item, i) in 3" :key="i">
+                        <b-carousel-item
+                          v-for="(item, i) in appliance.gallery.gallery"
+                          :key="i"
+                        >
                           <span class="image">
-                            <img :src="getImgUrl(i)" style="height: 20vh" />
+                            <img :src="item.url" style="height: 20vh" />
                           </span>
                         </b-carousel-item>
                         <template #indicators="props">
                           <span class="al image">
-                            <img :src="getImgUrl(props.i)" :title="props.i" />
+                            <img
+                              :src="
+                                getImgUrl(appliance.gallery.gallery, props.i)
+                              "
+                              :title="props.i"
+                            />
                           </span>
                         </template>
                       </b-carousel>
@@ -211,15 +219,15 @@
       </div>
       <div class="is-hidden-desktop">
         <div class="has-background-primary p-4 top-title">
-          <h1 class="title is-3 has-text-white has-text-centered mt-5 mb-1">
-            {{ model.userModelName }}
+          <h1 class="title is-4 has-text-white has-text-centered mt-2 mb-1">
+            {{ model.userModelName.toUpperCase() }}
           </h1>
           <div class="is-flex is-justify-content-center">
-            <b-tabs type="is-toggle" expanded>
+            <b-tabs type="is-toggle" size="is-small" position="is-centered">
               <b-tab-item>
                 <template #header>
                   <div>
-                    <b-button type="is-primary" expanded
+                    <b-button size="is-small" type="is-primary" expanded
                       >GREENLUX EFFICIENT</b-button
                     >
                   </div>
@@ -241,7 +249,7 @@
               <b-tab-item>
                 <template #header>
                   <div>
-                    <b-button type="is-light" expanded
+                    <b-button size="is-small" type="is-light" expanded
                       >NORMAL POWER GRID</b-button
                     >
                   </div>
@@ -265,12 +273,12 @@
                 <span class="has-text-white">APPLIANCES</span>
               </template>
               <div class="container" style="height: 60vh; overflow: scroll">
-                <h1 class="title is-4 has-text-white">APPLIANCES</h1>
+                <!-- <h1 class="title is-4 has-text-white">APPLIANCES</h1> -->
                 <div
                   v-for="appliance in houseData.appliances"
                   :key="appliance.length"
                 >
-                  <div class="p-5 border m-5">
+                  <div class="p-5 border m-4">
                     <div class="columns is-flex">
                       <div class="column">
                         <b-carousel
@@ -278,14 +286,26 @@
                           :autoplay="false"
                           :arrow="false"
                         >
-                          <b-carousel-item v-for="(item, i) in 3" :key="i">
+                          <b-carousel-item
+                            v-for="(item, i) in appliance.gallery
+                              .gallery_mobile"
+                            :key="i"
+                          >
                             <span class="image">
-                              <img :src="getImgUrl(i)" style="height: 20vh" />
+                              <img :src="item.url" style="height: 20vh" />
                             </span>
                           </b-carousel-item>
                           <template #indicators="props">
                             <span class="al image">
-                              <img :src="getImgUrl(props.i)" :title="props.i" />
+                              <img
+                                :src="
+                                  getImgUrl(
+                                    appliance.gallery.gallery_mobile,
+                                    props.i
+                                  )
+                                "
+                                :title="props.i"
+                              />
                             </span>
                           </template>
                         </b-carousel>
@@ -387,6 +407,35 @@
             </b-tab-item>
           </b-tabs>
         </div>
+        <div class="footer-modal py-3">
+          <div
+            class="is-flex is-justify-content-space-between px-5 my-2 is-align-items-center"
+          >
+            <div>
+              <h1 class="title is-5 has-text-white mb-0">
+                {{ model.userModelName.toUpperCase() }}
+              </h1>
+            </div>
+            <div class="is-flex is-align-items-center">
+              <!-- <span class="has-text-white">As configured</span>
+            <h1 class="title is-2 has-text-white mb-0 mx-5">$510,250</h1> -->
+              <b-button
+                size="is-small"
+                rounded
+                class="mr-1"
+                @click.prevent="nameHomeModal"
+                >SAVE HOME</b-button
+              >
+              <b-button
+                size="is-small"
+                type="is-primary"
+                rounded
+                @click="cancel"
+                >CANCEL</b-button
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </b-modal>
   </div>
@@ -450,8 +499,8 @@ export default {
     cancel() {
       this.$emit('cancel')
     },
-    getImgUrl(value) {
-      return `https://picsum.photos/id/43${value}/1230/500`
+    getImgUrl(gallery, value) {
+      return gallery[value].url
     },
     addAppliance(appliance) {
       this.selectedAppliances.push(appliance.applianceId)
