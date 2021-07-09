@@ -25,6 +25,7 @@
               :model="model.house"
               :areas="model.areas"
               :appliances="model.appliances"
+              @view-model="viewModel(model.house.id)"
             />
           </div>
         </div>
@@ -76,7 +77,7 @@ export default {
       }
     },
     viewModel(idModel) {
-      this.$router.push({ name: 'model-id', params: { id: idModel } })
+      this.$router.push({ name: 'dashboard-id', params: { id: idModel } })
     },
   },
 }

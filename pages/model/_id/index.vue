@@ -26,6 +26,7 @@
       :model="model"
       @cancel="trashCancel"
     />
+    <share-modal :is-active="isShareModalActive" @cancel="trashCancel" />
     <div class="sidebar-page is-hidden-touch">
       <section class="sidebar-layout">
         <b-sidebar
@@ -181,9 +182,13 @@
                 </h4>
               </div> -->
               <div class="is-flex is-align-items-center">
+                <b-button type="is-primary" rounded class="mx-2"
+                  >STYLE VISUALIZER</b-button
+                >
                 <b-button
                   type="is-primary"
                   rounded
+                  class="mx-2"
                   @click.prevent="customizeModal"
                   >CUSTOMIZE HOME</b-button
                 >
@@ -243,6 +248,18 @@
                     class="subtitle is-6 has-text-white mt-3 has-text-centered"
                   >
                     Foorplan
+                  </p>
+                </a>
+                <a @click.prevent="shareModal">
+                  <img
+                    src="@/assets/images/icon_floorplans.svg"
+                    alt="icon_edit"
+                    class="image is-48x48 m-auto"
+                  />
+                  <p
+                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                  >
+                    Share
                   </p>
                 </a>
               </div>
@@ -436,7 +453,22 @@
                   Foorplan
                 </p>
               </a>
+              <a class="mx-2" @click.prevent="shareModal">
+                <img
+                  src="@/assets/images/icon_floorplans.svg"
+                  alt="icon_edit"
+                  class="image is-32x32 m-auto"
+                />
+                <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
+                  Share
+                </p>
+              </a>
             </div>
+          </div>
+          <div class="is-flex is-justify-content-center">
+            <b-button type="is-primary" size="is-small" rounded
+              >STYLE VISUALIZER</b-button
+            >
           </div>
           <div class="is-flex is-justify-content-center">
             <b-button
@@ -479,6 +511,7 @@ export default {
       isFloorplanModalActive: false,
       isViewIn360ModalActive: false,
       isCustomizeHomeModalActive: false,
+      isShareModalActive: false,
       hooperSettings: {
         vertical: true,
         centerMode: true,
@@ -553,12 +586,16 @@ export default {
     customizeModal() {
       this.isCustomizeHomeModalActive = true
     },
+    shareModal() {
+      this.isShareModalActive = true
+    },
     trashCancel() {
       this.isVideoModalActive = false
       this.isDetailsModalActive = false
       this.isFloorplanModalActive = false
       this.isViewIn360ModalActive = false
       this.isCustomizeHomeModalActive = false
+      this.isShareModalActive = false
     },
   },
 }

@@ -35,7 +35,7 @@
         </h4>
         <p class="subtitle is-7">{{ model.data.description }}</p>
         <div class="is-flex is-justify-content-space-around">
-          <a
+          <!-- <a
             v-if="model.data.pdfSpecs"
             :href="model.data.pdfSpecs"
             download
@@ -48,6 +48,14 @@
               class="image is-32x32 mr-2"
             />
             <p class="subtitle is-7">Download Specs</p>
+          </a> -->
+          <a class="is-flex is-align-items-center" @click.prevent="viewModel">
+            <img
+              src="@/assets/images/icon_pdf.svg"
+              alt="icon_pdf"
+              class="image is-32x32 mr-2"
+            />
+            <p class="subtitle is-7">View Home Options</p>
           </a>
           <a class="is-flex is-align-items-center" @click.prevent="shareModal">
             <img
@@ -121,6 +129,9 @@ export default {
   //   },
   // },
   methods: {
+    viewModel() {
+      this.$emit('view-model')
+    },
     editModal() {
       this.isEditModalHomeActive = true
     },
