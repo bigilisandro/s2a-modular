@@ -91,7 +91,7 @@
                   </p>
                 </div>
                 <div class="column columns mb-0"></div>
-                <div class="column is-2">
+                <!-- <div class="column is-2">
                   <div>
                     <a
                       class="is-align-items-center columns"
@@ -115,10 +115,10 @@
                       </div>
                     </a>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
-            <div
+            <!-- <div
               v-show="image.imageDesktop.imageField === 'alternative'"
               :style="{
                 'background-image': 'url(' + image.imageAlternative.url + ')',
@@ -157,7 +157,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </slide>
         </hooper>
         <div class="content-bottom-desktop">
@@ -194,24 +194,27 @@
                 >
               </div>
             </div>
-            <div class="column is-5 border-left">
-              <div
-                class="is-flex is-justify-content-space-around is-flex-wrap-wrap"
-              >
-                <a v-if="model.video_url" @click.prevent="videoModal">
+            <div class="column is-4 border-left">
+              <div class="columns">
+                <a
+                  v-if="model.video_url"
+                  class="column"
+                  @click.prevent="videoModal"
+                >
                   <img
                     src="@/assets/images/icon_video.svg"
                     alt="icon_pdf"
                     class="image is-48x48 m-auto"
                   />
                   <p
-                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                    class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
                     Video
                   </p>
                 </a>
                 <a
                   v-if="model.youtube_360"
+                  class="column"
                   :href="model.youtube_360"
                   target="_blank"
                 >
@@ -221,43 +224,47 @@
                     class="image is-48x48 m-auto"
                   />
                   <p
-                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                    class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
                     View in 360º
                   </p>
                 </a>
-                <a @click.prevent="detailsModal">
+                <a class="column" @click.prevent="detailsModal">
                   <img
                     src="@/assets/images/icon_details.svg"
                     alt="icon_share"
                     class="image is-48x48 m-auto"
                   />
                   <p
-                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                    class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
                     Details
                   </p>
                 </a>
-                <a v-if="model.floorPlan" @click.prevent="floorplanModal">
+                <a
+                  v-if="model.floorPlan"
+                  class="column"
+                  @click.prevent="floorplanModal"
+                >
                   <img
                     src="@/assets/images/icon_floorplans.svg"
                     alt="icon_edit"
                     class="image is-48x48 m-auto"
                   />
                   <p
-                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                    class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
                     Foorplan
                   </p>
                 </a>
-                <a @click.prevent="shareModal">
+                <a class="column" @click.prevent="shareModal">
                   <img
                     src="@/assets/images/icon_floorplans.svg"
                     alt="icon_edit"
                     class="image is-48x48 m-auto"
                   />
                   <p
-                    class="subtitle is-6 has-text-white mt-3 has-text-centered"
+                    class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
                     Share
                   </p>
@@ -314,7 +321,7 @@
                     />
                   </div>
                 </a> -->
-                <a
+                <!-- <a
                   class="is-flex"
                   @click.prevent="
                     image.imageMobile.imageField = 'gallery_alternative_mobile'
@@ -332,11 +339,11 @@
                       class="image is-24x24 ml-auto"
                     />
                   </div>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
-          <div
+          <!-- <div
             v-show="
               image.imageMobile.imageField === 'gallery_alternative_mobile'
             "
@@ -355,7 +362,7 @@
                 </p>
               </div>
               <div>
-                <!-- <a class="is-align-items-center columns is-flex">
+                <a class="is-align-items-center columns is-flex">
                   <div class="column is-8">
                     <p class="subtitle is-7 has-text-white has-text-centered">
                       View in 360º
@@ -368,7 +375,7 @@
                       class="image is-48x48"
                     />
                   </div>
-                </a> -->
+                </a>
                 <a
                   class="is-flex"
                   @click.prevent="
@@ -390,7 +397,7 @@
                 </a>
               </div>
             </div>
-          </div>
+          </div> -->
         </slide>
       </hooper>
       <div class="bottom-content columns mb-0">
