@@ -70,7 +70,11 @@
             </div>
           </div>
         </div>
-        <div class="my-4" style="height: 250px; overflow: hidden">
+        <div
+          v-if="areas.length"
+          class="my-4"
+          style="height: 250px; overflow: hidden"
+        >
           <b-carousel-list
             v-model="values"
             :data="areas[0].images"

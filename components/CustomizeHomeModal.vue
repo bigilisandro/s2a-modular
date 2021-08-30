@@ -178,6 +178,111 @@
                   >
                 </div>
               </template>
+              <div
+                class="container"
+                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
+              >
+                <h1 class="title is-4 has-text-white">GREENLUX</h1>
+                <p class="subtitle is-6 has-text-white">
+                  orem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                  id fermentum quam. Proin sagittis, nibh id hendrerit
+                  imperdiet, elit sapien laoreet elit, ac scelerisque diam velit
+                  in nisl. Nunc maximus ex non laoreet semper. Nunc scelerisque,
+                  libero sit amet pretium dignissim, augue purus placerat justo,
+                  sit amet porttitor dui metus in nisl. Nulla non leo placerat,
+                  porta metus eu, laoreet ris
+                </p>
+                <!-- TABS -->
+                <b-tabs
+                  v-model="tab"
+                  type="is-toggle"
+                  class="block"
+                  size="is-small"
+                  multiline
+                >
+                  <b-tab-item
+                    label="HOME BATTERY STORAGE"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div class="columns is-flex-wrap-wrap">
+                      <div class="column is-6">
+                        <div class="p-5 border m-5">
+                          <div class="columns" style="height: 23vh">
+                            <div class="column">
+                              <span class="image">
+                                <img style="height: 20vh" />
+                              </span>
+                            </div>
+                            <div class="column is-6">
+                              <h1 class="title is-5 has-text-white">
+                                TESLA POWERWALL
+                              </h1>
+                              <p class="subtitle mb-0 has-text-white">
+                                21GSOLCI
+                              </p>
+                              <p class="subtitle has-text-white is-7">
+                                RESIDENTIAL MODULAR ENERGY STORAGE SYSTEM
+                              </p>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="column">
+                              <div class="is-grid is-fullheight">
+                                <div>
+                                  <p class="subtitle is-7 has-text-white mb-2">
+                                    Choose an option
+                                  </p>
+                                  <div class="is-flex">
+                                    <div
+                                      v-for="option in options"
+                                      :key="option.length"
+                                      class="is-flex is-align-items-center mr-2"
+                                    >
+                                      <div
+                                        class="option"
+                                        :style="{
+                                          'background-color': option.color,
+                                        }"
+                                      ></div>
+                                      <span
+                                        class="subtitle is-7 has-text-white"
+                                        >{{ option.title }}</span
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="is-flex is-align-items-flex-end is-justify-content-flex-end"
+                                >
+                                  <b-button
+                                    size="is-small"
+                                    type="is-primary"
+                                    rounded
+                                    @click="addAppliance(appliance)"
+                                    >+ ADD TO HOME</b-button
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="FILTER 2"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="FILTER 3"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                </b-tabs>
+              </div>
             </b-tab-item>
 
             <b-tab-item>
@@ -216,29 +321,48 @@
                 style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
               >
                 <h1 class="title is-4 has-text-white">APPLIANCES</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances"
-                    :key="appliance.length"
-                    class="column is-6"
+                <!-- TABS -->
+                <b-tabs
+                  v-model="tab"
+                  type="is-toggle"
+                  class="block"
+                  size="is-small"
+                  multiline
+                >
+                  <b-tab-item
+                    label="CABINETRY"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
                   >
-                    <div class="p-5 border m-5">
-                      <div class="columns">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance.gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
+                    <div class="columns is-flex-wrap-wrap">
+                      <div
+                        v-for="appliance in model.appliances"
+                        :key="appliance.length"
+                        class="column is-6"
+                      >
+                        <div
+                          :class="{
+                            'border-green-customize': selectedAppliances.includes(
+                              appliance.applianceId
+                            ),
+                          }"
+                          class="p-5 border m-5"
+                        >
+                          <div class="columns" style="height: 23vh">
+                            <div class="column">
+                              <b-carousel
+                                :indicator-inside="false"
+                                :autoplay="false"
+                                :arrow="false"
+                              >
+                                <b-carousel-item
+                                  v-for="(item, i) in appliance.gallery.gallery"
+                                  :key="i"
+                                >
+                                  <span class="image">
+                                    <img :src="item.url" style="height: 20vh" />
+                                  </span>
+                                </b-carousel-item>
+                                <!-- <template #indicators="props">
                             <span class="al image">
                               <img
                                 :src="
@@ -248,103 +372,139 @@
                               />
                             </span>
                           </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance.name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance.brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance.price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance.description }}
-                          </p>
-                          <ul
-                            class="subtitle is-7 has-text-white ml-5"
-                            style="list-style: disc"
-                          >
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose a color
+                              </b-carousel>
+                            </div>
+                            <div class="column is-6">
+                              <h1 class="title is-5 has-text-white">
+                                {{ appliance.name }}
+                              </h1>
+                              <p class="subtitle mb-0 has-text-white">
+                                {{ appliance.brand }}
                               </p>
-                              <div class="is-flex">
+                              <p
+                                class="subtitle has-text-white has-text-weight-bold"
+                              >
+                                ${{ appliance.price }}
+                              </p>
+                              <p class="subtitle has-text-white is-7">
+                                {{ appliance.description }}
+                              </p>
+                              <ul
+                                class="subtitle is-7 has-text-white ml-5"
+                                style="list-style: disc"
+                              >
+                                <li>
+                                  Nunc nec velit nec libero vestibulum eleifend.
+                                </li>
+                                <li>
+                                  Nunc nec velit nec libero vestibulum eleifend.
+                                </li>
+                                <li>
+                                  Nunc nec velit nec libero vestibulum eleifend.
+                                </li>
+                                <li>
+                                  Nunc nec velit nec libero vestibulum eleifend.
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="column">
+                              <div class="is-grid is-fullheight">
+                                <div>
+                                  <p class="subtitle is-7 has-text-white mb-2">
+                                    Choose an option
+                                  </p>
+                                  <div class="is-flex">
+                                    <div
+                                      v-for="option in options"
+                                      :key="option.length"
+                                      class="is-flex is-align-items-center mr-2"
+                                    >
+                                      <div
+                                        class="option"
+                                        :style="{
+                                          'background-color': option.color,
+                                        }"
+                                      ></div>
+                                      <span
+                                        class="subtitle is-7 has-text-white"
+                                        >{{ option.title }}</span
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
                                 <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
+                                  v-if="
+                                    !selectedAppliances.includes(
+                                      appliance.applianceId
+                                    )
+                                  "
+                                  class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                                 >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
+                                  <b-button
+                                    size="is-small"
+                                    type="is-primary"
+                                    rounded
+                                    @click="addAppliance(appliance)"
+                                    >+ ADD TO HOME</b-button
+                                  >
+                                </div>
+                                <div
+                                  v-if="
+                                    selectedAppliances.includes(
+                                      appliance.applianceId
+                                    )
+                                  "
+                                  class="is-flex is-align-items-flex-end is-justify-content-flex-end"
+                                >
+                                  <a
+                                    class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
+                                    @click="removeAppliance(appliance)"
+                                    ><span>Remove from Home</span></a
+                                  >
+                                  <b-button
+                                    size="is-small"
+                                    rounded
+                                    class="button-green"
+                                    ><b-icon
+                                      type="is-white"
+                                      icon="check"
+                                    ></b-icon
+                                  ></b-button>
                                 </div>
                               </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance.applianceId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance)"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance.applianceId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
-                                ><span>Remove from Home</span></a
-                              >
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="COUNTERTOP"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="FAUCET"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="SINK"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                  <b-tab-item
+                    label="PAINT"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                  >
+                    <div></div>
+                  </b-tab-item>
+                </b-tabs>
               </div>
             </b-tab-item>
             <b-tab-item v-for="area in model.areas" :key="area.length">
@@ -455,7 +615,7 @@
                               <img :src="item.url" style="height: 20vh" />
                             </span>
                           </b-carousel-item>
-                          <template #indicators="props">
+                          <!-- <template #indicators="props">
                             <span class="al image">
                               <img
                                 :src="
@@ -467,28 +627,29 @@
                                 :title="props.i"
                               />
                             </span>
-                          </template>
+                          </template> -->
                         </b-carousel>
                         <div>
-                          <p class="subtitle is-7 has-text-white">
-                            Choose a color
+                          <p class="subtitle is-7 has-text-white mb-2">
+                            Choose an option
                           </p>
-                          <b-field class="has-text-white">
-                            <b-checkbox size="is-small"
-                              >Black Stainless Steel</b-checkbox
+                          <div class="is-flex">
+                            <div
+                              v-for="option in options"
+                              :key="option.length"
+                              class="is-flex is-align-items-center mr-2"
                             >
-                          </b-field>
-                          <b-field class="has-text-white">
-                            <b-checkbox size="is-small"
-                              >Stainless Steel</b-checkbox
-                            >
-                          </b-field>
-                          <b-field class="has-text-white">
-                            <b-checkbox size="is-small">White</b-checkbox>
-                          </b-field>
-                          <b-field class="has-text-white">
-                            <b-checkbox size="is-small">Black</b-checkbox>
-                          </b-field>
+                              <div
+                                class="option"
+                                :style="{
+                                  'background-color': option.color,
+                                }"
+                              ></div>
+                              <span class="subtitle is-7 has-text-white">{{
+                                option.title
+                              }}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div class="column">
@@ -795,14 +956,21 @@ export default {
 }
 .border {
   border: 2px solid #027881;
-  height: 85%;
+  height: 80%;
 }
-.border:hover {
+/* .border:hover {
   border: 2px solid #027881;
-}
+} */
 .option {
   width: 25px;
   height: 25px;
   margin-right: 10px;
+}
+.border-green-customize {
+  border-color: #48c78e;
+}
+.button-green {
+  background-color: #48c78e;
+  color: #fff;
 }
 </style>
