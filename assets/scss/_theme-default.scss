@@ -97,6 +97,12 @@ $dropdown-item-active-color: $black-semi;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
+// pagination
+$pagination-color: $white;
+$pagination-border-color: $white;
+$pagination-current-background-color: $white;
+$pagination-current-color: $green;
+
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
     (

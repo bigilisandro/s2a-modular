@@ -39,7 +39,11 @@
 
 // Modal
 .modal.is-full-screen > .animation-content {
-    background-color: rgba(10, 10, 10, 0.46);
+    background-color: rgba(10, 10, 10);
+}
+
+.modal-background {
+    background-color: rgba(10, 10, 10);
 }
 
 // Radio Button

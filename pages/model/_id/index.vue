@@ -26,6 +26,12 @@
       :model="model"
       @cancel="trashCancel"
     />
+    <style-visualizer
+      :is-active="isStyleVisualizerActive"
+      :model="model"
+      @cancel="trashCancel"
+      @browse="browseAllOptions"
+    />
     <share-modal :is-active="isShareModalActive" @cancel="trashCancel" />
     <div class="sidebar-page is-hidden-touch">
       <section class="sidebar-layout">
@@ -182,7 +188,11 @@
                 </h4>
               </div> -->
               <div class="is-flex is-align-items-center">
-                <b-button type="is-primary" rounded class="mx-2"
+                <b-button
+                  type="is-primary"
+                  rounded
+                  class="mx-2"
+                  @click.prevent="styleVisualizerModal"
                   >STYLE VISUALIZER</b-button
                 >
                 <b-button
@@ -473,7 +483,11 @@
             </div>
           </div>
           <div class="is-flex is-justify-content-center">
-            <b-button type="is-primary" size="is-small" rounded
+            <b-button
+              type="is-primary"
+              size="is-small"
+              rounded
+              @click.prevent="styleVisualizerModal"
               >STYLE VISUALIZER</b-button
             >
           </div>
@@ -499,6 +513,7 @@ import DetailsModal from '@/components/DetailsModal.vue'
 import FloorplanModal from '@/components/FloorplanModal.vue'
 import ViewIn360Modal from '@/components/ViewIn360Modal.vue'
 import CustomizeHomeModal from '@/components/CustomizeHomeModal.vue'
+import StyleVisualizer from '@/components/StyleVisualizer.vue'
 
 export default {
   components: {
@@ -509,6 +524,7 @@ export default {
     FloorplanModal,
     ViewIn360Modal,
     CustomizeHomeModal,
+    StyleVisualizer,
   },
   // auth: 'guest',
   data() {
@@ -518,6 +534,7 @@ export default {
       isFloorplanModalActive: false,
       isViewIn360ModalActive: false,
       isCustomizeHomeModalActive: false,
+      isStyleVisualizerActive: false,
       isShareModalActive: false,
       hooperSettings: {
         vertical: true,
@@ -593,6 +610,13 @@ export default {
     customizeModal() {
       this.isCustomizeHomeModalActive = true
     },
+    styleVisualizerModal() {
+      this.isStyleVisualizerActive = true
+    },
+    browseAllOptions() {
+      this.isCustomizeHomeModalActive = true
+      this.isStyleVisualizerActive = false
+    },
     shareModal() {
       this.isShareModalActive = true
     },
@@ -603,6 +627,7 @@ export default {
       this.isViewIn360ModalActive = false
       this.isCustomizeHomeModalActive = false
       this.isShareModalActive = false
+      this.isStyleVisualizerActive = false
     },
   },
 }
