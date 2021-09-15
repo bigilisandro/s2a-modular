@@ -61,14 +61,14 @@
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
               ></div>
-              <div
-                v-show="image.imageDesktop.imageField === 'alternative'"
+              <!-- <div
+                v-show="image.imageDesktop.imageField === 'gallery_alternative'"
                 :style="{
                   'background-image': 'url(' + image.imageAlternative.url + ')',
                 }"
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
-              ></div>
+              ></div> -->
             </slide>
           </hooper>
         </b-sidebar>
@@ -589,7 +589,11 @@ export default {
           this.loading = false
           this.youtubeId = this.model.video_url.substring(17)
           // eslint-disable-next-line no-console
-          console.log(this.model, this.imagesDesktop)
+          console.log(
+            this.model,
+            this.imagesDesktop,
+            this.imagesDesktopAndAlternative
+          )
         })
     },
     goToSlide(index) {

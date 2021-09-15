@@ -178,6 +178,7 @@ export default {
     async getData() {
       try {
         await this.$axios.get('/auth/user').then((r) => {
+          console.log(r, 'r')
           // eslint-disable-next-line no-console
           this.models = r.data.data
           for (let i = 0; i < this.models.length; i++) {
