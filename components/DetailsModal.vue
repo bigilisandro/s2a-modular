@@ -7,12 +7,19 @@
             :src="details.gallery.gallery_mobile[4].url"
             class="is-fullheight is-fullwidth"
           /> -->
-          <div
+          <!-- <div
             :style="{
               'background-image':
                 'url(' +
                 details.specialGallery.style_visualizer_room[2].url +
                 ')',
+            }"
+            class="is-fullheight is-fullwidth bgImage-details"
+          ></div> -->
+          <div
+            :style="{
+              'background-image':
+                'url(https://s2development-testing.s3.us-east-2.amazonaws.com/development/Model_29_Interiors_1_4_1_995f793a01.jpg)',
             }"
             class="is-fullheight is-fullwidth bgImage-details"
           ></div>
