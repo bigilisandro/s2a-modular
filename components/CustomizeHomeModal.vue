@@ -194,7 +194,6 @@
                 </p>
                 <!-- TABS -->
                 <b-tabs
-                  v-model="tab"
                   type="is-toggle"
                   class="block"
                   size="is-small"
@@ -323,7 +322,6 @@
                 <h1 class="title is-4 has-text-white">APPLIANCES</h1>
                 <!-- TABS -->
                 <b-tabs
-                  v-model="tab"
                   type="is-toggle"
                   class="block"
                   size="is-small"

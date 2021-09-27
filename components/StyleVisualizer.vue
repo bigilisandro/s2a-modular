@@ -8,11 +8,11 @@
       <div class="my-6 py-6">
         <b-carousel-list
           v-model="values"
-          :data="model.gallery.gallery"
+          :data="specialGallery"
           :items-to-show="1.2"
         >
           <template #item="list">
-            <img :src="list.url" alt="" />
+            <img :src="list[0].url" alt="" />
           </template>
         </b-carousel-list>
       </div>
@@ -61,6 +61,11 @@ export default {
       perPage: 1,
       rangeAfter: 2,
     }
+  },
+  computed: {
+    specialGallery() {
+      return Object.values(this.model.specialGallery)
+    },
   },
   watch: {
     isActive(newValue) {

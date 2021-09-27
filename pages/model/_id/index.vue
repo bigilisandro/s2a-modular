@@ -2,7 +2,7 @@
   <div v-if="loading"></div>
   <div v-else class="no-scroll">
     <video-modal
-      :video-url="'https://www.youtube.com/embed/' + youtubeId"
+      :video-url="youtubeId"
       :is-active="isVideoModalActive"
       @cancel="trashCancel"
     />
@@ -410,7 +410,7 @@ export default {
           this.imagesDesktop = this.images.gallery
           this.imagesMobile = this.images.gallery_mobile
           this.loading = false
-          this.youtubeId = this.model.video_url.substring(17)
+          this.youtubeId = this.model.video_url
         })
     },
     goToSlide(index) {
