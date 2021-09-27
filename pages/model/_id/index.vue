@@ -49,26 +49,14 @@
             :items-to-show="imagesDesktop.length"
             infinite-scroll
           >
-            <slide
-              v-for="(image, index) in imagesDesktopAndAlternative"
-              :key="image.length"
-            >
+            <slide v-for="(image, index) in imagesDesktop" :key="image.length">
               <div
-                v-show="image.imageDesktop.imageField === 'gallery'"
                 :style="{
-                  'background-image': 'url(' + image.imageDesktop.url + ')',
+                  'background-image': 'url(' + image.url + ')',
                 }"
                 class="bgImage m-3"
                 @click.prevent="goToSlide(index)"
               ></div>
-              <!-- <div
-                v-show="image.imageDesktop.imageField === 'gallery_alternative'"
-                :style="{
-                  'background-image': 'url(' + image.imageAlternative.url + ')',
-                }"
-                class="bgImage m-3"
-                @click.prevent="goToSlide(index)"
-              ></div> -->
             </slide>
           </hooper>
         </b-sidebar>
@@ -93,73 +81,8 @@
                   </p>
                 </div>
                 <div class="column columns mb-0"></div>
-                <!-- <div class="column is-2">
-                  <div>
-                    <a
-                      class="is-align-items-center columns"
-                      @click.prevent="
-                        image.imageDesktop.imageField = 'alternative'
-                      "
-                    >
-                      <div class="column is-8">
-                        <p
-                          class="subtitle is-6 has-text-white has-text-centered"
-                        >
-                          Change to interior
-                        </p>
-                      </div>
-                      <div class="column">
-                        <img
-                          src="@/assets/images/icon_interior.svg"
-                          alt="icon_pdf"
-                          class="image is-48x48"
-                        />
-                      </div>
-                    </a>
-                  </div>
-                </div> -->
               </div>
             </div>
-            <!-- <div
-              v-show="image.imageDesktop.imageField === 'alternative'"
-              :style="{
-                'background-image': 'url(' + image.imageAlternative.url + ')',
-              }"
-              class="bgImage container is-fluid margin-nav mt-2"
-              style="background-size: 100% 100%"
-            >
-              <div class="columns content-bottom is-mobile">
-                <div class="column is-2">
-                  <p class="subtitle is-6 has-text-white">
-                    Living Room 300 sq. ft.
-                  </p>
-                </div>
-                <div class="column columns mb-0"></div>
-                <div class="column is-2">
-                  <div>
-                    <a
-                      class="is-align-items-center columns"
-                      @click.prevent="image.imageDesktop.imageField = 'gallery'"
-                    >
-                      <div class="column is-8">
-                        <p
-                          class="subtitle is-6 has-text-white has-text-centered"
-                        >
-                          Change to exterior
-                        </p>
-                      </div>
-                      <div class="column">
-                        <img
-                          src="@/assets/images/icon_interior.svg"
-                          alt="icon_pdf"
-                          class="image is-48x48"
-                        />
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </slide>
         </hooper>
         <div class="content-bottom-desktop">
@@ -326,83 +249,9 @@
                     />
                   </div>
                 </a> -->
-                <!-- <a
-                  class="is-flex"
-                  @click.prevent="
-                    image.imageMobile.imageField = 'gallery_alternative_mobile'
-                  "
-                >
-                  <div class="is-flex is-align-items-center mr-3">
-                    <p class="subtitle is-7 has-text-white has-text-centered">
-                      Change to interior
-                    </p>
-                  </div>
-                  <div>
-                    <img
-                      src="@/assets/images/icon_interior.svg"
-                      alt="icon_pdf"
-                      class="image is-24x24 ml-auto"
-                    />
-                  </div>
-                </a> -->
               </div>
             </div>
           </div>
-          <!-- <div
-            v-show="
-              image.imageMobile.imageField === 'gallery_alternative_mobile'
-            "
-            :style="{
-              'background-image':
-                'url(' + image.imageMobileAlternative.url + ')',
-            }"
-            class="bgImage container is-fluid"
-          >
-            <div
-              class="content-bottom is-flex is-justify-content-space-between"
-            >
-              <div>
-                <p class="subtitle is-7 has-text-white">
-                  Living Room 300 sq. ft.
-                </p>
-              </div>
-              <div>
-                <a class="is-align-items-center columns is-flex">
-                  <div class="column is-8">
-                    <p class="subtitle is-7 has-text-white has-text-centered">
-                      View in 360º
-                    </p>
-                  </div>
-                  <div class="column">
-                    <img
-                      src="@/assets/images/icon_360.svg"
-                      alt="icon_pdf"
-                      class="image is-48x48"
-                    />
-                  </div>
-                </a>
-                <a
-                  class="is-flex"
-                  @click.prevent="
-                    image.imageMobile.imageField = 'gallery_mobile'
-                  "
-                >
-                  <div class="is-flex is-align-items-center mr-3">
-                    <p class="subtitle is-7 has-text-white has-text-centered">
-                      Change to exterior
-                    </p>
-                  </div>
-                  <div>
-                    <img
-                      src="@/assets/images/icon_interior.svg"
-                      alt="icon_pdf"
-                      class="image is-24x24 ml-auto"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div> -->
         </slide>
       </hooper>
       <div class="bottom-content columns mb-0">

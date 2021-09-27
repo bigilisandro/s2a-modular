@@ -91,10 +91,10 @@
           <!-- 2,500-5,000 SQ. FT. HOMES --></b-tab-item
         >
         <b-tab-item
-          label="4 BEDROOM"
+          label="1-2 BEDROOM"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
-          <!-- 4 BEDROOM HOMES -->
+          <!-- 1-2 BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
@@ -112,13 +112,13 @@
               </div>
             </div>
           </div>
-          <!-- 4 BEDROOM HOMES --></b-tab-item
+          <!-- 1-2 BEDROOM HOMES --></b-tab-item
         >
         <b-tab-item
-          label="MODERN"
+          label="3 BEDROOM"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
-          <!-- MODERN HOMES -->
+          <!-- 3 BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
@@ -136,13 +136,13 @@
               </div>
             </div>
           </div>
-          <!-- MODERN HOMES --></b-tab-item
+          <!-- 3 BEDROOM HOMES --></b-tab-item
         >
         <b-tab-item
-          label="TRADITIONAL"
+          label="4+ BEDROOM"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
-          <!-- TRADITIONAL HOMES -->
+          <!-- 4+ BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
@@ -160,13 +160,13 @@
               </div>
             </div>
           </div>
-          <!-- TRADITIONAL HOMES --></b-tab-item
+          <!-- 4+ BEDROOM HOMES --></b-tab-item
         >
         <b-tab-item
-          label="CRAFTSMAN"
+          label="SINGLE LEVEL"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
-          <!-- CRAFTSMAN HOMES -->
+          <!-- SINGLE LEVEL HOMES -->
           <div class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
@@ -184,13 +184,13 @@
               </div>
             </div>
           </div>
-          <!-- CRAFTSMAN HOMES --></b-tab-item
+          <!-- SINGLE LEVEL HOMES --></b-tab-item
         >
         <b-tab-item
-          label="COLONIAL"
+          label="2+ LEVELS"
           header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
         >
-          <!-- COLONIAL HOMES -->
+          <!-- 2+ LEVELS HOMES -->
           <div class="mx-5 mx-0-mobile">
             <div class="columns is-multiline">
               <div
@@ -208,7 +208,7 @@
               </div>
             </div>
           </div>
-          <!-- COLONIAL HOMES --></b-tab-item
+          <!-- 2+ LEVELS HOMES --></b-tab-item
         >
       </b-tabs>
     </div>
