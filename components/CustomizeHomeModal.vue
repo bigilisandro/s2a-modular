@@ -340,7 +340,7 @@
                         <div
                           :class="{
                             'border-green-customize': selectedAppliances.includes(
-                              appliance.applianceId
+                              appliance[0].catalogId
                             ),
                           }"
                           class="p-5 border m-5"
@@ -419,7 +419,7 @@
                                 <div
                                   v-if="
                                     !selectedAppliances.includes(
-                                      appliance.applianceId
+                                      appliance[0].catalogId
                                     )
                                   "
                                   class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -428,21 +428,21 @@
                                     size="is-small"
                                     type="is-primary"
                                     rounded
-                                    @click="addAppliance(appliance)"
+                                    @click="addAppliance(appliance[0])"
                                     >+ ADD TO HOME</b-button
                                   >
                                 </div>
                                 <div
                                   v-if="
                                     selectedAppliances.includes(
-                                      appliance.applianceId
+                                      appliance[0].catalogId
                                     )
                                   "
                                   class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                                 >
                                   <a
                                     class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                    @click="removeAppliance(appliance)"
+                                    @click="removeAppliance(appliance[0])"
                                     ><span>Remove from Home</span></a
                                   >
                                   <b-button
@@ -507,7 +507,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -584,7 +584,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -593,21 +593,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -643,7 +643,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -720,7 +720,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -729,21 +729,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -779,7 +779,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -856,7 +856,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -865,21 +865,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -915,7 +915,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -992,7 +992,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -1001,21 +1001,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -1051,7 +1051,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -1128,7 +1128,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -1137,21 +1137,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -1187,7 +1187,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -1264,7 +1264,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -1273,21 +1273,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -1323,7 +1323,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -1400,7 +1400,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -1409,21 +1409,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -1459,7 +1459,7 @@
                     <div
                       :class="{
                         'border-green-customize': selectedAppliances.includes(
-                          appliance.applianceId
+                          appliance[0].catalogId
                         ),
                       }"
                       class="p-5 border m-5"
@@ -1536,7 +1536,7 @@
                             <div
                               v-if="
                                 !selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -1545,21 +1545,21 @@
                                 size="is-small"
                                 type="is-primary"
                                 rounded
-                                @click="addAppliance(appliance)"
+                                @click="addAppliance(appliance[0])"
                                 >+ ADD TO HOME</b-button
                               >
                             </div>
                             <div
                               v-if="
                                 selectedAppliances.includes(
-                                  appliance.applianceId
+                                  appliance[0].catalogId
                                 )
                               "
                               class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                             >
                               <a
                                 class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance)"
+                                @click="removeAppliance(appliance[0])"
                                 ><span>Remove from Home</span></a
                               >
                               <b-button
@@ -1889,10 +1889,10 @@ export default {
       this.isNameHomeModalActive = false
     },
     addAppliance(appliance) {
-      this.selectedAppliances.push(appliance.applianceId)
+      this.selectedAppliances.push(appliance.catalogId)
     },
     removeAppliance(appliance) {
-      const index = this.selectedAppliances.indexOf(appliance.applianceId)
+      const index = this.selectedAppliances.indexOf(appliance.catalogId)
       if (index > -1) {
         this.selectedAppliances.splice(index, 1)
       }
