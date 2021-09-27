@@ -355,7 +355,7 @@
                                 :arrow="false"
                               >
                                 <b-carousel-item
-                                  v-for="(item, i) in appliance.gallery.gallery"
+                                  v-for="(item, i) in appliance"
                                   :key="i"
                                 >
                                   <span class="image">
@@ -607,8 +607,7 @@
                           :arrow="false"
                         >
                           <b-carousel-item
-                            v-for="(item, i) in appliance.gallery
-                              .gallery_mobile"
+                            v-for="(item, i) in appliance"
                             :key="i"
                           >
                             <span class="image">

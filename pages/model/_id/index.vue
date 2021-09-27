@@ -78,14 +78,10 @@
           style="height: 100vh; width: 100%"
           :settings="hooperSettings"
         >
-          <slide
-            v-for="image in imagesDesktopAndAlternative"
-            :key="image.length"
-          >
+          <slide v-for="image in imagesDesktop" :key="image.length">
             <div
-              v-show="image.imageDesktop.imageField === 'gallery'"
               :style="{
-                'background-image': 'url(' + image.imageDesktop.url + ')',
+                'background-image': 'url(' + image.url + ')',
               }"
               class="bgImage container is-fluid margin-nav mt-2"
               style="background-size: 100% 100%"
@@ -300,11 +296,10 @@
         :items-to-show="1.5"
         infinite-scroll
       >
-        <slide v-for="image in imagesMobileAndAlternative" :key="image.length">
+        <slide v-for="image in imagesMobile" :key="image.length">
           <div
-            v-show="image.imageMobile.imageField === 'gallery_mobile'"
             :style="{
-              'background-image': 'url(' + image.imageMobile.url + ')',
+              'background-image': 'url(' + image.url + ')',
             }"
             class="bgImage container is-fluid"
           >
@@ -546,28 +541,8 @@ export default {
       model: {},
       images: {},
       imagesDesktop: {},
-      imagesDesktopAlternative: {},
       imagesMobile: {},
-      imagesMobileAlternative: {},
     }
-  },
-  computed: {
-    imagesDesktopAndAlternative() {
-      return this.imagesDesktop.map((imageDesktop, i) => {
-        return {
-          imageDesktop,
-          imageAlternative: this.imagesDesktopAlternative[i],
-        }
-      })
-    },
-    imagesMobileAndAlternative() {
-      return this.imagesMobile.map((imageMobile, i) => {
-        return {
-          imageMobile,
-          imageMobileAlternative: this.imagesMobileAlternative[i],
-        }
-      })
-    },
   },
   mounted() {
     if (this.$route.params.id === undefined) {
@@ -581,19 +556,12 @@ export default {
         .get('/management/getModel/' + this.$route.params.id)
         .then((r) => {
           this.model = r.data
+          console.log(this.model, 'model')
           this.images = this.model.gallery
           this.imagesDesktop = this.images.gallery
-          this.imagesDesktopAlternative = this.images.gallery_alternative
           this.imagesMobile = this.images.gallery_mobile
-          this.imagesMobileAlternative = this.images.gallery_alternative_mobile
           this.loading = false
           this.youtubeId = this.model.video_url.substring(17)
-          // eslint-disable-next-line no-console
-          console.log(
-            this.model,
-            this.imagesDesktop,
-            this.imagesDesktopAndAlternative
-          )
         })
     },
     goToSlide(index) {
