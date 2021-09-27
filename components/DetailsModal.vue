@@ -2,7 +2,7 @@
   <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
     <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
       <div class="columns is-flex mr-2" style="height: 60vh; width: 100%">
-        <div class="column p-0">
+        <div class="column is-7 p-0">
           <!-- <img
             :src="details.gallery.gallery_mobile[4].url"
             class="is-fullheight is-fullwidth"
@@ -10,9 +10,11 @@
           <div
             :style="{
               'background-image':
-                'url(' + details.gallery.gallery_mobile[0].url + ')',
+                'url(' +
+                details.specialGallery.style_visualizer_room[2].url +
+                ')',
             }"
-            class="is-fullheight is-fullwidth bgImage"
+            class="is-fullheight is-fullwidth bgImage-details"
           ></div>
         </div>
         <div class="has-background-white p-5 column" style="overflow: scroll">
@@ -72,7 +74,7 @@ export default {
 </script>
 
 <style>
-.bgImage {
+.bgImage-details {
   height: inherit;
   background-repeat: no-repeat;
   background-size: cover;
