@@ -3,10 +3,17 @@
     <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
       <div class="columns is-flex mr-2" style="height: 60vh; width: 100%">
         <div class="column p-0">
-          <img
-            :src="details.images[1].url"
+          <!-- <img
+            :src="details.gallery.gallery_mobile[4].url"
             class="is-fullheight is-fullwidth"
-          />
+          /> -->
+          <div
+            :style="{
+              'background-image':
+                'url(' + details.gallery.gallery_mobile[0].url + ')',
+            }"
+            class="is-fullheight is-fullwidth bgImage"
+          ></div>
         </div>
         <div class="has-background-white p-5 column" style="overflow: scroll">
           <p class="subtitle is-6 mt-2">
@@ -64,4 +71,11 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.bgImage {
+  height: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+</style>

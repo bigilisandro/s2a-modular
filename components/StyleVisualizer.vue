@@ -5,37 +5,46 @@
     :can-cancel="['escape', 'outside']"
   >
     <div>
-      <div class="my-6 py-6">
+      <div>
         <b-carousel-list
           v-model="values"
           :data="specialGallery"
-          :items-to-show="1.2"
+          :items-to-show="1"
         >
           <template #item="list">
-            <img :src="list[0].url" alt="" />
+            <img
+              :src="list[imageValue].url"
+              :alt="list[imageValue].url"
+              class="image-specialGallery"
+            />
+            <div class="footer-modal-style py-5 px-5">
+              <div class="is-flex is-justify-content-space-between px-6 my-3">
+                <div>
+                  <b-pagination
+                    v-model="current"
+                    :total="total"
+                    :range-after="rangeAfter"
+                    :order="order"
+                    rounded
+                    :per-page="perPage"
+                    @change="setImage"
+                  >
+                  </b-pagination>
+                </div>
+                <div class="is-flex is-align-items-center">
+                  <b-button
+                    type="is-primary"
+                    rounded
+                    class="mr-2"
+                    @click="browse"
+                    >BROWSE ALL OPTIONS</b-button
+                  >
+                  <b-button rounded @click="cancel">CLOSE</b-button>
+                </div>
+              </div>
+            </div>
           </template>
         </b-carousel-list>
-      </div>
-      <div class="footer-modal-style py-5 px-5">
-        <div class="is-flex is-justify-content-space-between px-6 my-3">
-          <div>
-            <b-pagination
-              v-model="current"
-              :total="total"
-              :range-after="rangeAfter"
-              :order="order"
-              rounded
-              :per-page="perPage"
-            >
-            </b-pagination>
-          </div>
-          <div class="is-flex is-align-items-center">
-            <b-button type="is-primary" rounded class="mr-2" @click="browse"
-              >BROWSE ALL OPTIONS</b-button
-            >
-            <b-button rounded @click="cancel">CLOSE</b-button>
-          </div>
-        </div>
       </div>
     </div>
   </b-modal>
@@ -60,6 +69,8 @@ export default {
       current: 1,
       perPage: 1,
       rangeAfter: 2,
+      values: 0,
+      imageValue: 0,
     }
   },
   computed: {
@@ -78,6 +89,10 @@ export default {
     },
   },
   methods: {
+    setImage() {
+      this.imageValue = this.current - 1
+      console.log(this.values, this.current)
+    },
     cancel() {
       this.$emit('cancel')
     },
@@ -89,9 +104,13 @@ export default {
 </script>
 
 <style>
-.footer-modal-style {
+/* .footer-modal-style {
   position: absolute;
   bottom: 0;
   width: 100%;
+} */
+.image-specialGallery {
+  width: 100%;
+  height: 80%;
 }
 </style>

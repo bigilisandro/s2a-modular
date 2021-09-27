@@ -388,23 +388,6 @@
                               <p class="subtitle has-text-white is-7">
                                 {{ appliance[0].description }}
                               </p>
-                              <ul
-                                class="subtitle is-7 has-text-white ml-5"
-                                style="list-style: disc"
-                              >
-                                <li>
-                                  Nunc nec velit nec libero vestibulum eleifend.
-                                </li>
-                                <li>
-                                  Nunc nec velit nec libero vestibulum eleifend.
-                                </li>
-                                <li>
-                                  Nunc nec velit nec libero vestibulum eleifend.
-                                </li>
-                                <li>
-                                  Nunc nec velit nec libero vestibulum eleifend.
-                                </li>
-                              </ul>
                             </div>
                           </div>
                           <div>
@@ -571,23 +554,6 @@
                           <p class="subtitle has-text-white is-7">
                             {{ appliance[0].description }}
                           </p>
-                          <ul
-                            class="subtitle is-7 has-text-white ml-5"
-                            style="list-style: disc"
-                          >
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                            <li>
-                              Nunc nec velit nec libero vestibulum eleifend.
-                            </li>
-                          </ul>
                         </div>
                       </div>
                       <div>
@@ -864,23 +830,6 @@
                         <p class="subtitle has-text-white is-7">
                           {{ appliance.description }}
                         </p>
-                        <ul
-                          class="subtitle is-7 has-text-white ml-5"
-                          style="list-style: disc"
-                        >
-                          <li>
-                            Nunc nec velit nec libero vestibulum eleifend.
-                          </li>
-                          <li>
-                            Nunc nec velit nec libero vestibulum eleifend.
-                          </li>
-                          <li>
-                            Nunc nec velit nec libero vestibulum eleifend.
-                          </li>
-                          <li>
-                            Nunc nec velit nec libero vestibulum eleifend.
-                          </li>
-                        </ul>
                       </div>
                     </div>
                     <div>
