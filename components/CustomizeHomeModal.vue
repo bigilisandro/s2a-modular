@@ -311,15 +311,18 @@
               </template>
             </b-tab-item>
 
-            <b-tab-item>
+            <b-tab-item
+              v-for="appliance in model.appliances"
+              :key="appliance.length"
+            >
               <template #header>
-                <span class="has-text-white">APPLIANCES</span>
+                <span class="has-text-white">WIP</span>
               </template>
               <div
                 class="container"
                 style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
               >
-                <h1 class="title is-4 has-text-white">APPLIANCES</h1>
+                <h1 class="title is-4 has-text-white">WIP</h1>
                 <!-- TABS -->
                 <b-tabs
                   type="is-toggle"
@@ -333,14 +336,14 @@
                   >
                     <div class="columns is-flex-wrap-wrap">
                       <div
-                        v-for="appliance in model.appliances.APPLIANCE"
-                        :key="appliance.length"
+                        v-for="item in appliance"
+                        :key="item.length"
                         class="column is-6"
                       >
                         <div
                           :class="{
                             'border-green-customize': selectedAppliances.includes(
-                              appliance[0].catalogId
+                              item[0].catalogId
                             ),
                           }"
                           class="p-5 border m-5"
@@ -353,40 +356,42 @@
                                 :arrow="false"
                               >
                                 <b-carousel-item
-                                  v-for="(item, i) in appliance[0].gallery
-                                    .gallery"
+                                  v-for="(img, i) in item[0].gallery.gallery"
                                   :key="i"
                                 >
                                   <span class="image">
-                                    <img :src="item.url" style="height: 20vh" />
+                                    <img :src="img.url" style="height: 20vh" />
                                   </span>
                                 </b-carousel-item>
                                 <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
+                                  <span class="al image">
+                                    <img
+                                      :src="
+                                        getImgUrl(
+                                          appliance.gallery.gallery,
+                                          props.i
+                                        )
+                                      "
+                                      :title="props.i"
+                                    />
+                                  </span>
+                                </template> -->
                               </b-carousel>
                             </div>
                             <div class="column is-6">
                               <h1 class="title is-5 has-text-white">
-                                {{ appliance[0].name }}
+                                {{ item[0].name }}
                               </h1>
                               <p class="subtitle mb-0 has-text-white">
-                                {{ appliance[0].brand }}
+                                {{ item[0].brand }}
                               </p>
-                              <p
+                              <!-- <p
                                 class="subtitle has-text-white has-text-weight-bold"
                               >
                                 ${{ appliance[0].price }}
-                              </p>
+                              </p> -->
                               <p class="subtitle has-text-white is-7">
-                                {{ appliance[0].description }}
+                                {{ item[0].description }}
                               </p>
                             </div>
                           </div>
@@ -398,8 +403,18 @@
                                     Choose an option
                                   </p>
                                   <div class="is-flex">
-                                    <div
-                                      v-for="option in options"
+                                    <b-radio
+                                      v-for="option in item"
+                                      :key="option.length"
+                                      v-model="selectedOption"
+                                      name="name"
+                                      :native-value="option"
+                                      class="is-flex is-align-items-center mr-2 has-text-white"
+                                    >
+                                      {{ option.catalogId }}
+                                    </b-radio>
+                                    <!-- <div
+                                      v-for="option in item"
                                       :key="option.length"
                                       class="is-flex is-align-items-center mr-2"
                                     >
@@ -411,15 +426,15 @@
                                       ></div>
                                       <span
                                         class="subtitle is-7 has-text-white"
-                                        >{{ option.title }}</span
+                                        >{{ option.productId }}</span
                                       >
-                                    </div>
+                                    </div> -->
                                   </div>
                                 </div>
                                 <div
                                   v-if="
                                     !selectedAppliances.includes(
-                                      appliance[0].catalogId
+                                      item[0].catalogId
                                     )
                                   "
                                   class="is-flex is-align-items-flex-end is-justify-content-flex-end"
@@ -428,21 +443,21 @@
                                     size="is-small"
                                     type="is-primary"
                                     rounded
-                                    @click="addAppliance(appliance[0])"
+                                    @click="addAppliance(item[0])"
                                     >+ ADD TO HOME</b-button
                                   >
                                 </div>
                                 <div
                                   v-if="
                                     selectedAppliances.includes(
-                                      appliance[0].catalogId
+                                      item[0].catalogId
                                     )
                                   "
                                   class="is-flex is-align-items-flex-end is-justify-content-flex-end"
                                 >
                                   <a
                                     class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                    @click="removeAppliance(appliance[0])"
+                                    @click="removeAppliance(item[0])"
                                     ><span>Remove from Home</span></a
                                   >
                                   <b-button
@@ -487,1094 +502,6 @@
                     <div></div>
                   </b-tab-item>
                 </b-tabs>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">BATHROOM</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">BATHROOM</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.BATHROOM"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">BATHROOMS</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">BATHROOMS</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.BATHROOMS"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">BEDROOMS</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">BEDROOMS</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.BEDROOMS"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">ELECTRICAL</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">ELECTRICAL</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.ELECTRICAL"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">EXTERIOR</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">EXTERIOR</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.EXTERIOR"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">INTERIOR</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">INTERIOR</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.INTERIOR"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">KITCHEN</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">KITCHEN</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.KITCHEN"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-tab-item>
-            <b-tab-item>
-              <template #header>
-                <span class="has-text-white">LAUNDRY</span>
-              </template>
-              <div
-                class="container"
-                style="height: 60vh; overflow-x: hidden; overflow-y: scroll"
-              >
-                <h1 class="title is-4 has-text-white">LAUNDRY</h1>
-                <div class="columns is-flex-wrap-wrap">
-                  <div
-                    v-for="appliance in model.appliances.LAUNDRY"
-                    :key="appliance.length"
-                    class="column is-6"
-                  >
-                    <div
-                      :class="{
-                        'border-green-customize': selectedAppliances.includes(
-                          appliance[0].catalogId
-                        ),
-                      }"
-                      class="p-5 border m-5"
-                    >
-                      <div class="columns" style="height: 23vh">
-                        <div class="column">
-                          <b-carousel
-                            :indicator-inside="false"
-                            :autoplay="false"
-                            :arrow="false"
-                          >
-                            <b-carousel-item
-                              v-for="(item, i) in appliance[0].gallery.gallery"
-                              :key="i"
-                            >
-                              <span class="image">
-                                <img :src="item.url" style="height: 20vh" />
-                              </span>
-                            </b-carousel-item>
-                            <!-- <template #indicators="props">
-                            <span class="al image">
-                              <img
-                                :src="
-                                  getImgUrl(appliance.gallery.gallery, props.i)
-                                "
-                                :title="props.i"
-                              />
-                            </span>
-                          </template> -->
-                          </b-carousel>
-                        </div>
-                        <div class="column is-6">
-                          <h1 class="title is-5 has-text-white">
-                            {{ appliance[0].name }}
-                          </h1>
-                          <p class="subtitle mb-0 has-text-white">
-                            {{ appliance[0].brand }}
-                          </p>
-                          <p
-                            class="subtitle has-text-white has-text-weight-bold"
-                          >
-                            ${{ appliance[0].price }}
-                          </p>
-                          <p class="subtitle has-text-white is-7">
-                            {{ appliance[0].description }}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="column">
-                          <div class="is-grid is-fullheight">
-                            <div>
-                              <p class="subtitle is-7 has-text-white mb-2">
-                                Choose an option
-                              </p>
-                              <div class="is-flex">
-                                <div
-                                  v-for="option in options"
-                                  :key="option.length"
-                                  class="is-flex is-align-items-center mr-2"
-                                >
-                                  <div
-                                    class="option"
-                                    :style="{
-                                      'background-color': option.color,
-                                    }"
-                                  ></div>
-                                  <span class="subtitle is-7 has-text-white">{{
-                                    option.title
-                                  }}</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                !selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <b-button
-                                size="is-small"
-                                type="is-primary"
-                                rounded
-                                @click="addAppliance(appliance[0])"
-                                >+ ADD TO HOME</b-button
-                              >
-                            </div>
-                            <div
-                              v-if="
-                                selectedAppliances.includes(
-                                  appliance[0].catalogId
-                                )
-                              "
-                              class="is-flex is-align-items-flex-end is-justify-content-flex-end"
-                            >
-                              <a
-                                class="subtitle is-7 has-text-white mt-2 border-0 is-underlined"
-                                @click="removeAppliance(appliance[0])"
-                                ><span>Remove from Home</span></a
-                              >
-                              <b-button
-                                size="is-small"
-                                rounded
-                                class="button-green"
-                                ><b-icon type="is-white" icon="check"></b-icon
-                              ></b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </b-tab-item>
           </b-tabs>
@@ -1836,6 +763,7 @@ export default {
       loadingButton: true,
       loginError: null,
       selectedAppliances: [],
+      selectedOption: null,
       options: [
         {
           color: 'white',
