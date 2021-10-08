@@ -227,7 +227,7 @@
                           <div>
                             <div class="column">
                               <div class="is-grid is-fullheight">
-                                <div>
+                                <div style="overflow: auto">
                                   <p class="subtitle is-7 has-text-white mb-2">
                                     Choose an option
                                   </p>
@@ -398,7 +398,7 @@
                           <div>
                             <div class="column">
                               <div class="is-grid is-fullheight">
-                                <div>
+                                <div style="overflow: auto">
                                   <p class="subtitle is-7 has-text-white mb-2">
                                     Choose an option
                                   </p>
@@ -617,7 +617,7 @@
                             </span>
                           </template> -->
                         </b-carousel>
-                        <div>
+                        <div style="overflow: auto">
                           <p class="subtitle is-7 has-text-white mb-2">
                             Choose an option
                           </p>
