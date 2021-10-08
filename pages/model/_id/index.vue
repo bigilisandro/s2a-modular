@@ -182,7 +182,7 @@
                   <p
                     class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
-                    Foorplan
+                    Floorplan
                   </p>
                 </a>
                 <a class="column" @click.prevent="shareModal">
@@ -310,7 +310,7 @@
                   class="image is-32x32 m-auto"
                 />
                 <p class="subtitle is-7 has-text-white mt-3 has-text-centered">
-                  Foorplan
+                  Floorplan
                 </p>
               </a>
               <a class="mx-2" @click.prevent="shareModal">
