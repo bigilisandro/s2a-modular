@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav
-      class="navbar py-4 is-flex is-justify-content-space-between is-align-items-center"
+      class="navbar py-4 px-5 is-flex is-justify-content-space-between is-align-items-center"
       role="navigation"
       aria-label="main navigation"
     >

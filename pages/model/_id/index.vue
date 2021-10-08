@@ -36,7 +36,6 @@
     <div class="sidebar-page is-hidden-touch">
       <section class="sidebar-layout">
         <b-sidebar
-          position="static"
           :expand-on-hover="true"
           :reduce="true"
           type="is-black"
@@ -46,8 +45,8 @@
           <hooper
             :vertical="true"
             style="height: 100%; width: 100%"
-            :items-to-show="imagesDesktop.length"
             infinite-scroll
+            :items-to-show="7"
           >
             <slide v-for="(image, index) in imagesDesktop" :key="image.length">
               <div
@@ -76,9 +75,9 @@
             >
               <div class="columns content-bottom is-mobile">
                 <div class="column is-2">
-                  <p class="subtitle is-6 has-text-white">
+                  <!-- <p class="subtitle is-6 has-text-white">
                     Living Room 300 sq. ft.
-                  </p>
+                  </p> -->
                 </div>
                 <div class="column columns mb-0"></div>
               </div>
@@ -230,9 +229,9 @@
               class="content-bottom is-flex is-justify-content-space-between"
             >
               <div>
-                <p class="subtitle is-7 has-text-white">
+                <!-- <p class="subtitle is-7 has-text-white">
                   Living Room 300 sq. ft.
-                </p>
+                </p> -->
               </div>
               <div>
                 <!-- <a class="is-align-items-center columns is-flex">
@@ -488,7 +487,7 @@ export default {
   bottom: 5%;
   left: 0;
   right: 0;
-  width: 60%;
+  width: 90%;
   margin: auto;
 }
 .border-left {
@@ -523,7 +522,15 @@ export default {
     // min-height: 100vh;
   }
 }
+@media screen and (min-width: 1200px) {
+  .content-bottom-desktop {
+    width: 75%;
+  }
+}
 @media screen and (max-width: 1023px) {
+  .content-bottom-desktop {
+    width: 90%;
+  }
   .b-sidebar {
     .sidebar-content {
       &.is-mini-mobile {

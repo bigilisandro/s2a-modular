@@ -201,7 +201,7 @@
                 >
                   <b-tab-item
                     label="HOME BATTERY STORAGE"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div class="columns is-flex-wrap-wrap">
                       <div class="column is-6">
@@ -270,13 +270,13 @@
                   </b-tab-item>
                   <b-tab-item
                     label="FILTER 2"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>
                   <b-tab-item
                     label="FILTER 3"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>
@@ -332,7 +332,7 @@
                 >
                   <b-tab-item
                     label="CABINETRY"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div class="columns is-flex-wrap-wrap">
                       <div
@@ -479,25 +479,25 @@
                   </b-tab-item>
                   <b-tab-item
                     label="COUNTERTOP"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>
                   <b-tab-item
                     label="FAUCET"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>
                   <b-tab-item
                     label="SINK"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>
                   <b-tab-item
                     label="PAINT"
-                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+                    header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
                   >
                     <div></div>
                   </b-tab-item>

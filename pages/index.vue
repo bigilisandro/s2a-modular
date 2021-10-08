@@ -15,7 +15,7 @@
       >
         <b-tab-item
           label="ALL HOMES"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- Loader -->
           <div v-if="isLoading">
@@ -44,7 +44,7 @@
         >
         <b-tab-item
           label="0-2,500 SQ. FT."
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 0-2,500 SQ. FT. HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -68,7 +68,7 @@
         >
         <b-tab-item
           label="2,500-5,000 SQ. FT."
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 2,500-5,000 SQ. FT. HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -92,7 +92,7 @@
         >
         <b-tab-item
           label="1-2 BEDROOM"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 1-2 BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -116,7 +116,7 @@
         >
         <b-tab-item
           label="3 BEDROOM"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 3 BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -140,7 +140,7 @@
         >
         <b-tab-item
           label="4+ BEDROOM"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 4+ BEDROOM HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -164,7 +164,7 @@
         >
         <b-tab-item
           label="SINGLE LEVEL"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- SINGLE LEVEL HOMES -->
           <div class="mx-5 mx-0-mobile">
@@ -188,7 +188,7 @@
         >
         <b-tab-item
           label="2+ LEVELS"
-          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold w-15vh is-size-7-mobile"
+          header-class="mx-4 has-background-white my-2 border-radius-30px has-text-weight-bold is-size-7-mobile"
         >
           <!-- 2+ LEVELS HOMES -->
           <div class="mx-5 mx-0-mobile">
