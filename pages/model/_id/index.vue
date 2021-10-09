@@ -122,7 +122,7 @@
                 >
               </div>
             </div>
-            <div class="column is-4 border-left">
+            <div class="column is-5 border-left">
               <div class="columns">
                 <a
                   v-if="model.video_url"
@@ -187,7 +187,7 @@
                 </a>
                 <a class="column" @click.prevent="shareModal">
                   <img
-                    src="@/assets/images/icon_floorplans.svg"
+                    src="@/assets/images/share.svg"
                     alt="icon_edit"
                     class="image is-48x48 m-auto"
                   />
@@ -315,7 +315,7 @@
               </a>
               <a class="mx-2" @click.prevent="shareModal">
                 <img
-                  src="@/assets/images/icon_floorplans.svg"
+                  src="@/assets/images/share.svg"
                   alt="icon_edit"
                   class="image is-32x32 m-auto"
                 />
@@ -487,7 +487,7 @@ export default {
   bottom: 5%;
   left: 0;
   right: 0;
-  width: 90%;
+  width: 95%;
   margin: auto;
 }
 .border-left {
