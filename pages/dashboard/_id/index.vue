@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        <div
+        <!-- <div
           v-if="areas.length"
           class="my-4"
           style="height: 250px; overflow: hidden"
@@ -84,7 +84,7 @@
               <img :src="list.url" alt="" />
             </template>
           </b-carousel-list>
-        </div>
+        </div> -->
         <section>
           <h4 class="title is-4 has-text-primary">EXTERIOR</h4>
           <div class="columns is-multiline">
