@@ -1,6 +1,10 @@
 <template>
-  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
-    <div class="is-flex is-flex-wrap-wrap-reverse">
+  <b-modal
+    :active.sync="isModalActive"
+    :can-cancel="['escape', 'outside']"
+    width="1200px"
+  >
+    <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
       <div class="mr-2">
         <img :src="floorPlan" />
       </div>

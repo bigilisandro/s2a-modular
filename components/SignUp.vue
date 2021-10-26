@@ -9,127 +9,129 @@
       <div class="modal-card mr-2">
         <form method="post" @submit.prevent="signup">
           <section class="modal-card-body px-6">
-            <div class="is-flex is-justify-content-center my-4">
-              <img
-                src="~assets/images/logo_s2a.svg"
-                alt="s2a-modular"
-                class="image"
-                style="width: 250px"
+            <div class="content-sign-up">
+              <div class="is-flex is-justify-content-center mt-5 mb-6">
+                <img
+                  src="~assets/images/logo_s2a.svg"
+                  alt="s2a-modular"
+                  class="image"
+                  style="width: 250px"
+                />
+              </div>
+              <b-field>
+                <b-input
+                  v-model="firstName"
+                  type="text"
+                  placeholder="First Name"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+
+              <b-field>
+                <b-input
+                  v-model="lastName"
+                  type="text"
+                  placeholder="Last Name"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+              <b-field>
+                <b-input
+                  v-model="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+
+              <b-field>
+                <b-input
+                  v-model="mobilePhone"
+                  type="tel"
+                  placeholder="Mobile Phone"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+              <b-field>
+                <b-input
+                  v-model="zipCode"
+                  type="text"
+                  pattern="[0-9]*"
+                  placeholder="ZIP"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+
+              <b-field>
+                <b-input
+                  v-model="password"
+                  type="password"
+                  password-reveal
+                  placeholder="Choose Password"
+                  required
+                  rounded
+                >
+                </b-input>
+              </b-field>
+              <p class="subtitle is-6 has-text-centered mb-2">
+                Communication Preference
+              </p>
+              <b-field position="is-centered">
+                <b-radio-button
+                  v-model="communicationPreference"
+                  native-value="PHONE"
+                  class="mr-5"
+                  expanded
+                >
+                  <span>Phone</span>
+                </b-radio-button>
+
+                <b-radio-button
+                  v-model="communicationPreference"
+                  native-value="EMAIL"
+                  class="ml-5"
+                  expanded
+                >
+                  <span>Email</span>
+                </b-radio-button>
+              </b-field>
+              <b-field>
+                <b-checkbox required size="is-small"
+                  >I agree to the
+                  <a
+                    class="is-underlined has-text-black"
+                    @click.prevent="termsOfUse"
+                    >Terms of Use</a
+                  ></b-checkbox
+                >
+              </b-field>
+              <b-button
+                native-type="submit"
+                label="Sign Up"
+                type="is-primary"
+                expanded
+                rounded
               />
+              <div class="is-flex is-justify-content-center my-2">
+                <Notification v-if="error" :message="error" />
+              </div>
+              <a
+                class="is-flex is-justify-content-center my-4 is-underlined has-text-black is-7 subtitle"
+                @click.prevent="privacyPolicy"
+              >
+                Privacy Policy
+              </a>
             </div>
-            <b-field>
-              <b-input
-                v-model="firstName"
-                type="text"
-                placeholder="First Name"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <b-input
-                v-model="lastName"
-                type="text"
-                placeholder="Last Name"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-            <b-field>
-              <b-input
-                v-model="email"
-                type="email"
-                placeholder="Email"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <b-input
-                v-model="mobilePhone"
-                type="tel"
-                placeholder="Mobile Phone"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-            <b-field>
-              <b-input
-                v-model="zipCode"
-                type="text"
-                pattern="[0-9]*"
-                placeholder="ZIP"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-
-            <b-field>
-              <b-input
-                v-model="password"
-                type="password"
-                password-reveal
-                placeholder="Choose Password"
-                required
-                rounded
-              >
-              </b-input>
-            </b-field>
-            <p class="subtitle is-6 has-text-centered mb-2">
-              Communication Preference
-            </p>
-            <b-field position="is-centered">
-              <b-radio-button
-                v-model="communicationPreference"
-                native-value="PHONE"
-                class="mx-5"
-                expanded
-              >
-                <span>Phone</span>
-              </b-radio-button>
-
-              <b-radio-button
-                v-model="communicationPreference"
-                native-value="EMAIL"
-                class="mx-5"
-                expanded
-              >
-                <span>Email</span>
-              </b-radio-button>
-            </b-field>
-            <b-field>
-              <b-checkbox required size="is-small"
-                >I agree to the
-                <a
-                  class="is-underlined has-text-black"
-                  @click.prevent="termsOfUse"
-                  >Terms of Use</a
-                ></b-checkbox
-              >
-            </b-field>
-            <b-button
-              native-type="submit"
-              label="Sign Up"
-              type="is-primary"
-              expanded
-              rounded
-            />
-            <div class="is-flex is-justify-content-center my-2">
-              <Notification v-if="error" :message="error" />
-            </div>
-            <a
-              class="is-flex is-justify-content-center my-4 is-underlined has-text-black is-7 subtitle"
-              @click.prevent="privacyPolicy"
-            >
-              Privacy Policy
-            </a>
           </section>
         </form>
       </div>
@@ -291,4 +293,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.content-sign-up {
+  width: 70%;
+  margin: auto;
+}
+</style>

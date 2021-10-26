@@ -7,8 +7,8 @@
   >
     <div class="is-flex is-flex-wrap-wrap-reverse">
       <div class="modal-card mr-2">
-        <section class="modal-card-body px-6">
-          <div class="is-flex is-justify-content-center my-5">
+        <section class="modal-card-body px-6 pb-6">
+          <div class="is-flex is-justify-content-center mt-4 mb-6">
             <img
               src="~assets/images/logo_s2a.svg"
               alt="s2a-modular"
@@ -17,9 +17,13 @@
             />
           </div>
           <div>
-            <h3 class="title has-text-centered is-5 mb-6">Share with</h3>
+            <h3
+              class="title has-text-centered is-5 mb-4 has-text-weight-normal"
+            >
+              Share with
+            </h3>
           </div>
-          <div class="is-flex is-justify-content-space-around my-6">
+          <div class="is-flex is-justify-content-space-around mb-6">
             <a
               href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.s2amodular.com%2F&display=popup&ref=plugin&src=share_button"
               target="_blank"
@@ -47,8 +51,6 @@
               </div>
               <p class="subtitle has-text-centered is-7">Linkedin</p>
             </a>
-          </div>
-          <div class="is-flex is-justify-content-space-around my-6">
             <a
               href="mailto:?Subject=Check%20this%20website%20www.s2amodular.com"
               target="_blank"

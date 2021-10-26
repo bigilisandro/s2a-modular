@@ -6,7 +6,11 @@
           <img :src="model.image" :alt="model.title" class="border-green" />
         </figure> -->
         <div v-show="hover" class="hoverImage">
-          <b-button type="is-primary" rounded class="px-6" @click="viewModel"
+          <b-button
+            type="is-primary"
+            rounded
+            class="px-6 has-text-weight-normal"
+            @click="viewModel"
             >VIEW</b-button
           >
         </div>
@@ -14,8 +18,10 @@
     </div>
     <div class="card-content">
       <div class="content">
-        <h4 class="title has-text-primary">{{ model.houseModel }}</h4>
-        <p class="subtitle is-7">{{ model.shortHouseDescription }}</p>
+        <h4 class="title is-4 has-text-primary">
+          {{ model.houseModel.toUpperCase() }}
+        </h4>
+        <p class="subtitle is-6">{{ model.shortHouseDescription }}</p>
       </div>
     </div>
   </div>
@@ -59,8 +65,7 @@ export default {
   border-bottom: 5px solid #027881;
 }
 .hoverImage {
-  background-color: black;
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;

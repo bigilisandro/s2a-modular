@@ -1,12 +1,17 @@
 // Body
-// body {
-//     height: 100vh;
-//     overflow: hidden;
-// }
+body {
+    height: 100vh;
+    overflow: hidden;
+}
 
 // Text
 .is-underlined {
     text-decoration: underline;
+}
+
+// Navbar
+.navbar-item img {
+    max-height: 2.3rem;
 }
 
 // Margin
@@ -106,9 +111,9 @@ a.dropdown-item {
 }
 
 // Buttons
-.button {
-    font-weight: bold;
-}
+// .button {
+//     font-weight: bold;
+// }
 .button:active, .button:focus {
     color: #027881;
 }

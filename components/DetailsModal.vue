@@ -1,5 +1,9 @@
 <template>
-  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
+  <b-modal
+    :active.sync="isModalActive"
+    :can-cancel="['escape', 'outside']"
+    width="1200px"
+  >
     <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
       <div class="columns is-flex mr-2" style="height: 60vh; width: 100%">
         <div class="column is-7 p-0">

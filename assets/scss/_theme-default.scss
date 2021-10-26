@@ -8,6 +8,7 @@
 $green: #027881;
 $blue: #5C94FE;
 $black-light: #526C79;
+$black: black;
 $brown: #757763;
 $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
@@ -24,8 +25,8 @@ $grey-darker: $black-semi;
 $grey-light: $beige-light;
 $primary: $green;
 $light: $black-light;
-$text: $black-semi;
-$text-strong: $black-semi;
+$text: $black;
+$text-strong: $black;
 $link: $black-semi;
 $link-hover: $black-light;
 $background: $green;
@@ -63,12 +64,14 @@ $button-padding-vertical: 0.5rem;
 // $size-2: 2.375rem;
 // $size-1: 2.875rem;
 $subtitle-family: 'Poppins', sans-serif;
+$title-weight: 800;
 // $help-size: 0.75rem;
 
 // Forms
 $input-placeholder-color: $black-semi;
 $input-border-color: $black-semi;
 $checkbox-border-color: $green;
+$checkbox-border-radius: 0;
 
 /* Default font */
 $family-sans-serif: 'Poppins', sans-serif;
@@ -79,9 +82,9 @@ $family-monospace: 'Poppins', sans-serif;
 $title-family: 'Poppins', sans-serif;
 
 /* Base color */
-$base-color: #2A363D;
+$base-color: $black;
 $base-color-light: rgba(24,28,33,0.06);
-$title-color: $black-semi;
+$title-color: $black;
 $notification-background-color: transparent;
 
 /* General overrides */

@@ -1,11 +1,15 @@
 <template>
-  <b-modal :active.sync="isModalActive" :can-cancel="['escape', 'outside']">
+  <b-modal
+    :active.sync="isModalActive"
+    :can-cancel="['escape', 'outside']"
+    width="1200px"
+  >
     <div class="is-flex is-flex-wrap-wrap-reverse-mobile">
       <div class="mx-2 is-fullwidth">
         <iframe
           title="vimeo-player"
           width="100%"
-          height="480"
+          height="600"
           :src="videoUrl"
           frameborder="0"
           allowfullscreen

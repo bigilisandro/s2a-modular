@@ -41,23 +41,39 @@
           type="is-black"
           open
           fullheight
+          style="overflow: hidden"
         >
-          <hooper
-            :vertical="true"
-            style="height: 100%; width: 100%"
-            infinite-scroll
-            :items-to-show="7"
-          >
-            <slide v-for="(image, index) in imagesDesktop" :key="image.length">
-              <div
-                :style="{
-                  'background-image': 'url(' + image.url + ')',
-                }"
-                class="bgImage m-3"
-                @click.prevent="goToSlide(index)"
-              ></div>
-            </slide>
-          </hooper>
+          <div class="is-flex" style="overflow: auto">
+            <div style="width: 95%">
+              <hooper
+                :vertical="true"
+                style="height: 100%; width: 100%"
+                infinite-scroll
+                :items-to-show="7"
+              >
+                <slide
+                  v-for="(image, index) in imagesDesktop"
+                  :key="image.length"
+                >
+                  <div
+                    :style="{
+                      'background-image': 'url(' + image.url + ')',
+                    }"
+                    class="bgImage m-3"
+                    @click.prevent="goToSlide(index)"
+                  ></div>
+                </slide>
+              </hooper>
+            </div>
+            <!-- <div class="is-flex is-align-items-center">
+              <img
+                src="@/assets/images/button_close.svg"
+                alt="icon_share"
+                class="image is-32x32"
+                style="transform: rotate(-90deg)"
+              />
+            </div> -->
+          </div>
         </b-sidebar>
 
         <hooper
@@ -70,7 +86,7 @@
               :style="{
                 'background-image': 'url(' + image.url + ')',
               }"
-              class="bgImage container is-fluid margin-nav mt-2"
+              class="bgImage container is-fluid margin-nav mt-3"
               style="background-size: 100% 100%"
             >
               <div class="columns content-bottom is-mobile">
@@ -91,9 +107,9 @@
                 {{ model.model_name.toUpperCase() }}
               </h1>
               <h4
-                class="subtitle is-5 has-text-white text-max has-text-centered"
+                class="subtitle is-6 has-text-white text-max has-text-centered"
               >
-                {{ model.short_description }}
+                {{ model.short_description.toUpperCase() }}
               </h4>
             </div>
             <div
@@ -122,8 +138,8 @@
                 >
               </div>
             </div>
-            <div class="column is-5 border-left">
-              <div class="columns">
+            <div class="column border-left">
+              <div class="columns is-gapless">
                 <a
                   v-if="model.video_url"
                   class="column"
@@ -154,7 +170,7 @@
                   <p
                     class="subtitle is-7 has-text-white mt-3 has-text-centered"
                   >
-                    View in 360º
+                    View 360
                   </p>
                 </a>
                 <a class="column" @click.prevent="detailsModal">
@@ -434,8 +450,8 @@ export default {
       this.isStyleVisualizerActive = true
     },
     browseAllOptions() {
-      this.isCustomizeHomeModalActive = true
       this.isStyleVisualizerActive = false
+      this.isViewIn360ModalActive = true
     },
     shareModal() {
       this.isShareModalActive = true
@@ -484,14 +500,14 @@ export default {
 }
 .content-bottom-desktop {
   position: absolute;
-  bottom: 5%;
+  bottom: 0%;
   left: 0;
   right: 0;
   width: 95%;
   margin: auto;
 }
 .border-left {
-  border-left: 2px solid white;
+  border-left: 1px solid white;
 }
 .bgImage {
   height: inherit;
@@ -524,7 +540,7 @@ export default {
 }
 @media screen and (min-width: 1200px) {
   .content-bottom-desktop {
-    width: 75%;
+    width: 65%;
   }
 }
 @media screen and (max-width: 1023px) {
