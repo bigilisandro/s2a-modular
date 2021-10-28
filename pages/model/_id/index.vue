@@ -33,7 +33,7 @@
       @browse="browseAllOptions"
     />
     <share-modal :is-active="isShareModalActive" @cancel="trashCancel" />
-    <div class="sidebar-page is-hidden-touch">
+    <div class="sidebar-page is-hidden-touch is-hidden-desktop-only">
       <section class="sidebar-layout">
         <b-sidebar
           :expand-on-hover="true"
@@ -219,7 +219,7 @@
         </div>
       </section>
     </div>
-    <div class="is-hidden-desktop">
+    <div class="is-hidden-widescreen">
       <div class="has-background-primary p-4 top-title">
         <h1 class="title is-3 has-text-white has-text-centered">
           {{ model.model_name }}
@@ -489,13 +489,15 @@ export default {
   position: absolute;
   top: 5rem;
   z-index: 25;
+  left: 0;
+  right: 0;
 }
 .bottom-content {
   position: absolute;
   bottom: 0%;
   left: 0;
   right: 0;
-  height: 18vh;
+  height: 21vh;
   background: rgba(0, 0, 0, 0.8);
 }
 .content-bottom-desktop {
